@@ -1,6 +1,7 @@
 import { CalendarClock, Clock, TrendingUp, AlertTriangle, CheckCircle2 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import Seo from '@/components/Seo'
 import {
   Table,
   TableBody,
@@ -11,79 +12,113 @@ import {
 } from '@/components/ui/table'
 
 const history = [
-  { game: 'GTA 3', console: '2001-10-22', pc: '2002-05-21', months: 7, note: 'PS2 首发' },
-  { game: 'GTA: Vice City', console: '2002-10-29', pc: '2003-05-13', months: 6.5, note: 'PS2 首发' },
-  { game: 'GTA: San Andreas', console: '2004-10-26', pc: '2005-06-07', months: 7.5, note: 'PS2 首发' },
+  { game: 'GTA 3', console: '2001-10-22', pc: '2002-05-21', months: 7, note: 'PS2 debut' },
+  { game: 'GTA: Vice City', console: '2002-10-29', pc: '2003-05-13', months: 6.5, note: 'PS2 debut' },
+  { game: 'GTA: San Andreas', console: '2004-10-26', pc: '2005-06-07', months: 7.5, note: 'PS2 debut' },
   { game: 'GTA 4', console: '2008-04-29', pc: '2008-12-02', months: 7, note: 'PS3 / Xbox 360' },
-  { game: 'GTA 5', console: '2013-09-17', pc: '2015-04-14', months: 19, note: '中间隔了一代主机移植' },
-  { game: '荒野大镖客 2', console: '2018-10-26', pc: '2019-11-05', months: 12, note: 'R 星最近一部大作' },
+  { game: 'GTA 5', console: '2013-09-17', pc: '2015-04-14', months: 19, note: 'Included a next-gen console port' },
+  { game: 'Red Dead Redemption 2', console: '2018-10-26', pc: '2019-11-05', months: 12, note: "Rockstar's latest major PC release" },
 ]
 
 const gta6Timeline = [
-  { date: '2023 年 12 月', event: '首支预告片发布，官宣 2025 年发售', status: 'done' as const },
-  { date: '2025 年 5 月', event: '第一次跳票：定档 2026 年 5 月 26 日', status: 'done' as const },
-  { date: '2026 年 4 月', event: '第二次跳票：推迟至 2026 年 11 月 19 日', status: 'done' as const },
-  { date: '2026 年 6 月', event: '预购开启；官网一度移除具体发售日期，再引猜测', status: 'done' as const },
-  { date: '2026 年 11 月 19 日', event: '主机版发售（PS5 / PS5 Pro / Xbox Series X|S）', status: 'future' as const },
-  { date: '待定', event: 'PC 版：R 星至今只字未提', status: 'unknown' as const },
+  { date: 'December 2023', event: 'Trailer 1 arrives; Rockstar announces a 2025 launch', status: 'done' as const },
+  { date: 'May 2025', event: 'First delay: release moves to May 26, 2026', status: 'done' as const },
+  { date: 'April 2026', event: 'Second delay: release moves to November 19, 2026', status: 'done' as const },
+  { date: 'June 2026', event: 'Pre-orders open; a temporarily missing date on the official site sparks speculation', status: 'done' as const },
+  { date: 'November 19, 2026', event: 'Console launch (PS5 / PS5 Pro / Xbox Series X|S)', status: 'future' as const },
+  { date: 'TBA', event: 'PC version: still unannounced', status: 'unknown' as const },
 ]
 
 const scenarios = [
   {
-    name: '乐观情景',
-    window: '2027 年年中',
-    gap: '主机版后约 7~8 个月',
-    probability: '可能性较低',
+    name: 'Optimistic',
+    window: 'Mid-2027',
+    gap: 'About 7–8 months after consoles',
+    probability: 'Less likely',
     color: '#22e5ee',
-    desc: '对标 GTA 4 时代 7 个月的间隔。前提是 R 星在主机版开发后期已同步推进 PC 移植，且不再跳票。',
+    desc: 'This mirrors the seven-month GTA 4 gap. It assumes Rockstar has been developing the PC port alongside the final console build and avoids further delays.',
   },
   {
-    name: '基准情景',
-    window: '2027 年底 ~ 2028 年初',
-    gap: '主机版后约 12~15 个月',
-    probability: '可能性最高',
+    name: 'Baseline',
+    window: 'Late 2027 – early 2028',
+    gap: 'About 12–15 months after consoles',
+    probability: 'Most likely',
     color: '#ff4da6',
-    desc: '对标 RDR2 的 12 个月间隔，叠加圣诞档期与 R 星偏爱周二发售的习惯，2027 年 11 月前后是最合理的点估计。',
+    desc: "This follows RDR2's 12-month gap. Holiday timing and Rockstar's preference for Tuesday launches make November 2027 our most reasonable point estimate.",
   },
   {
-    name: '悲观情景',
-    window: '2028 年中及以后',
-    gap: '主机版后约 18 个月以上',
-    probability: '需要警惕',
+    name: 'Pessimistic',
+    window: 'Mid-2028 or later',
+    gap: '18+ months after consoles',
+    probability: 'Worth watching',
     color: '#f59e0b',
-    desc: 'GTA 6 体量空前、PC 平台组合复杂，若 PC 版像 GTA 5 一样多次跳票，或主机版本身再延期，等待将进一步拉长。',
+    desc: "GTA 6 is enormous and PC hardware is fragmented. Multiple PC delays like GTA 5's—or another console delay—would push the wait well beyond our baseline.",
   },
 ]
+
+const releaseDateStructuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': 'https://gta6pc.org/release-date#webpage',
+      url: 'https://gta6pc.org/release-date',
+      name: 'When Is GTA 6 Coming to PC? Release Date Estimate',
+      description: "An evidence-based GTA 6 PC release date estimate using Rockstar's console-to-PC launch history.",
+      about: { '@type': 'VideoGame', name: 'Grand Theft Auto VI', alternateName: 'GTA 6' },
+      inLanguage: 'en',
+      dateModified: '2026-07-22',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://gta6pc.org/' },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'GTA 6 PC Release Date Estimate',
+          item: 'https://gta6pc.org/release-date',
+        },
+      ],
+    },
+  ],
+}
 
 export default function ReleaseDate() {
   return (
     <div className="mx-auto max-w-6xl px-4 pt-14">
+      <Seo
+        title="When Is GTA 6 Coming to PC? Release Date Estimate (2027–2028)"
+        description="When will GTA 6 launch on PC? We analyze Rockstar's console-to-PC release history to estimate a likely 2027–2028 window."
+        path="/release-date"
+        structuredData={releaseDateStructuredData}
+      />
       {/* header */}
       <div className="text-center mb-12">
         <Badge variant="outline" className="mb-4 border-[#ff4da6]/40 text-[#ff4da6]">
           <CalendarClock className="w-3.5 h-3.5 mr-1.5" />
-          问题一 · 发售时间
+          QUESTION 1 · RELEASE DATE
         </Badge>
         <h1 className="font-display text-4xl sm:text-5xl tracking-tight">
-          <span className="text-gradient-sunset">GTA 6 什么时候上 PC？</span>
+          <span className="text-gradient-sunset">When is GTA 6 coming to PC?</span>
         </h1>
         <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-          一句话回答：<strong className="text-foreground">官方没有说，但历史规律指向 2027 年底。</strong>
-          下面是完整的推导过程。
+          Short answer: <strong className="text-foreground">Rockstar has not said, but its history points to late 2027.</strong>
+          Here is how we reached that estimate.
         </p>
       </div>
 
       {/* conclusion card */}
       <Card className="bg-card/90 border-[#ff4da6]/30 neon-box-pink mb-14">
         <CardContent className="p-6 sm:p-10 text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-3">我们的预测</p>
-          <p className="font-display text-3xl sm:text-5xl neon-pink">2027 年 11 月前后</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-3">OUR ESTIMATE</p>
+          <p className="font-display text-3xl sm:text-5xl neon-pink">AROUND NOVEMBER 2027</p>
           <p className="mt-4 text-sm text-muted-foreground">
-            置信窗口：<strong className="text-foreground">2027 年 11 月 ~ 2028 年 5 月</strong>
-            （主机版发售后约 12~18 个月）
+            Confidence window: <strong className="text-foreground">November 2027 – May 2028</strong>
+            {' '}(about 12–18 months after the console launch)
           </p>
           <p className="mt-2 text-xs text-muted-foreground/70">
-            前提：主机版按当前定档的 2026 年 11 月 19 日如期发售
+            Assumes the console version launches on November 19, 2026 as currently scheduled
           </p>
         </CardContent>
       </Card>
@@ -92,10 +127,10 @@ export default function ReleaseDate() {
       <section className="mb-16">
         <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
           <Clock className="w-5 h-5 text-[#22e5ee]" />
-          GTA 6 的官方时间线
+          The official GTA 6 timeline
         </h2>
         <p className="text-sm text-muted-foreground mb-8">
-          理解 PC 版何时来，先看主机版走到了哪一步——它已经跳票两次。
+          To estimate the PC release, start with the console timeline—it has already moved twice.
         </p>
         <div className="relative pl-6 sm:pl-8">
           <div className="absolute left-[7px] sm:left-[11px] top-2 bottom-2 w-px bg-gradient-to-b from-[#22e5ee] via-[#ff4da6] to-white/10" />
@@ -129,21 +164,21 @@ export default function ReleaseDate() {
       <section className="mb-16">
         <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
           <TrendingUp className="w-5 h-5 text-[#ff4da6]" />
-          历史规律：R 星的 PC 版总是迟到
+          The pattern: Rockstar's PC versions arrive later
         </h2>
         <p className="text-sm text-muted-foreground mb-8">
-          过去 25 年，R 星从未让 PC 版与主机版同步发售。间隔从半年到一年半不等：
+          Over the past 25 years, Rockstar has never launched these PC versions alongside consoles. The gap has ranged from roughly six months to a year and a half:
         </p>
         <Card className="bg-card/90 border-white/10 overflow-hidden">
           <Table>
             <TableHeader>
               <TableRow className="border-white/10 hover:bg-transparent">
-                <TableHead className="text-muted-foreground">作品</TableHead>
-                <TableHead className="text-muted-foreground">主机首发</TableHead>
-                <TableHead className="text-muted-foreground">PC 发售</TableHead>
-                <TableHead className="text-muted-foreground text-right">间隔</TableHead>
+                <TableHead className="text-muted-foreground">Game</TableHead>
+                <TableHead className="text-muted-foreground">Console</TableHead>
+                <TableHead className="text-muted-foreground">PC</TableHead>
+                <TableHead className="text-muted-foreground text-right">Gap</TableHead>
                 <TableHead className="text-muted-foreground hidden md:table-cell w-[38%]">
-                  间隔可视化
+                  Visual comparison
                 </TableHead>
               </TableRow>
             </TableHeader>
@@ -159,7 +194,7 @@ export default function ReleaseDate() {
                   <TableCell className="text-muted-foreground whitespace-nowrap">{h.console}</TableCell>
                   <TableCell className="whitespace-nowrap">{h.pc}</TableCell>
                   <TableCell className="text-right font-semibold text-[#22e5ee] whitespace-nowrap">
-                    {h.months} 个月
+                    {h.months} months
                   </TableCell>
                   <TableCell className="hidden md:table-cell">
                     <div className="h-2 rounded-full bg-white/5 overflow-hidden">
@@ -184,23 +219,22 @@ export default function ReleaseDate() {
         {/* GTA5 deep dive */}
         <Card className="bg-card/90 border-white/10 mt-6">
           <CardHeader>
-            <CardTitle className="text-lg">重点复盘：GTA 5 那 19 个月是怎么来的？</CardTitle>
+            <CardTitle className="text-lg">Why did GTA 5 take 19 months?</CardTitle>
           </CardHeader>
           <CardContent className="text-sm leading-relaxed text-muted-foreground space-y-3">
             <p>
-              <strong className="text-foreground">2013 年 9 月 17 日</strong>，GTA 5 在 PS3 / Xbox 360 首发。
-              玩家原以为 PC 版会像 GTA 4 一样半年就到，但 R 星先做了
-              <strong className="text-foreground">次世代主机移植</strong>——
-              2014 年 11 月 18 日登陆 PS4 / Xbox One，PC 版则被一路推迟：
-              原定 2014 年秋，三度跳票后直到
-              <strong className="text-foreground"> 2015 年 4 月 14 日</strong>才发售。
+              GTA 5 debuted on PS3 and Xbox 360 on <strong className="text-foreground">September 17, 2013</strong>.
+              Players expected a GTA 4-style six-month wait, but Rockstar prioritized a
+              <strong className="text-foreground"> next-generation console port</strong> for PS4 and Xbox One on November 18, 2014.
+              The PC edition, originally planned for fall 2014, was delayed three times and finally launched on
+              <strong className="text-foreground"> April 14, 2015</strong>.
             </p>
             <p>
-              也就是说，19 个月里包含了一次「中间隔代移植」和 PC 版自身的三次跳票。
+              In other words, the 19-month gap included an intermediate console port and three PC-specific delays.
               <strong className="text-[#22e5ee]">
-                GTA 6 首发即当代主机（PS5 / Xbox Series），不存在隔代移植
+                {' '}GTA 6 begins on current-generation consoles, so there is no equivalent cross-generation port
               </strong>
-              ，这是它比 GTA 5 更快登陆 PC 的最大利好；但 PC 版反复跳票的风险依然存在。
+              . That is the strongest reason to expect a shorter wait than GTA 5, though PC delays remain possible.
             </p>
           </CardContent>
         </Card>
@@ -208,9 +242,9 @@ export default function ReleaseDate() {
 
       {/* scenarios */}
       <section className="mb-16">
-        <h2 className="text-2xl font-bold mb-2">三种情景推演</h2>
+        <h2 className="text-2xl font-bold mb-2">Three release scenarios</h2>
         <p className="text-sm text-muted-foreground mb-8">
-          以 2026 年 11 月 19 日主机版发售为基准，PC 版的可能落点：
+          Based on a November 19, 2026 console launch, these are the most plausible PC windows:
         </p>
         <div className="grid md:grid-cols-3 gap-5">
           {scenarios.map((s) => (
@@ -241,7 +275,7 @@ export default function ReleaseDate() {
         {/* visual window bar */}
         <Card className="bg-card/90 border-white/10 mt-8">
           <CardContent className="p-6">
-            <p className="text-xs text-muted-foreground mb-4">预测窗口一览（2026.11 主机版 → PC 版）</p>
+            <p className="text-xs text-muted-foreground mb-4">Estimated windows (November 2026 console launch → PC)</p>
             <div className="relative h-24">
               {/* axis */}
               <div className="absolute left-0 right-0 top-1/2 h-px bg-white/15" />
@@ -260,30 +294,30 @@ export default function ReleaseDate() {
               <div
                 className="absolute top-[12%] h-2.5 rounded-full bg-gradient-to-r from-[#22e5ee] to-[#22e5ee]/40"
                 style={{ left: '12.5%', width: '12.5%' }}
-                title="乐观：2027 年中"
+                title="Optimistic: mid-2027"
               />
               {/* base: Nov 2027 - May 2028 */}
               <div
                 className="absolute top-[27%] h-3.5 rounded-full bg-gradient-to-r from-[#ff4da6] to-[#ff7b54] neon-box-pink"
                 style={{ left: '50%', width: '25%' }}
-                title="基准：2027 年底 ~ 2028 年初"
+                title="Baseline: late 2027 to early 2028"
               />
               {/* pessimistic: mid 2028+ */}
               <div
                 className="absolute top-[42%] h-2.5 rounded-full bg-gradient-to-r from-amber-400/70 to-amber-400/25"
                 style={{ left: '75%', width: '25%' }}
-                title="悲观：2028 年中以后"
+                title="Pessimistic: mid-2028 or later"
               />
             </div>
             <div className="flex flex-wrap gap-x-5 gap-y-1 mt-2 text-[11px] text-muted-foreground">
               <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#22e5ee]" /> 乐观
+                <span className="w-2.5 h-2.5 rounded-full bg-[#22e5ee]" /> Optimistic
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#ff4da6]" /> 基准（重点关注）
+                <span className="w-2.5 h-2.5 rounded-full bg-[#ff4da6]" /> Baseline (our pick)
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-400" /> 悲观
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-400" /> Pessimistic
               </span>
             </div>
           </CardContent>
@@ -292,20 +326,20 @@ export default function ReleaseDate() {
 
       {/* why */}
       <section className="mb-8">
-        <h2 className="text-2xl font-bold mb-8">支撑这个判断的三个理由</h2>
+        <h2 className="text-2xl font-bold mb-8">Three reasons behind our estimate</h2>
         <div className="grid sm:grid-cols-3 gap-5">
           {[
             {
-              title: 'RDR2 是最接近的参照',
-              desc: '同为当代主机首发、同为 RAGE 引擎开放世界大作，RDR2 从主机到 PC 恰好 12 个月。GTA 6 的商业结构与之最相似。',
+              title: 'RDR2 is the closest comparison',
+              desc: 'Like GTA 6, RDR2 was a current-generation, open-world RAGE title. Its PC version arrived exactly 12 months after consoles, making it the most relevant precedent.',
             },
             {
-              title: '没有隔代移植拖后腿',
-              desc: 'GTA 5 的 19 个月很大程度耗在 PS4/Xbox One 移植上。GTA 6 首发 PS5/XSX，PC 与主机共用 x86 架构，移植链路更短。',
+              title: 'No cross-generation port in the way',
+              desc: "Much of GTA 5's 19-month gap went into PS4 and Xbox One versions. GTA 6 starts on PS5 and Xbox Series hardware, shortening the path to an x86 PC port.",
             },
             {
-              title: '但 R 星永远把 PC 放在第二步',
-              desc: '先主机后 PC 是 R 星的商业策略（首发销量 + 双重购买），前 GTA 4 开发者也公开预测 PC 版要等到 2027 年。指望同步发售不现实。',
+              title: 'But Rockstar still puts PC second',
+              desc: 'Console first, PC later is a consistent Rockstar strategy. A former GTA 4 developer has also publicly predicted a 2027 PC release, making a simultaneous launch unrealistic.',
             },
           ].map((r) => (
             <Card key={r.title} className="bg-card/90 border-white/10">
@@ -322,9 +356,9 @@ export default function ReleaseDate() {
       <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 flex gap-3 items-start">
         <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
         <p className="text-xs text-muted-foreground leading-relaxed">
-          重要提醒：截至 2026 年 7 月，Rockstar 未对 PC 版发布任何官方信息，以上全部是基于历史数据的推演。
-          若主机版再度跳票，本预测窗口将整体顺延。另外，官网曾在 2026 年 6 月短暂移除 11 月 19 日的日期标识，
-          说明时间节点仍存在变数。
+          Important: as of July 2026, Rockstar has announced no PC version. Every date above is an estimate based on historical data.
+          Another console delay would move the entire window back. The official site also briefly removed the November 19 date in June 2026,
+          so the schedule may still change.
         </p>
       </div>
     </div>

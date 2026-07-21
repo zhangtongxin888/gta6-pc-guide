@@ -2,29 +2,60 @@ import { Link } from 'react-router'
 import { ArrowRight, CalendarClock, Cpu, AlertTriangle } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import Seo from '@/components/Seo'
+
+const homeStructuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': 'https://gta6pc.org/#website',
+      name: 'GTA VI PC Guide',
+      url: 'https://gta6pc.org/',
+      inLanguage: 'en',
+      description: 'An evidence-based guide to the GTA 6 PC release date and system requirements.',
+    },
+    {
+      '@type': 'WebPage',
+      '@id': 'https://gta6pc.org/#webpage',
+      url: 'https://gta6pc.org/',
+      name: 'GTA 6 PC Release Date and System Requirements',
+      isPartOf: { '@id': 'https://gta6pc.org/#website' },
+      about: { '@type': 'VideoGame', name: 'Grand Theft Auto VI', alternateName: 'GTA 6' },
+      inLanguage: 'en',
+      dateModified: '2026-07-22',
+    },
+  ],
+}
 
 const entries = [
   {
     to: '/release-date',
     icon: CalendarClock,
     color: 'pink' as const,
-    title: 'GTA 6 什么时候上 PC？',
-    desc: '复盘 GTA 5 从主机到 PC 长达 19 个月的等待，结合 R 星历代作品的发售规律，推算 GTA 6 PC 版最可能的时间窗口。',
-    tag: '结论先行：预计 2027 年底',
+    title: 'When is GTA 6 coming to PC?',
+    desc: "We revisit GTA 5's 19-month console-to-PC wait and Rockstar's release history to estimate the most likely launch window for GTA 6 on PC.",
+    tag: 'Our estimate: late 2027',
   },
   {
     to: '/pc-specs',
     icon: Cpu,
     color: 'cyan' as const,
-    title: 'PC 需要什么样的配置？',
-    desc: '以 PS5 / PS5 Pro 的硬件性能为锚点，拆解 CPU、显卡、显存与 SSD 需求，给出三档预测配置单。',
-    tag: '起步门槛：16GB 内存 + NVMe SSD',
+    title: 'What PC specs will GTA 6 need?',
+    desc: 'Using PS5 and PS5 Pro performance as a baseline, we estimate CPU, GPU, VRAM, memory, and SSD requirements across three build tiers.',
+    tag: 'Starting point: 16GB RAM + NVMe SSD',
   },
 ]
 
 export default function Home() {
   return (
     <div>
+      <Seo
+        title="GTA 6 PC Release Date & System Requirements | GTA6PC.org"
+        description="When is GTA 6 coming to PC, and what hardware will it need? Explore evidence-based release date and system requirement estimates."
+        path="/"
+        structuredData={homeStructuredData}
+      />
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="sunset-gradient absolute inset-x-0 top-0 h-[26rem] opacity-90" aria-hidden />
@@ -56,20 +87,20 @@ export default function Home() {
             variant="outline"
             className="mb-6 border-white/30 bg-black/30 text-white backdrop-blur px-4 py-1"
           >
-            主机版定档 2026 年 11 月 19 日 · PC 版仍待官宣
+            Console release: November 19, 2026 · PC version unannounced
           </Badge>
           <h1 className="font-display leading-none">
             <span className="block text-6xl sm:text-8xl tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.6)]">
               GTA VI
             </span>
             <span className="block mt-3 text-3xl sm:text-5xl tracking-wide text-white/95 drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
-              PC 玩家等待指南
+              THE PC PLAYER'S GUIDE
             </span>
           </h1>
           <p className="mt-6 text-sm sm:text-base text-white/85 max-w-xl mx-auto drop-shadow-[0_1px_8px_rgba(0,0,0,0.5)]">
-            PC 版什么时候来？电脑要不要提前升级？
+            When will the PC version arrive? Should you upgrade now?
             <br className="hidden sm:block" />
-            我们用历史数据和硬件分析，回答这两个 PC 玩家最关心的问题。
+            We use release history and hardware analysis to answer the two questions PC players care about most.
           </p>
         </div>
       </section>
@@ -126,10 +157,10 @@ export default function Home() {
         <div className="rounded-2xl border border-amber-400/20 bg-amber-400/5 p-5 sm:p-6 flex gap-4 items-start">
           <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
           <div className="text-sm leading-relaxed text-amber-100/80">
-            <p className="font-semibold text-amber-300 mb-1">当前状态速览（2026 年 7 月）</p>
-            Rockstar 至今<strong className="text-amber-200">未公布任何 PC 版计划</strong>——这符合其一贯做法：历代 GTA
-            的 PC 版均在主机版发售后才正式宣布。主机版已两度跳票（2025 秋 → 2026 年 5 月 26 日 → 2026 年 11 月 19 日），
-            PC 版的等待注定更漫长，一切预测都建立在主机版如期发售的前提上。
+            <p className="font-semibold text-amber-300 mb-1">Current status (July 2026)</p>
+            Rockstar has <strong className="text-amber-200">not announced a PC version</strong>. That matches its usual pattern:
+            recent GTA PC editions were announced after their console launches. The console release has already moved twice
+            (fall 2025 → May 26, 2026 → November 19, 2026), so every estimate here assumes the current console date holds.
           </div>
         </div>
       </section>

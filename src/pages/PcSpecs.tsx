@@ -1,6 +1,7 @@
 import { Cpu, MemoryStick, HardDrive, MonitorPlay, Zap, AlertTriangle, Info } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import Seo from '@/components/Seo'
 import {
   Table,
   TableBody,
@@ -11,103 +12,137 @@ import {
 } from '@/components/ui/table'
 
 const ps5Specs = [
-  { label: 'CPU', value: '8 核 AMD Zen 2 @ 3.5GHz', note: '约等于桌面级 Ryzen 7 3700X 的降频版' },
-  { label: 'GPU', value: 'RDNA 2 · 36CU · 10.28 TFLOPS', note: '光栅性能约等于 RTX 2070 Super / RX 6700' },
-  { label: '内存', value: '16GB GDDR6 统一内存', note: '游戏实际可用约 12~13GB，显存内存共享' },
-  { label: '存储', value: '定制 NVMe SSD · 5.5GB/s', note: '支撑无缝开放世界流式加载' },
+  { label: 'CPU', value: '8-core AMD Zen 2 @ 3.5GHz', note: 'Roughly a downclocked desktop Ryzen 7 3700X' },
+  { label: 'GPU', value: 'RDNA 2 · 36CU · 10.28 TFLOPS', note: 'Raster performance near an RTX 2070 Super / RX 6700' },
+  { label: 'Memory', value: '16GB unified GDDR6', note: 'About 12–13GB available to games, shared by CPU and GPU' },
+  { label: 'Storage', value: 'Custom NVMe SSD · 5.5GB/s', note: 'Designed for seamless open-world streaming' },
 ]
 
 const tiers = [
   {
-    name: '入门档',
-    target: '1080p / 30fps · 低画质',
+    name: 'Minimum',
+    target: '1080p / 30fps · Low settings',
     color: '#22e5ee',
     cpu: 'Ryzen 5 3600 / i5-10400',
     gpu: 'RTX 3060 12GB / RX 6600 XT',
     ram: '16GB DDR4',
-    storage: 'NVMe SSD · 200GB 可用空间',
-    note: '对标「等于或略强于 PS5」的体验。1080p 下用低画质+上采样技术（DLSS/FSR）可以运行，但别指望流畅度超过主机。',
+    storage: 'NVMe SSD · 200GB free',
+    note: 'Aims to match or slightly exceed the PS5 experience. Low settings plus DLSS or FSR should make 1080p playable, but do not expect performance beyond the console version.',
   },
   {
-    name: '推荐档',
-    target: '1440p / 60fps · 高画质',
+    name: 'Recommended',
+    target: '1440p / 60fps · High settings',
     color: '#ff4da6',
     cpu: 'Ryzen 7 7700X / i5-13600K',
     gpu: 'RTX 4070 Super / RX 7800 XT',
     ram: '32GB DDR5',
     storage: 'PCIe 4.0 NVMe SSD · 200GB',
-    note: '大多数玩家值得瞄准的甜点档。明显超越主机的分辨率和帧率，高画质下开启上采样可稳 60fps。',
+    note: 'The sweet spot for most players: clearly above console resolution and frame rate, with upscaling helping high settings hold 60fps.',
   },
   {
-    name: '发烧档',
-    target: '4K / 60fps · 光追拉满',
+    name: 'Enthusiast',
+    target: '4K / 60fps · Max ray tracing',
     color: '#f59e0b',
     cpu: 'Ryzen 7 9800X3D / i7-14700K',
-    gpu: 'RTX 5080 / RX 9070 XT 及以上',
-    ram: '32GB DDR5（高频低延迟）',
+    gpu: 'RTX 5080 / RX 9070 XT or better',
+    ram: '32GB low-latency DDR5',
     storage: 'PCIe 4.0/5.0 NVMe SSD',
-    note: '预告片里密集的全局光照与反射效果，暗示 RAGE 引擎光追负载不轻。4K 光追全开需要旗舰显卡，X3D 处理器缓解 CPU 瓶颈。',
+    note: 'The trailers show dense global illumination and reflections, suggesting a heavy ray-tracing load. Maxed-out 4K will need a flagship GPU, while an X3D CPU should reduce simulation bottlenecks.',
   },
 ]
 
 const analysis = [
   {
     icon: MonitorPlay,
-    title: '显卡：PS5 的 10 TFLOPS 只是起点',
+    title: "GPU: the PS5's 10 TFLOPS is only a starting point",
     color: '#ff4da6',
     points: [
-      'PS5 GPU 光栅性能约等于 RTX 2070 Super，PC 版要「追平主机体验」，RTX 3060 级别是底线。',
-      '但主机有深度定制优化，PC 通常需要 20%~30% 的性能冗余才能打平，所以推荐档直接跳到 4070 Super 级别。',
-      '预告片展示的水面反射、霓虹全局光照大概率是光追效果——想原汁原味体验，光追性能（RT 单元）比纯光栅更重要。',
+      'PS5 raster performance is close to an RTX 2070 Super, making the RTX 3060 class a reasonable floor for matching console visuals.',
+      'Consoles benefit from deep platform-specific optimization, so PCs often need 20%–30% more headroom. That moves our recommended tier to the RTX 4070 Super class.',
+      'The water reflections and neon global illumination shown in trailers are likely ray-traced, making RT performance more important than raster power alone.',
     ],
   },
   {
     icon: Cpu,
-    title: 'CPU：最容易被低估的瓶颈',
+    title: 'CPU: the easiest bottleneck to underestimate',
     color: '#22e5ee',
     points: [
-      '数毛社（Digital Foundry）分析指出：GTA 6 的每条街道都有交通模拟和 NPC 行为演算，CPU 负载极高，连 PS5 Pro 都被预测难以稳定 60fps。',
-      '这意味着 PC 端想上 60fps，一颗现代 6~8 核 CPU 是硬门槛；X3D 系列的大缓存对开放世界游戏收益明显。',
-      '老平台（Zen 2 及更早、9 代酷睿及更早）很可能成为帧率天花板，换显卡也救不回来。',
+      'Digital Foundry has highlighted the dense traffic and NPC simulation visible on every street. That workload could keep even PS5 Pro from sustaining 60fps.',
+      'A modern 6- to 8-core CPU is therefore the practical floor for 60fps on PC. Large-cache X3D processors are especially strong in open-world games.',
+      'Older platforms—Zen 2 and earlier, or 9th-gen Core and earlier—may impose a frame-rate ceiling that a GPU upgrade cannot fix.',
     ],
   },
   {
     icon: MemoryStick,
-    title: '显存与内存：16GB 是底线，32GB 才从容',
+    title: 'VRAM and RAM: 16GB is the floor, 32GB is comfortable',
     color: '#7c9cff',
     points: [
-      '主机 16GB 统一内存中游戏可用约 12~13GB，贴图与几何数据通过高速 SSD 实时流入，PC 端这部分压力转移到显存。',
-      '8GB 显存的显卡（如 RTX 4060 8GB、RX 7600）在高贴图质量下大概率爆显存，建议 12GB 显存起步。',
-      '系统内存方面 16GB 能进游戏，但后台开浏览器/语音软件就会吃紧，32GB 是 2027 年装机的合理选择。',
+      "Games can use about 12–13GB of the console's unified memory, with textures and geometry streamed from the SSD. On PC, much of that pressure shifts to VRAM.",
+      'Cards with 8GB VRAM, such as the RTX 4060 8GB and RX 7600, may struggle with high-resolution textures. We recommend at least 12GB VRAM.',
+      '16GB system RAM may run the game, but browsers and voice chat will leave little headroom. For a 2027 build, 32GB is the sensible target.',
     ],
   },
   {
     icon: HardDrive,
-    title: '存储：NVMe SSD 不是建议，是必需',
+    title: 'Storage: an NVMe SSD is a requirement, not a suggestion',
     color: '#f59e0b',
     points: [
-      '参考 RDR2 的 150GB，GTA 6 的体量预计 200GB 上下，首发前预留 250GB 空间更稳妥。',
-      'GTA 6 的世界流式加载围绕 PS5 的 5.5GB/s SSD 设计，机械硬盘几乎必然出现贴图加载延迟和卡顿。',
-      'PCIe 3.0 NVMe 可以兜底，PCIe 4.0 是推荐档的合理配置。',
+      "RDR2 uses about 150GB. GTA 6 could land around 200GB, so reserving 250GB before launch is the safer plan.",
+      "The world is designed around the PS5's 5.5GB/s SSD. A mechanical hard drive would almost certainly cause texture pop-in and traversal stutter.",
+      'PCIe 3.0 NVMe should be the minimum; PCIe 4.0 is the sensible recommendation.',
     ],
   },
 ]
 
+const pcSpecsStructuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': 'https://gta6pc.org/pc-specs#webpage',
+      url: 'https://gta6pc.org/pc-specs',
+      name: 'GTA 6 PC System Requirements: Minimum, Recommended and 4K',
+      description: 'Estimated GTA 6 PC CPU, GPU, memory, VRAM and NVMe SSD requirements using PS5 performance as a baseline.',
+      about: { '@type': 'VideoGame', name: 'Grand Theft Auto VI', alternateName: 'GTA 6' },
+      inLanguage: 'en',
+      dateModified: '2026-07-22',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://gta6pc.org/' },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'GTA 6 PC System Requirements',
+          item: 'https://gta6pc.org/pc-specs',
+        },
+      ],
+    },
+  ],
+}
+
 export default function PcSpecs() {
   return (
     <div className="mx-auto max-w-6xl px-4 pt-14">
+      <Seo
+        title="GTA 6 PC System Requirements: Minimum, Recommended & 4K"
+        description="What PC specs will GTA 6 need? Using PS5 performance as a baseline, we estimate minimum, recommended and 4K CPU, GPU, memory and SSD requirements."
+        path="/pc-specs"
+        structuredData={pcSpecsStructuredData}
+      />
       {/* header */}
       <div className="text-center mb-12">
         <Badge variant="outline" className="mb-4 border-[#22e5ee]/40 text-[#22e5ee]">
           <Cpu className="w-3.5 h-3.5 mr-1.5" />
-          问题二 · 硬件配置
+          QUESTION 2 · SYSTEM REQUIREMENTS
         </Badge>
         <h1 className="font-display text-4xl sm:text-5xl tracking-tight">
-          <span className="text-gradient-ocean">PC 需要什么样的配置？</span>
+          <span className="text-gradient-ocean">What PC specs will GTA 6 need?</span>
         </h1>
         <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-          官方配置单不存在，但 PS5 是最好的参照系——GTA 6 的预告片全部基于 PS5 实机录制，
-          主机的性能上限就是 PC 配置的推导起点。
+          Official requirements do not exist yet, but PS5 is our best baseline. GTA 6 trailers have been captured on PS5,
+          so the console's performance gives us a practical starting point for PC estimates.
         </p>
       </div>
 
@@ -115,10 +150,10 @@ export default function PcSpecs() {
       <section className="mb-16">
         <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
           <Zap className="w-5 h-5 text-[#22e5ee]" />
-          参照系：PS5 展现了什么水平的性能？
+          Baseline: what level of performance does PS5 deliver?
         </h2>
         <p className="text-sm text-muted-foreground mb-8">
-          第二支预告片已确认全程基于 PS5 实机画面录制。这台 2020 年的主机，大致相当于这样一台 PC：
+          Rockstar says Trailer 2 was captured entirely on PS5. This 2020 console is broadly comparable to the following PC hardware:
         </p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {ps5Specs.map((s) => (
@@ -134,19 +169,19 @@ export default function PcSpecs() {
         <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 flex gap-3 items-start">
           <Info className="w-4 h-4 text-[#22e5ee] shrink-0 mt-0.5" />
           <p className="text-xs text-muted-foreground leading-relaxed">
-            关于帧率：多方分析认为 GTA 6 在基础版 PS5 上将以 <strong className="text-foreground">30fps</strong> 为目标；
-            有爆料称 PS5 Pro 存在 60fps 模式，但数毛社指出 Pro 的 CPU 仅小幅提频，
-            面对 GTA 6 庞大的世界模拟运算，<strong className="text-foreground">稳定 60fps 存疑</strong>。
-            换句话说：主机版锁 30fps 的可能性不低，PC 版的高帧率反而更值得期待——前提是你的 CPU 足够强。
+            Frame-rate outlook: multiple analyses expect the base PS5 to target <strong className="text-foreground">30fps</strong>.
+            Rumors suggest a PS5 Pro 60fps mode, but Digital Foundry notes that the Pro only modestly improves CPU clocks.
+            Given GTA 6's simulation load, a <strong className="text-foreground">stable 60fps remains uncertain</strong>.
+            A 30fps console target would make high-frame-rate PC play especially appealing—if your CPU is fast enough.
           </p>
         </div>
       </section>
 
       {/* tiers */}
       <section className="mb-16">
-        <h2 className="text-2xl font-bold mb-2">三档预测配置单</h2>
+        <h2 className="text-2xl font-bold mb-2">Three estimated PC tiers</h2>
         <p className="text-sm text-muted-foreground mb-8">
-          由「追平 PS5」到「全面超越主机」，按你的目标体验对号入座：
+          From matching PS5 to clearly surpassing consoles, choose the tier that fits your target experience:
         </p>
         <div className="grid lg:grid-cols-3 gap-5">
           {tiers.map((t) => (
@@ -168,9 +203,9 @@ export default function PcSpecs() {
                 <dl className="space-y-3 text-sm mb-5">
                   {[
                     ['CPU', t.cpu],
-                    ['显卡', t.gpu],
-                    ['内存', t.ram],
-                    ['存储', t.storage],
+                    ['GPU', t.gpu],
+                    ['RAM', t.ram],
+                    ['SSD', t.storage],
                   ].map(([k, v]) => (
                     <div key={k} className="flex gap-3">
                       <dt className="w-10 shrink-0 text-xs text-muted-foreground pt-0.5">{k}</dt>
@@ -191,12 +226,12 @@ export default function PcSpecs() {
           <Table>
             <TableHeader>
               <TableRow className="border-white/10 hover:bg-transparent">
-                <TableHead className="text-muted-foreground">档位</TableHead>
-                <TableHead className="text-muted-foreground">目标体验</TableHead>
+                <TableHead className="text-muted-foreground">Tier</TableHead>
+                <TableHead className="text-muted-foreground">Target</TableHead>
                 <TableHead className="text-muted-foreground">CPU</TableHead>
-                <TableHead className="text-muted-foreground">显卡</TableHead>
-                <TableHead className="text-muted-foreground">内存</TableHead>
-                <TableHead className="text-muted-foreground">存储</TableHead>
+                <TableHead className="text-muted-foreground">GPU</TableHead>
+                <TableHead className="text-muted-foreground">RAM</TableHead>
+                <TableHead className="text-muted-foreground">Storage</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -221,9 +256,9 @@ export default function PcSpecs() {
 
       {/* deep analysis */}
       <section className="mb-16">
-        <h2 className="text-2xl font-bold mb-2">为什么是这些配置？逐件拆解</h2>
+        <h2 className="text-2xl font-bold mb-2">Why these specs? A component-by-component analysis</h2>
         <p className="text-sm text-muted-foreground mb-8">
-          每一档配置背后，都是 PS5 硬件特性在 PC 端的映射：
+          Each tier maps the PS5's hardware characteristics to realistic PC parts:
         </p>
         <div className="grid md:grid-cols-2 gap-5">
           {analysis.map((a) => {
@@ -262,20 +297,20 @@ export default function PcSpecs() {
       <section className="mb-8">
         <Card className="bg-gradient-to-br from-[#ff4da6]/10 via-card to-[#22e5ee]/10 border-white/10">
           <CardContent className="p-6 sm:p-8">
-            <h2 className="text-xl font-bold mb-4">给准备攒机的你：三条实用建议</h2>
+            <h2 className="text-xl font-bold mb-4">Three practical upgrade tips</h2>
             <ol className="space-y-4 text-sm leading-relaxed">
               {[
                 {
-                  t: '现在不要急着为 GTA 6 买硬件',
-                  d: 'PC 版最快也要 2027 年底。届时 RTX 60 系显卡、新一代 CPU 已经上市，今天的高端配置到那天只是中端。等 PC 版官宣后再出手，同样的预算能买到强得多的性能。',
+                  t: 'Do not rush to buy GTA 6 hardware today',
+                  d: "Our earliest realistic PC window is late 2027. New GPU and CPU generations should arrive before then, turning today's high-end parts into tomorrow's midrange. Waiting for an official PC announcement should buy far more performance for the same budget.",
                 },
                 {
-                  t: '预算优先级：显卡 > CPU > 显存容量 > SSD',
-                  d: '开放世界游戏大多 GPU 受限，但 GTA 6 的模拟密度让 CPU 权重异常高。如果二选一升级，老旧平台优先换 CPU 主板套装，新平台优先堆显卡。',
+                  t: 'Budget priority: GPU > CPU > VRAM capacity > SSD',
+                  d: "Open-world games are usually GPU-bound, but GTA 6's simulation density makes the CPU unusually important. On an old platform, upgrade the CPU and motherboard first; on a modern platform, put more of the budget into the GPU.",
                 },
                 {
-                  t: '先把 SSD 和内存补齐，成本最低收益最快',
-                  d: '一块 1TB PCIe 4.0 NVMe SSD 和 32GB 内存的总价不到一张中端显卡的零头，却直接决定了你能不能「正常进游戏」。这两项现在升级也不亏，所有游戏都受益。',
+                  t: 'Upgrade the SSD and RAM first for low-cost gains',
+                  d: 'A 1TB PCIe 4.0 NVMe SSD and 32GB of RAM cost much less than a midrange GPU, yet they may determine whether the game runs smoothly at all. Both upgrades also benefit the rest of your library today.',
                 },
               ].map((item, i) => (
                 <li key={i} className="flex gap-4">
@@ -294,9 +329,9 @@ export default function PcSpecs() {
       <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 flex gap-3 items-start">
         <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
         <p className="text-xs text-muted-foreground leading-relaxed">
-          重要提醒：以上配置单为基于 PS5 硬件水平、Digital Foundry 等技术分析以及 RDR2 等前作 PC 版需求的
-          <strong className="text-foreground">推测</strong>，并非官方数据。
-          R 星历来会在 PC 版发售前 1~2 个月公布官方配置要求，届时请以官方配置单为准再最终敲定硬件。
+          Important: these requirements are <strong className="text-foreground">estimates</strong> based on PS5 hardware,
+          technical analysis from outlets including Digital Foundry, and earlier Rockstar PC releases such as RDR2. They are not official.
+          Rockstar typically publishes PC requirements one or two months before release; wait for that list before making a final hardware decision.
         </p>
       </div>
     </div>

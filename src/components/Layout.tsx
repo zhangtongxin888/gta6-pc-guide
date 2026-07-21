@@ -2,9 +2,9 @@ import { Link, NavLink, Outlet } from 'react-router'
 import { Gamepad2, CalendarClock, Cpu } from 'lucide-react'
 
 const navItems = [
-  { to: '/', label: '首页', icon: Gamepad2, end: true },
-  { to: '/release-date', label: 'PC 发售时间预测', icon: CalendarClock },
-  { to: '/pc-specs', label: 'PC 配置预测', icon: Cpu },
+  { to: '/', label: 'Home', mobileLabel: 'Home', icon: Gamepad2, end: true },
+  { to: '/release-date', label: 'Release Date', mobileLabel: 'Date', icon: CalendarClock },
+  { to: '/pc-specs', label: 'PC Specs', mobileLabel: 'Specs', icon: Cpu },
 ]
 
 export default function Layout() {
@@ -31,11 +31,11 @@ export default function Layout() {
               <span className="neon-cyan">PC</span>
             </span>
             <span className="hidden sm:inline text-xs text-muted-foreground group-hover:text-foreground transition-colors">
-              情报站
+              GUIDE
             </span>
           </Link>
           <nav className="flex items-center gap-1 sm:gap-2">
-            {navItems.map(({ to, label, icon: Icon, end }) => (
+            {navItems.map(({ to, label, mobileLabel, icon: Icon, end }) => (
               <NavLink
                 key={to}
                 to={to}
@@ -50,7 +50,7 @@ export default function Layout() {
               >
                 <Icon className="w-3.5 h-3.5" />
                 <span className="hidden md:inline">{label}</span>
-                <span className="md:hidden">{label.replace('PC ', '').replace('预测', '')}</span>
+                <span className="md:hidden">{mobileLabel}</span>
               </NavLink>
             ))}
           </nav>
@@ -65,13 +65,13 @@ export default function Layout() {
         <div className="mx-auto max-w-6xl px-4 py-10 text-center space-y-3">
           <p className="font-display text-sm">
             <span className="neon-pink">GTA VI</span> <span className="neon-cyan">PC</span>{' '}
-            <span className="text-muted-foreground">情报站</span>
+            <span className="text-muted-foreground">GUIDE</span>
           </p>
           <p className="text-xs text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            本站为玩家自制的信息整理与预测页面，与 Rockstar Games / Take-Two 无任何关联。
-            所有预测均基于公开资料与历史规律推导，最终信息请以官方公告为准。
+            This fan-made guide is not affiliated with Rockstar Games or Take-Two Interactive.
+            All estimates are based on public information and historical patterns; official announcements take precedence.
           </p>
-          <p className="text-[11px] text-muted-foreground/60">资料整理时间：2026 年 7 月</p>
+          <p className="text-[11px] text-muted-foreground/60">Last reviewed: July 2026</p>
         </div>
       </footer>
     </div>

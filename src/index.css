@@ -33,10 +33,10 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
   .font-display {
-    font-family: 'Archivo Black', 'Noto Sans SC', sans-serif;
+    font-family: 'Archivo Black', 'Inter', sans-serif;
   }
 }
 
