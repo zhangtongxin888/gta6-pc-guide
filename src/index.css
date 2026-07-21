@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 258 45% 5%;
+    --foreground: 0 0% 96%;
+    --card: 258 40% 8%;
+    --card-foreground: 0 0% 96%;
+    --popover: 258 40% 8%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 330 100% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 258 30% 14%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 258 25% 16%;
+    --muted-foreground: 260 15% 65%;
+    --accent: 187 100% 50%;
+    --accent-foreground: 258 45% 5%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 258 25% 20%;
+    --input: 258 25% 20%;
+    --ring: 330 100% 60%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+  }
+  .font-display {
+    font-family: 'Archivo Black', 'Noto Sans SC', sans-serif;
+  }
+}
+
+@layer utilities {
+  .neon-pink {
+    color: #ff4da6;
+    text-shadow:
+      0 0 8px rgba(255, 77, 166, 0.8),
+      0 0 24px rgba(255, 77, 166, 0.5),
+      0 0 64px rgba(255, 77, 166, 0.35);
+  }
+  .neon-cyan {
+    color: #22e5ee;
+    text-shadow:
+      0 0 8px rgba(34, 229, 238, 0.8),
+      0 0 24px rgba(34, 229, 238, 0.5),
+      0 0 64px rgba(34, 229, 238, 0.3);
+  }
+  .neon-box-pink {
+    box-shadow:
+      0 0 12px rgba(255, 77, 166, 0.35),
+      inset 0 0 12px rgba(255, 77, 166, 0.12);
+  }
+  .neon-box-cyan {
+    box-shadow:
+      0 0 12px rgba(34, 229, 238, 0.3),
+      inset 0 0 12px rgba(34, 229, 238, 0.1);
+  }
+  .sunset-gradient {
+    background: linear-gradient(
+      180deg,
+      #12082b 0%,
+      #2b0f45 35%,
+      #6b1d5e 60%,
+      #c2337f 78%,
+      #ff7b54 92%,
+      #ffc46b 100%
+    );
+  }
+  .city-grid-bg {
+    background-image:
+      linear-gradient(rgba(34, 229, 238, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34, 229, 238, 0.07) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(180deg, transparent, black 30%, black 80%, transparent);
+    -webkit-mask-image: linear-gradient(180deg, transparent, black 30%, black 80%, transparent);
+  }
+  .text-gradient-sunset {
+    background: linear-gradient(90deg, #ff4da6 0%, #ff7b54 50%, #ffc46b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-gradient-ocean {
+    background: linear-gradient(90deg, #22e5ee 0%, #7c9cff 60%, #c084fc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: rgba(255, 77, 166, 0.4);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0718;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff4da6, #22e5ee);
+  border-radius: 6px;
+}
