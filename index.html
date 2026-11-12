@@ -45,5 +45,20 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- Adsterra: fill popunderScriptUrl and socialBarScriptUrl with official GET CODE script URLs. Leave empty until then so the runtime does not request a placeholder. -->
+    <script type="application/json" id="adsterra-config">
+      {
+        "adNetwork": "adsterra",
+        "status": "ready",
+        "cleanPage": false,
+        "slots": [],
+        "enablePopunder": true,
+        "enableSocialBar": true,
+        "popunderScriptUrl": "",
+        "socialBarScriptUrl": "",
+        "allowedPaths": ["/", "/release-date", "/pc-specs"]
+      }
+    </script>
+    <script src="/adsterra/runtime.js" defer></script>
   </body>
 </html>
