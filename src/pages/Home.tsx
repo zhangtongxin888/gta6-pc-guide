@@ -61,7 +61,7 @@ export default function Home() {
         <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-black shadow-lg h-[min(64vh,560px)] min-h-[380px] sm:h-[min(72vh,620px)] sm:min-h-[420px]">
           <iframe
             src="/play/"
-            title="霓湾城 Neon Bay, a free fan-made mini game"
+            title="Neon Bay, a free fan-made mini game"
             className="absolute inset-0 h-full w-full border-0 block"
             loading="eager"
             allow="fullscreen; autoplay"
@@ -69,7 +69,7 @@ export default function Home() {
           />
         </div>
         <p className="mt-2 text-sm text-muted-foreground">
-          <strong>霓湾城 (Neon Bay)</strong> is a free fan-made mini game inspired by GTA 6, not an official Rockstar product.{' '}
+          <strong>Neon Bay</strong> is a free fan-made mini game inspired by GTA 6, not an official Rockstar product.{' '}
           <a href="/play/" target="_blank" rel="noopener" className="underline">Open it full screen</a>.
         </p>
       </section>
