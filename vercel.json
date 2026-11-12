@@ -10,6 +10,8 @@
   "rewrites": [
     { "source": "/release-date", "destination": "/release-date/index.html" },
     { "source": "/pc-specs", "destination": "/pc-specs/index.html" },
+    { "source": "/play", "destination": "/play/index.html" },
+    { "source": "/play/", "destination": "/play/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [

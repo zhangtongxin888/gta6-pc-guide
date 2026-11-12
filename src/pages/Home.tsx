@@ -56,6 +56,23 @@ export default function Home() {
         path="/"
         structuredData={homeStructuredData}
       />
+      {/* Neon Bay mini game */}
+      <section id="home-minigame" aria-label="Neon Bay mini game" className="container mx-auto px-4 pt-4 pb-2">
+        <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-black shadow-lg h-[min(64vh,560px)] min-h-[380px] sm:h-[min(72vh,620px)] sm:min-h-[420px]">
+          <iframe
+            src="/play/"
+            title="霓湾城 Neon Bay, a free fan-made mini game"
+            className="absolute inset-0 h-full w-full border-0 block"
+            loading="eager"
+            allow="fullscreen; autoplay"
+            allowFullScreen
+          />
+        </div>
+        <p className="mt-2 text-sm text-muted-foreground">
+          <strong>霓湾城 (Neon Bay)</strong> is a free fan-made mini game inspired by GTA 6, not an official Rockstar product.{' '}
+          <a href="/play/" target="_blank" rel="noopener" className="underline">Open it full screen</a>.
+        </p>
+      </section>
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="sunset-gradient absolute inset-x-0 top-0 h-[26rem] opacity-90" aria-hidden />
