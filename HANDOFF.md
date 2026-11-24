@@ -47,9 +47,9 @@ gta6pc.org 的整站改版。旧站是 Vite + React 单页应用，只有 3 个�
 
 旧文 `/news/xbox-executable`（带或不带结尾斜杠）在 `vercel.json` 里 301 到 `/cyberleek-leak`。`www.gta6pc.org` 仍 301 到 apex。没有 SPA 兜底 rewrite。
 
-## 本轮先不接广告（2026-11-24）
+## 广告（Popunder + Social Bar）
 
-`data/ads.json` 里两个脚本地址已和现网 `https://gta6pc.org/` 核对，是同一套 Popunder（`abscloud.org`）和 Social Bar（`bauval.org`）。`enabled` 现为 `false`，构建出的 HTML 不会请求它们。等这一版进入生产后，再按站长指令打开，并且不要新开广告位、不要换成别的站的代码。注意：`enabled` 改回 `true` 时，`build.py` 会把这两条脚本放到除隐私页和条款页以外的全部内容页，比现网只允许 `/`、`/release-date`、`/pc-specs` 更宽，接线时要按当时的决定收窄或保留。
+`data/ads.json` 的 `enabled` 为 `true`。两条脚本就是改版前 gta6pc.org 的 Popunder（`abscloud.org`）和 Social Bar（`bauval.org`），没有新广告位，`slots` 仍是空数组。生成器把配置和 `/adsterra/runtime.js` 写进除 `privacy`、`terms` 以外的内容页（中英都有）。404 带 `noindex`，也不会注入。`/play/` 是旧文件，页面里没有这段配置；runtime 还会跳过路径段 `play`、`privacy`、`terms` 以及标题像 404 的页面。静态页没有 `#root`，runtime 不会再套用旧 SPA 的“隐藏 `#root` 以外节点”规则，否则会把整页藏掉。
 
 ## 上线步骤
 
@@ -80,7 +80,7 @@ for u in / /release-date /pc-specs /pc-port-tracker /cyberleek-leak /how-to-play
 
 预期：最后一个 `/does-not-exist` 返回 404，其余都是 200。
 
-再用浏览器打开 `/` 和 `/privacy`。本轮 `ads.json` 的 `enabled` 是 `false`，两个页面都不应该请求 `abscloud.org` 或 `bauval.org`。下一轮打开广告之后，首页才会请求这两条现有脚本，`/privacy` 仍然不应该请求。
+再用浏览器打开 `/` 和 `/privacy`：首页应该请求 `abscloud.org` 和 `bauval.org`，`/privacy` 不应该请求。
 
 ### 4. 上生产
 
