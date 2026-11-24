@@ -1,0 +1,15 @@
+[
+ {"date":"2026-11-24","tag":"port","en":["First ports reach the open world, still dark","VIctory and XCL forks load the world at under 2 fps. A 3 fps clip of a lit scene is unconfirmed."],"zh":["首批移植进入开放世界，画面仍是黑的","VIctory 和 XCL 分支能加载世界，帧数不到 2。一段 3 帧的亮场景片段尚未证实。"]},
+ {"date":"2026-11-23","tag":"port","en":["Leonida, the biggest port project, goes offline","Repository, mirror and Discord vanished within an hour. The founder says Rockstar had the Discord removed; no DMCA notice is public."],"zh":["最大的移植项目 Leonida 下线","仓库、镜像和 Discord 一小时内全部消失。创始人称 Discord 是 Rockstar 申请删的，但没有公开的 DMCA 记录。"]},
+ {"date":"2026-11-23","tag":"leak","en":["Cyberleek releases the missing EXE","Outlets describe a ZIP of about 57 MB. Reports said a port reached a settings screen within three hours; that boot has not been independently verified."],"zh":["大葱哥（Cyberleek）放出缺失的 EXE","媒体描述为一个约 57 MB 的 ZIP。有报道称 3 小时内有移植项目进到设置界面，这次启动未经独立核验。"]},
+ {"date":"2026-11-23","tag":"official","en":["First console patch, 1.002.002","Reported by heise. The leaked build (1.0.2.1) is now out of date."],"zh":["主机版首个补丁 1.002.002","heise 报道。泄露版本（1.0.2.1）已经过时。"]},
+ {"date":"2026-11-21","tag":"leak","en":["Cyberleek cuts its meme-coin target","The EXE was promised at a $15M market cap, cut to $6M. Neither was reached."],"zh":["大葱哥下调迷因币目标","原定币市值到 1500 万美元就放 EXE，后降到 600 万，都没达到。"]},
+ {"date":"2026-11-19","tag":"official","en":["GTA 6 launches on PS5 and Xbox Series X|S","No PC version. Rockstar says the game plays best on PS5."],"zh":["GTA 6 登陆 PS5 和 Xbox Series X|S","没有 PC 版。Rockstar 称 PS5 体验最好。"]},
+ {"date":"2026-11-19","tag":"leak","en":["209 GB Xbox build leaks on launch day","Version 1.0.2.1, shipped without its executable, so it could not start."],"zh":["发售当天 209 GB Xbox 版泄露","版本 1.0.2.1，缺主程序，无法启动。"]},
+ {"date":"2026-11-18","tag":"legal","en":["Take-Two DMCA hits GTA 5 ports on GitHub","Mobile and web ports of GTA 5 were taken down the day before launch."],"zh":["Take-Two 对 GitHub 上的 GTA 5 移植发起 DMCA","发售前一天，一批 GTA 5 手机版和网页版移植被下架。"]},
+ {"date":"2026-11-18","tag":"report","en":["Digital Foundry: PS5 Pro is the best way to play","Near-locked 30 fps and a near-4K image. 60 fps is held back by the CPU."],"zh":["Digital Foundry：PS5 Pro 体验最好","几乎稳定 30 帧，画面接近 4K。60 帧卡在 CPU 上。"]},
+ {"date":"2026-11-14","tag":"security","en":["Fake “GTA 6 EXE” spreads the WARDEN stealer","A Google Colab link leads to a ZIP that steals passwords, Steam logins and crypto wallets."],"zh":["假“GTA 6 EXE”传播 WARDEN 盗号木马","Google Colab 链接指向一个 ZIP，会盗取密码、Steam 账号和加密钱包。"]},
+ {"date":"2026-10-13","tag":"report","en":["GamesBeat: PC version targeted for Q1 2027","Four unnamed sources. Rockstar did not comment."],"zh":["GamesBeat：PC 版目标 2027 年 Q1","4 个匿名信源，Rockstar 未回应。"]},
+ {"date":"2026-08-18","tag":"leak","en":["Development footage leaks","Cyberleek posts clips it says date from 2023. Take-Two responds with DMCA takedowns."],"zh":["开发版视频泄露","大葱哥放出据称 2023 年的开发片段，Take-Two 随即发 DMCA。"]},
+ {"date":"2026-06-25","tag":"official","en":["Pre-orders open, consoles only","No PC listing on any store."],"zh":["开启预购，仅限主机","任何 PC 商店都没有上架。"]}
+]

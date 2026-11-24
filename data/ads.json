@@ -1,0 +1,16 @@
+{
+  "enabled": false,
+  "note": "Off until the redesign is in production. Checked 2026-11-24 against live gta6pc.org: popunderScriptUrl and socialBarScriptUrl are the existing Popunder and Social Bar, not new codes. Do not invent replacements. Turning enabled on also makes build.py put those same two scripts on every content page in both languages, which is wider than the live allowlist of /, /release-date and /pc-specs.",
+  "runtime": "/adsterra/runtime.js",
+  "no_ads_pages": ["privacy", "terms"],
+  "config": {
+    "adNetwork": "adsterra",
+    "status": "ready",
+    "cleanPage": false,
+    "slots": [],
+    "enablePopunder": true,
+    "enableSocialBar": true,
+    "popunderScriptUrl": "https://abscloud.org/1/b640baabccdb568dd796990946539530",
+    "socialBarScriptUrl": "https://bauval.org/14/0eba5089f9eb509606a14e9eebb4e230"
+  }
+}

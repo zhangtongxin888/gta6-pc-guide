@@ -1,0 +1,16 @@
+[
+ {"name":"VIctory","stage":5,"halted":false,"approach":{"en":"Native Xbox code on Windows","zh":"直接在 Windows 跑 Xbox 代码"},"note":{"en":"Menus at 30 fps; world loads dark, crashes within ~1 min","zh":"菜单 30 帧；世界能加载但全黑，约 1 分钟内崩溃"}},
+ {"name":"AnyXboxX","stage":5,"halted":false,"approach":{"en":"VIctory + 24 patches","zh":"VIctory + 24 个社区补丁"},"note":{"en":"Stays in the world 5 min, screen black, 0.3–0.5 fps","zh":"能在世界里待 5 分钟，黑屏，0.3–0.5 帧"}},
+ {"name":"XCL","stage":5,"halted":false,"approach":{"en":"Compatibility layer","zh":"兼容层"},"note":{"en":"Menus at a steady 30 fps; gameplay not reached","zh":"菜单稳定 30 帧；未进入游戏"}},
+ {"name":"Palmwave","stage":5,"halted":false,"approach":{"en":"XCL fork","zh":"XCL 分支"},"note":{"en":"World frames are a flat colour, 18 s to 2 min each","zh":"世界画面是一片纯色，每帧 18 秒到 2 分钟"}},
+ {"name":"five-star-recomp","stage":5,"halted":false,"approach":{"en":"Static recompilation","zh":"静态重编译"},"note":{"en":"All first-run screens; story load hits memory corruption","zh":"首次启动界面全过；读取剧情时内存损坏"}},
+ {"name":"OpenScarlett CE","stage":5,"halted":false,"approach":{"en":"Compatibility layer","zh":"兼容层"},"note":{"en":"Intro video with sound at 30 fps","zh":"开场视频带声音，30 帧"}},
+ {"name":"PercyScarlett","stage":5,"halted":false,"approach":{"en":"Compatibility layer","zh":"兼容层"},"note":{"en":"Setup screens; screenshots withdrawn","zh":"设置界面；已撤下截图"}},
+ {"name":"Xbox2Windows","stage":5,"halted":false,"approach":{"en":"Translation toolchain","zh":"转译工具链"},"note":{"en":"Intro and setup on an RTX 4060 laptop","zh":"RTX 4060 笔记本上跑到开场和设置"}},
+ {"name":"OpenScarlett","stage":5,"halted":false,"approach":{"en":"Compatibility layer","zh":"兼容层"},"note":{"en":"UI and 4K intro on a GTX 1650 Ti","zh":"GTX 1650 Ti 上跑出 UI 和 4K 开场"}},
+ {"name":"TuxBox","stage":5,"halted":false,"approach":{"en":"Linux / Proton","zh":"Linux / Proton"},"note":{"en":"Player-select prompt on Linux","zh":"Linux 上显示到选择玩家提示"}},
+ {"name":"GTA6-BootTest","stage":5,"halted":false,"approach":{"en":"Boot harness","zh":"启动测试框架"},"note":{"en":"Start-screen prompt bar","zh":"显示到开始界面提示条"}},
+ {"name":"Holy-Interoperability","stage":4,"halted":false,"approach":{"en":"Compatibility layer","zh":"兼容层"},"note":{"en":"First frames, nothing visible yet","zh":"能出帧，但还看不到内容"}},
+ {"name":"Leonida","stage":4,"halted":true,"approach":{"en":"Static recompilation","zh":"静态重编译"},"note":{"en":"Offline since 23 Nov; founder stepped away","zh":"11 月 23 日起下线，创始人退出"}},
+ {"name":"xbox-emulator","stage":3,"halted":false,"approach":{"en":"Compatibility layer","zh":"兼容层"},"note":{"en":"Game window only; no commits since 23 Nov","zh":"只到游戏窗口；23 日后无更新"}}
+]
