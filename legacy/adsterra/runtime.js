@@ -281,10 +281,6 @@
   }
 
   function setExcludedClass(on) {
-    /* The hide rule targets SPA body nodes outside #root. This static site
-       has no #root, so applying it would hide the page itself. Excluded
-       static pages never receive this script. */
-    if (!document.getElementById("root")) return;
     ensureExcludeStyle();
     var el = document.documentElement;
     if (on) el.classList.add("adsterra-exclude-page");

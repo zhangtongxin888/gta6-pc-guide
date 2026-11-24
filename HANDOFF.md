@@ -49,7 +49,7 @@ gta6pc.org 的整站改版。旧站是 Vite + React 单页应用，只有 3 个�
 
 ## 广告（Popunder + Social Bar）
 
-`data/ads.json` 的 `enabled` 为 `true`。两条脚本就是改版前 gta6pc.org 的 Popunder（`abscloud.org`）和 Social Bar（`bauval.org`），没有新广告位，`slots` 仍是空数组。生成器把配置和 `/adsterra/runtime.js` 写进除 `privacy`、`terms` 以外的内容页（中英都有）。404 带 `noindex`，也不会注入。`/play/` 是旧文件，页面里没有这段配置；runtime 还会跳过路径段 `play`、`privacy`、`terms` 以及标题像 404 的页面。静态页没有 `#root`，runtime 不会再套用旧 SPA 的“隐藏 `#root` 以外节点”规则，否则会把整页藏掉。
+`data/ads.json` 的 `enabled` 为 `true`。两条脚本就是改版前 gta6pc.org 的 Popunder（`abscloud.org`）和 Social Bar（`bauval.org`），没有新广告位，`slots` 仍是空数组。生成器把配置和 `/adsterra/runtime.js` 写进除 `privacy`、`terms` 以外的内容页（中英都有）。404 带 `noindex`，也不会注入。`/play/` 是旧文件，页面里没有这段配置；runtime 还会跳过路径段 `play`、`privacy`、`terms` 以及标题像 404 的页面。runtime 文件本身不改：Popunder 仍是每位访客本地日最多 3 次，Social Bar 仍是最多 3 次，并在加载后 4 秒插入。
 
 ## 上线步骤
 
