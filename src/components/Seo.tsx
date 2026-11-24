@@ -11,19 +11,27 @@ interface SeoProps {
   description: string
   path: string
   noIndex?: boolean
+  ogType?: 'website' | 'article'
+  publishedTime?: string
+  modifiedTime?: string
   structuredData?: StructuredData
 }
 
-function upsertMeta(attribute: 'name' | 'property', key: string, content: string) {
-  let element = document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`)
+function upsertMeta(attribute: 'name' | 'property', key: string, content: string | undefined) {
+  const element = document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`)
 
-  if (!element) {
-    element = document.createElement('meta')
-    element.setAttribute(attribute, key)
-    document.head.appendChild(element)
+  if (!content) {
+    element?.remove()
+    return
   }
 
-  element.content = content
+  const meta = element ?? document.createElement('meta')
+  meta.setAttribute(attribute, key)
+  meta.content = content
+
+  if (!element) {
+    document.head.appendChild(meta)
+  }
 }
 
 function upsertCanonical(url: string) {
@@ -43,6 +51,9 @@ export default function Seo({
   description,
   path,
   noIndex = false,
+  ogType = 'website',
+  publishedTime,
+  modifiedTime,
   structuredData,
 }: SeoProps) {
   useEffect(() => {
@@ -51,7 +62,7 @@ export default function Seo({
     document.title = title
     upsertMeta('name', 'description', description)
     upsertMeta('name', 'robots', noIndex ? 'noindex, nofollow' : 'index, follow')
-    upsertMeta('property', 'og:type', 'website')
+    upsertMeta('property', 'og:type', ogType)
     upsertMeta('property', 'og:locale', 'en_US')
     upsertMeta('property', 'og:site_name', SITE_NAME)
     upsertMeta('property', 'og:title', title)
@@ -61,6 +72,8 @@ export default function Seo({
     upsertMeta('property', 'og:image:width', '1200')
     upsertMeta('property', 'og:image:height', '630')
     upsertMeta('property', 'og:image:alt', 'GTA VI PC Guide: release date and system requirements')
+    upsertMeta('property', 'article:published_time', ogType === 'article' ? publishedTime : undefined)
+    upsertMeta('property', 'article:modified_time', ogType === 'article' ? modifiedTime : undefined)
     upsertMeta('name', 'twitter:card', 'summary_large_image')
     upsertMeta('name', 'twitter:title', title)
     upsertMeta('name', 'twitter:description', description)
@@ -84,7 +97,7 @@ export default function Seo({
     if (!existingScript) {
       document.head.appendChild(script)
     }
-  }, [description, noIndex, path, structuredData, title])
+  }, [description, modifiedTime, noIndex, ogType, path, publishedTime, structuredData, title])
 
   return null
 }

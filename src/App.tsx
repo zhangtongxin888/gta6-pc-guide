@@ -3,6 +3,7 @@ import Layout from './components/Layout'
 import Home from './pages/Home'
 import ReleaseDate from './pages/ReleaseDate'
 import PcSpecs from './pages/PcSpecs'
+import XboxExecutableClaim from './pages/XboxExecutableClaim'
 import NotFound from './pages/NotFound'
 
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/release-date" element={<ReleaseDate />} />
         <Route path="/pc-specs" element={<PcSpecs />} />
+        <Route path="/news/xbox-executable" element={<XboxExecutableClaim />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

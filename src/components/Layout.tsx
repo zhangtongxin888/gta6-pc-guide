@@ -1,10 +1,25 @@
-import { Link, NavLink, Outlet } from 'react-router'
-import { Gamepad2, CalendarClock, Cpu } from 'lucide-react'
+import { useLayoutEffect } from 'react'
+import { Link, NavLink, Outlet, useLocation } from 'react-router'
+import { Gamepad2, CalendarClock, Cpu, Newspaper } from 'lucide-react'
+
+function ScrollToTop() {
+  const { pathname } = useLocation()
+
+  useLayoutEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual'
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+  }, [pathname])
+
+  return null
+}
 
 const navItems = [
   { to: '/', label: 'Home', mobileLabel: 'Home', icon: Gamepad2, end: true },
   { to: '/release-date', label: 'Release Date', mobileLabel: 'Date', icon: CalendarClock },
   { to: '/pc-specs', label: 'PC Specs', mobileLabel: 'Specs', icon: Cpu },
+  { to: '/news/xbox-executable', label: 'News', mobileLabel: 'News', icon: Newspaper },
 ]
 
 export default function Layout() {
@@ -24,8 +39,8 @@ export default function Layout() {
       />
 
       <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0d0718]/80 backdrop-blur-md">
-        <div className="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between gap-4">
-          <Link to="/" className="flex items-center gap-2.5 shrink-0 group">
+        <div className="mx-auto max-w-6xl px-3 sm:px-4 py-2.5 sm:h-16 sm:py-0 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <Link to="/" className="flex items-center gap-2.5 shrink-0 self-start sm:self-auto group">
             <span className="font-display text-xl tracking-tight leading-none">
               <span className="neon-pink">GTA&nbsp;VI</span>{' '}
               <span className="neon-cyan">PC</span>
@@ -34,14 +49,14 @@ export default function Layout() {
               GUIDE
             </span>
           </Link>
-          <nav className="flex items-center gap-1 sm:gap-2">
+          <nav className="flex flex-wrap items-center gap-1 sm:flex-nowrap sm:justify-end sm:gap-2">
             {navItems.map(({ to, label, mobileLabel, icon: Icon, end }) => (
               <NavLink
                 key={to}
                 to={to}
                 end={end}
                 className={({ isActive }) =>
-                  `flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs sm:text-sm transition-all ${
+                  `flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs sm:px-3 sm:text-sm transition-all ${
                     isActive
                       ? 'bg-primary/15 text-[#ff4da6] neon-box-pink font-medium'
                       : 'text-muted-foreground hover:text-foreground hover:bg-white/5'
@@ -57,6 +72,7 @@ export default function Layout() {
         </div>
       </header>
 
+      <ScrollToTop />
       <main className="relative z-10 flex-1">
         <Outlet />
       </main>

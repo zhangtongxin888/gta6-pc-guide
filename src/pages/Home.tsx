@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { ArrowRight, CalendarClock, Cpu, AlertTriangle } from 'lucide-react'
+import { ArrowRight, CalendarClock, Cpu, AlertTriangle, Newspaper } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import Seo from '@/components/Seo'
@@ -23,7 +23,7 @@ const homeStructuredData = {
       isPartOf: { '@id': 'https://gta6pc.org/#website' },
       about: { '@type': 'VideoGame', name: 'Grand Theft Auto VI', alternateName: 'GTA 6' },
       inLanguage: 'en',
-      dateModified: '2026-07-22',
+      dateModified: '2026-11-24',
     },
   ],
 }
@@ -167,6 +167,30 @@ export default function Home() {
             )
           })}
         </div>
+
+        <Link to="/news/xbox-executable" className="group mt-6 block">
+          <Card className="bg-card/90 backdrop-blur border-amber-400/30 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-amber-300/60">
+            <CardContent className="p-6 sm:p-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-amber-400/15 text-amber-300 shrink-0">
+                <Newspaper className="w-6 h-6" />
+              </div>
+              <div className="flex-1">
+                <h2 className="text-xl sm:text-2xl font-bold mb-2">
+                  Reported Xbox executable, checked November 24
+                </h2>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Cyberleek — 大葱哥 in 3DM’s coverage — says the main executable from a leaked
+                  Xbox build is public. Rockstar’s launch pages still name PlayStation 5 and
+                  Xbox Series X|S. This site does not host or link the file.
+                </p>
+              </div>
+              <span className="inline-flex items-center gap-1.5 text-xs font-medium text-amber-300 shrink-0">
+                Read the check
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </CardContent>
+          </Card>
+        </Link>
       </section>
 
       {/* Quick facts */}
