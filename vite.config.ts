@@ -11,6 +11,7 @@ export default defineConfig({
         main: path.resolve(__dirname, './index.html'),
         releaseDate: path.resolve(__dirname, './release-date/index.html'),
         pcSpecs: path.resolve(__dirname, './pc-specs/index.html'),
+        xboxExecutable: path.resolve(__dirname, './news/xbox-executable/index.html'),
       },
     },
   },

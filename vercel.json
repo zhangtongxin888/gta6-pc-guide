@@ -12,6 +12,8 @@
     { "source": "/pc-specs", "destination": "/pc-specs/index.html" },
     { "source": "/play", "destination": "/play/index.html" },
     { "source": "/play/", "destination": "/play/index.html" },
+    { "source": "/news/xbox-executable", "destination": "/news/xbox-executable/index.html" },
+    { "source": "/news/xbox-executable/", "destination": "/news/xbox-executable/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [
