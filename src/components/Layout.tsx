@@ -1,5 +1,19 @@
-import { Link, NavLink, Outlet } from 'react-router'
+import { useLayoutEffect } from 'react'
+import { Link, NavLink, Outlet, useLocation } from 'react-router'
 import { Gamepad2, CalendarClock, Cpu, Newspaper } from 'lucide-react'
+
+function ScrollToTop() {
+  const { pathname } = useLocation()
+
+  useLayoutEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual'
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+  }, [pathname])
+
+  return null
+}
 
 const navItems = [
   { to: '/', label: 'Home', mobileLabel: 'Home', icon: Gamepad2, end: true },
@@ -58,6 +72,7 @@ export default function Layout() {
         </div>
       </header>
 
+      <ScrollToTop />
       <main className="relative z-10 flex-1">
         <Outlet />
       </main>
