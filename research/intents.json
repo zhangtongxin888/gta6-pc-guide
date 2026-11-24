@@ -1,0 +1,12 @@
+[
+ {"query":"gta 6 pc / is gta 6 on pc (yet/now/confirmed/day 1)","type":"状态","evidence":"Google suggest 2026-11-24","priority":1,"page":"/"},
+ {"query":"gta 6 pc release date / pc version release / timeline / news / rumors","type":"状态","evidence":"Google suggest","priority":1,"page":"/release-date"},
+ {"query":"gta 6 pc port / port tracker / progress tracker / port race / emulation progress / live tracker","type":"状态","evidence":"Google suggest (new since 11-19)","priority":1,"page":"/pc-port-tracker"},
+ {"query":"gta 6 pc exe / executable / exe released / cyberleek / leak build / leak countdown / xbox leaked build files","type":"状态","evidence":"Google suggest","priority":1,"page":"/cyberleek-leak"},
+ {"query":"how to play gta 6 on pc (without console / cloud gaming / with ps5 / cyber leek)","type":"操作","evidence":"Google suggest","priority":2,"page":"/how-to-play-gta-6-on-pc"},
+ {"query":"gta 6 pc requirements (minimum/recommended/ultra/2k) / can my pc run gta 6 / will gta 6 run on pc","type":"购买决策","evidence":"Google suggest","priority":2,"page":"/pc-specs"},
+ {"query":"gta 6 pc download","type":"操作(高风险)","evidence":"Google suggest returns nothing = 被压制；安全厂商报告大量恶意软件","priority":2,"page":"/is-gta-6-pc-download-safe"},
+ {"query":"gta 6 pc steam / steam price / steam key / game pass / steam deck / steam machine","type":"购买决策","evidence":"Google suggest","priority":3,"page":"/steam"},
+ {"query":"gta 6 pc github / discord / leonida","type":"导航","evidence":"Google suggest","priority":3,"page":"/pc-port-tracker（只给项目名和新闻，不放仓库/文件链接）"},
+ {"query":"gta 6 pc mods","type":"操作","evidence":"Google suggest（量小）","priority":4,"page":"暂不建"}
+]

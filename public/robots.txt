@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://gta6pc.org/sitemap.xml

@@ -1,20 +1,31 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "python3 build.py",
+  "outputDirectory": "out",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "redirects": [
     {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "www.gta6pc.org" }],
       "destination": "https://gta6pc.org/:path*",
       "permanent": true
+    },
+    {
+      "source": "/news/xbox-executable",
+      "destination": "/cyberleek-leak",
+      "permanent": true
+    },
+    {
+      "source": "/news/xbox-executable/",
+      "destination": "/cyberleek-leak",
+      "permanent": true
     }
   ],
   "rewrites": [
-    { "source": "/release-date", "destination": "/release-date/index.html" },
-    { "source": "/pc-specs", "destination": "/pc-specs/index.html" },
     { "source": "/play", "destination": "/play/index.html" },
-    { "source": "/play/", "destination": "/play/index.html" },
-    { "source": "/news/xbox-executable", "destination": "/news/xbox-executable/index.html" },
-    { "source": "/news/xbox-executable/", "destination": "/news/xbox-executable/index.html" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/play/", "destination": "/play/index.html" }
   ],
   "headers": [
     {
@@ -28,6 +39,10 @@
           "value": "camera=(), microphone=(), geolocation=()"
         }
       ]
+    },
+    {
+      "source": "/static/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }]
     }
   ]
 }
