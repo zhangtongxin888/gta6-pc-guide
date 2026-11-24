@@ -5,7 +5,9 @@ import { Badge } from '@/components/ui/badge'
 
 const PATH = '/news/xbox-executable'
 const CANONICAL = 'https://gta6pc.org/news/xbox-executable'
-const PUBLISHED = '2026-11-24T11:48:25-05:00'
+const CHECKED = '2026-11-24T06:48:25-05:00'
+const PUBLISHED = '2026-11-24T07:09:23-05:00'
+const MODIFIED = '2026-11-24T07:12:55-05:00'
 const TITLE = 'Reported GTA 6 Xbox Executable Is Not an Official PC Release'
 const DESCRIPTION =
   'Cyberleek (Da Cong Ge in Chinese coverage) claims a GTA 6 Xbox executable is public. Rockstar has not announced a PC version. Checked November 24, 2026.'
@@ -77,7 +79,7 @@ const structuredData = {
       headline: TITLE,
       description: DESCRIPTION,
       datePublished: PUBLISHED,
-      dateModified: PUBLISHED,
+      dateModified: MODIFIED,
       inLanguage: 'en',
       mainEntityOfPage: CANONICAL,
       url: CANONICAL,
@@ -118,7 +120,7 @@ export default function XboxExecutableClaim() {
         path={PATH}
         ogType="article"
         publishedTime={PUBLISHED}
-        modifiedTime={PUBLISHED}
+        modifiedTime={MODIFIED}
         structuredData={structuredData}
       />
 
@@ -133,7 +135,7 @@ export default function XboxExecutableClaim() {
       </h1>
       <p className="mt-4 text-sm text-muted-foreground">
         Checked{' '}
-        <time dateTime={PUBLISHED}>November 24, 2026, 6:48 a.m. Eastern Time</time>.
+        <time dateTime={CHECKED}>November 24, 2026, 6:48 a.m. Eastern Time</time>.
         This page records what Rockstar, the claimant, and named news outlets had published by then.
       </p>
 
