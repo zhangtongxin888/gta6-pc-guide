@@ -11,6 +11,7 @@ Content lives in two places:
 import json
 import shutil
 import sys
+from datetime import datetime
 from html import escape
 from pathlib import Path
 
@@ -21,6 +22,44 @@ STATUS = json.loads((DATA / "status.json").read_text(encoding="utf-8"))
 PROJECTS = json.loads((DATA / "projects.json").read_text(encoding="utf-8"))
 ADS = json.loads((DATA / "ads.json").read_text(encoding="utf-8"))
 NEWS = sorted(json.loads((DATA / "news.json").read_text(encoding="utf-8")), key=lambda n: n["date"], reverse=True)
+TAGS = {
+    "port": ("cy", "Port", "移植"), "leak": ("warn", "Leak", "泄露"), "official": ("ok", "Official", "官方"),
+    "report": ("", "Report", "报道"), "legal": ("bad", "Legal", "法务"), "security": ("bad", "Security", "安全"),
+}
+DOTS = [(10, "Runs", "运行"), (20, "Frame", "出帧"), (30, "Menus", "菜单"), (40, "World", "世界"), (50, "Control", "操控"), (100, "Done", "完成")]
+MILESTONES = [(0, "0", "Start", "起点"), (10, "10", "Runs", "运行"), (20, "20", "Frame", "出帧"), (30, "30", "Menus", "菜单"),
+              (40, "40", "World", "世界"), (50, "50", "Control", "操控"), (100, "100", "Complete", "完成")]
+VERIFY = {
+    "cross-checked": ("ok", "Cross-checked", "多方核实"),
+    "self-reported": ("warn", "Self-reported", "项目自述"),
+    "private": ("", "Private · unranked", "闭源 · 不计排名"),
+}
+
+
+def dot_state(score, point):
+    if score >= point:
+        return "on"
+    prev = {10: 0, 20: 10, 30: 20, 40: 30, 50: 40, 100: 50}[point]
+    return "half" if score > prev and point - score <= 5 else ""
+
+
+def monogram(name):
+    chars = [c for c in name if c.isalnum()]
+    return ("".join(chars[:2]) or name[:2]).upper()
+
+
+def pin_lanes(projects, gap=8):
+    lanes, out = [], []
+    for p in projects:
+        lane = 0
+        while lane < len(lanes) and abs(lanes[lane] - p["score"]) < gap:
+            lane += 1
+        if lane == len(lanes):
+            lanes.append(p["score"])
+        else:
+            lanes[lane] = p["score"]
+        out.append((p, lane))
+    return out, max(1, len(lanes))
 
 # key -> slug ('' = home). Slugs for release-date and pc-specs match the old site’s URLs.
 PAGES = {
@@ -159,7 +198,7 @@ class Site:
 
     def doc(self, key, title, desc, body, faqs=None, crumbs=None, noindex=False):
         head = self.head(key, title, desc, faqs, crumbs, noindex)
-        body = body + "\n" + self.ads(key, noindex)
+        body = body + "\n" + self.ads(key, noindex) + f'\n<script src="{self.asset("tracker.js")}" defer></script>'
         if self.mode == "preview" and key == "home" and not self.zh:
             # Artifact preview entry page: the host supplies <html>/<head>.
             return f'<meta name="claude:viewport-fit-sides" content="cover">\n{head}\n{body}\n'
@@ -206,10 +245,11 @@ class Site:
 
     def fps_chart(self):
         t = self.t
-        mx = STATUS["port_stats"]["world_fps_max"]
+        cap = STATUS["port_stats"]["prologue_bar"]
+        label = STATUS["port_stats"]["prologue_fps"][self.lang]
         rows = [(t("PS5 Pro (official)", "PS5 Pro（正版）"), 30, "ref", "30 fps"), (t("Best port · menus", "最好的移植 · 菜单"), 30, "", "30 fps"),
-                (t("Best port · open world", "最好的移植 · 开放世界"), mx, "", f"≤ {mx} fps")]
-        return (f'<div class="chart"><h3>{t("The speed gap", "帧数差距")}</h3><p class="sub">{t("Frames per second. Playable needs about 20.", "每秒帧数。能玩大约需要 20 帧。")}</p>'
+                (t("Prologue, reported", "序章（报道）"), cap, "", label)]
+        return (f'<div class="chart"><h3>{t("The speed gap", "帧数差距")}</h3><p class="sub">{t("The prologue bar is the top of the single-digit range reported by PC Games Hardware, not a measured average. Playable needs about 20.", "序章那条是 PC Games Hardware 所说“个位数帧”的上限，不是测得的平均值。能玩大约需要 20 帧。")}</p>'
                 + self.hbars(rows, 30, [0, 10, 20, 30], (20, t("playable ≈ 20", "可玩线 ≈ 20"))) + "</div>")
 
     def screens(self):
@@ -220,8 +260,8 @@ class Site:
             ('<div class="scr" style="background:#0b0714"><span class="fpsc">30 fps</span><div class="menu-l"><i class="sel"></i><i></i><i></i><i></i><i></i></div><div class="logo6">VI</div></div>',
              t("Stage 5 · menus", "阶段 5 · 菜单"), t("Settings and legal screens at 30 fps", "设置和法律声明界面，30 帧")),
             ('<div class="scr world"><span class="fpsc">1.2 fps</span><div class="shape" style="left:10%;width:22%"></div><div class="shape" style="left:40%;width:14%;height:45%"></div>'
-             '<div class="shape" style="left:62%;width:28%;height:22%"></div></div>', t("Stage 5 · world loads", "阶段 5 · 世界加载"), t("Dark scene, about 1 fps. Leaders are here.", "画面昏暗，约 1 帧。领先项目在这里")),
-            (f'<div class="scr none">{t("Nobody yet", "还没有人做到")}</div>', t("Stage 6 · in-game", "阶段 6 · 进游戏"), t("Control a character in the world", "能在世界里操控角色")),
+             '<div class="shape" style="left:62%;width:28%;height:22%"></div></div>', t("Stage 5 · world loads", "阶段 5 · 世界加载"), t("Earlier notes: a dark scene, about 1 fps.", "更早的记录：昏暗画面，约 1 帧。")),
+            (f'<div class="scr none">{t("Not a game yet", "还不是游戏")}</div>', t("Stage 6 · character control", "阶段 6 · 能操控角色"), t("Prologue reported at single-digit fps.", "报道为序章、个位数帧。")),
         ]
         figs = "".join(f'<figure class="screen">{s}<figcaption>{a}<small>{b}</small></figcaption></figure>' for s, a, b in items)
         return (f'<div class="screens">{figs}</div><p class="cap" style="margin-top:10px">'
@@ -242,12 +282,12 @@ class Site:
     def stepper(self):
         t = self.t
         steps = [
-            ("ok", t("19 Nov", "11/19"), t("Console launch + 209 GB Xbox build leaks", "主机版发售，209 GB Xbox 版泄露"), t("No EXE, can’t start", "缺 EXE，无法启动")),
-            ("warn", t("23 Nov", "11/23"), t("Cyberleek posts the EXE", "大葱哥放出 EXE"), t("Reported ZIP, ~57 MB", "报道约 57 MB")),
-            ("", t("+3 hours", "3 小时后"), t("Reports: a settings screen", "报道称进到设置"), t("Boot not verified", "启动未经核验")),
-            ("", t("23 Nov, night", "11/23 晚"), t("VIctory streams the menus", "VIctory 直播跑到菜单"), t("~15 fps, code goes public", "约 15 帧，代码随后公开")),
-            ("bad", t("23 Nov", "11/23"), t("Leonida goes offline", "Leonida 下线"), t("Repo and Discord gone", "仓库和 Discord 都没了")),
-            ("", t("24 Nov", "11/24"), t("World loads, still dark", "世界能加载，仍是黑的"), t("Under 2 fps", "不到 2 帧")),
+            ("ok", t("19 Nov", "11/19"), t("Console launch. Xbox build leaks without the program", "主机发售，Xbox 版泄露但没有主程序"), t("Cannot start", "无法启动")),
+            ("warn", t("23 Nov", "11/23"), t("Outlets: the console program is out", "媒体：主机主程序放出"), t("Not a PC version", "不是 PC 版")),
+            ("", t("23 Nov", "11/23"), t("Settings menus reported within hours", "数小时内有设置菜单的报道"), t("heise: not playable then", "heise：当时不能玩")),
+            ("bad", t("24 Nov", "11/24"), t("Take-Two DMCA hits the Leonida network", "Take-Two 的 DMCA 打中 Leonida 网络"), t("3,007 repositories removed", "3007 个仓库被移除")),
+            ("", t("24 Nov", "11/24"), t("VIctory and XCL load the world", "VIctory 和 XCL 加载世界"), t("PC Games Hardware", "PC Games Hardware")),
+            ("", t("25 Nov", "11/25"), t("Prologue control, single-digit fps", "序章可操控，个位数帧"), t("Not a playable game", "还不是能玩的游戏")),
         ]
         return '<ol class="stepper">' + "".join(f'<li class="{c}"><time>{d}</time><b>{a}</b><span>{b}</span></li>' for c, d, a, b in steps) + "</ol>"
 
@@ -322,48 +362,318 @@ class Site:
 {self.footer()}'''
         return self.doc(key, title, desc, html, faqs=faqs, crumbs=crumbs)
 
+    # ---------- live tracker blocks ----------
+    def ordered_race(self):
+        tracked = [p for p in PROJECTS if p.get("tier", "tracked") != "watchlist"]
+
+        def key(p):
+            ver = 0 if p.get("verification") == "cross-checked" else 1
+            return (-float(p.get("score", 0)), ver, p["name"].lower())
+
+        active = sorted((p for p in tracked if not p.get("halted")), key=key)
+        halted = sorted((p for p in tracked if p.get("halted")), key=key)
+        return [(i, p) for i, p in enumerate(active, 1)] + [("", p) for p in halted]
+
+    def race_card(self, p, rank, open_drawer=False):
+        t, lang = self.t, self.lang
+        score = float(p.get("score", 0))
+        score_txt = str(int(score)) if score == int(score) else f"{score:.1f}"
+        ver_cls, ver_en, ver_zh = VERIFY.get(p.get("verification"), ("", "Unlabeled", "未标注"))
+        pills = [f'<span class="tag">{escape(p["approach"][lang])}</span>']
+        for g in p.get("gpu") or []:
+            pills.append(f'<span class="tag {escape(g.lower())}">{escape(g)}</span>')
+        pills.append(f'<span class="tag {ver_cls}">{t(ver_en, ver_zh)}</span>')
+        if p.get("halted"):
+            pills.append(f'<span class="tag bad">{t("Offline", "已下线")}</span>')
+        dots = "".join(
+            f'<li class="{dot_state(score, point)}"><i></i><span>{t(en, zh)}</span></li>' for point, en, zh in DOTS)
+        claims = "".join(
+            f'<p class="claim"><b>{t("Claim awaiting confirmation", "新进度待核实")}</b> {escape(c[lang])}</p>'
+            for c in (p.get("claims") or []))
+        works = "".join(f"<li>{escape(x)}</li>" for x in (p.get("highlights") or {}).get(lang) or [])
+        blocks = "".join(f"<li>{escape(x)}</li>" for x in (p.get("blockers") or {}).get(lang) or [])
+        drawer = ""
+        if works or blocks:
+            drawer = (f'<details class="drawer"{" open" if open_drawer else ""}>'
+                      f'<summary>{t("What works and what is blocking", "能做到的，以及还卡住的")}</summary>'
+                      f'<div class="wb"><div><h4>{t("What works", "能做到的")}</h4><ul>{works}</ul></div>'
+                      f'<div><h4>{t("Blocking", "还卡住")}</h4><ul>{blocks}</ul></div></div></details>')
+        gpu_attr = " ".join(g.lower() for g in (p.get("gpu") or []))
+        search = " ".join([p["name"], p["approach"][lang], p["note"][lang]])
+        rank_html = escape(str(rank)) if rank else "–"
+        return f'''<article class="race-card{" halt" if p.get("halted") else ""}" data-card data-score="{score}" data-stage="{p["stage"]}" data-updated="{escape(p.get("updated", ""))}" data-gpu="{escape(gpu_attr)}" data-halted="{"1" if p.get("halted") else "0"}" data-search="{escape(search)}">
+  <div class="race-rank" aria-hidden="true">{rank_html}</div>
+  <div class="race-main">
+    <header class="race-top">
+      <div><h3>{escape(p["name"])}</h3><div class="pills">{"".join(pills)}</div></div>
+      <p class="race-score"><b>{score_txt}%</b><span>{t("Stage", "阶段")} {p["stage"]}/7</span></p>
+    </header>
+    <p class="race-note">{escape(p["note"][lang])}</p>
+    <div class="gbar" role="img" aria-label="{score_txt}%"><i style="--w:{max(0, min(100, score)):.2f}%"></i></div>
+    <ol class="ladder" aria-label="{t("Milestones", "里程碑")}">{dots}</ol>
+    {claims}{drawer}
+    <p class="race-meta">{t("Noted", "记录于")} {self.date(p.get("updated", STATUS["updated"][:10]))}</p>
+  </div>
+</article>'''
+
+    def race_tools(self):
+        t = self.t
+        present = []
+        for _, p in self.ordered_race():
+            for g in p.get("gpu") or []:
+                if g not in present:
+                    present.append(g)
+        prefer = ["NVIDIA", "AMD", "Linux", "Intel"]
+        present.sort(key=lambda g: prefer.index(g) if g in prefer else 99)
+        chips = [("all", t("All", "全部"))]
+        chips += [(g.lower(), g) for g in present]
+        if any(p.get("halted") for p in PROJECTS):
+            chips.append(("halted", t("Offline", "已下线")))
+        buttons = "".join(
+            f'<button type="button" data-filter="{escape(val)}" aria-pressed="{"true" if i == 0 else "false"}">{escape(label)}</button>'
+            for i, (val, label) in enumerate(chips))
+        template = t("Showing %%n of %%t", "显示 %%n / %%t 个")
+        return f'''<div class="race-tools">
+  <div class="chips" role="group" aria-label="{t("Filter projects", "筛选项目")}">{buttons}</div>
+  <input data-q type="search" placeholder="{t("Filter by name", "按名称筛选")}" aria-label="{t("Filter by name", "按名称筛选")}">
+  <label class="sort">{t("Sort", "排序")}
+    <select data-sort aria-label="{t("Sort", "排序")}">
+      <option value="score">{t("Progress (0–100%)", "进度（0–100%）")}</option>
+      <option value="stage">{t("Stage (1–7)", "阶段（1–7）")}</option>
+      <option value="updated">{t("Recently updated", "最近更新")}</option>
+    </select>
+  </label>
+</div>
+<p class="cap">{t("Names and status notes only. No repositories, downloads, or chat servers.", "只列项目名和进度说明。没有仓库、下载或聊天服务器。")}</p>
+<p class="eyebrow num" data-count data-template="{escape(template)}" aria-live="polite"></p>'''
+
+    def watchlist_block(self):
+        t = self.t
+        rows = sorted((p for p in PROJECTS if p.get("tier") == "watchlist"), key=lambda p: -float(p.get("score", 0)))
+        if not rows:
+            return ""
+        trs = "".join(
+            f'<tr><td><b>{escape(p["name"])}</b></td><td>{escape(p["approach"][self.lang])}</td><td class="num">{int(p["score"])}%</td>'
+            f'<td class="num">{p["stage"]}/7</td><td>{escape(p["note"][self.lang])}</td></tr>' for p in rows)
+        return f'''<details class="fold">
+  <summary>{t("Watchlist", "观察名单")} · {len(rows)} {t("early or quiet projects", "个早期或暂时没动静的项目")}</summary>
+  <div class="tbl"><table><thead><tr><th>{t("Project", "项目")}</th><th>{t("Approach", "路线")}</th><th>{t("Progress", "进度")}</th><th>{t("Stage", "阶段")}</th><th>{t("Latest", "最新")}</th></tr></thead>
+  <tbody>{trs}</tbody></table></div>
+</details>'''
+
+    def methodology_card(self):
+        t = self.t
+        steps = [
+            ("0–10%", t("Groundwork", "底层准备"), t("Loader, system libraries and shader translation, before the game really starts.", "加载器、系统库和着色器转译，主程序还没真正跑起来。")),
+            ("10%", t("Executable runs", "主程序运行"), t("The console program is mapped and its own code starts.", "主机主程序被映射进来，它自己的代码开始跑。")),
+            ("20%", t("First frame", "出帧"), t("Something is drawn: a log, a loading screen or an intro.", "能画出东西：日志、加载界面或开场。")),
+            ("30%", t("Menus", "菜单"), t("Settings or legal screens respond.", "设置或法律声明界面有响应。")),
+            ("40%", t("World loads", "加载世界"), t("The world loads and is drawn, however broken.", "世界能加载并画出来，哪怕是坏的。")),
+            ("50%", t("Character control", "能操控角色"), t("You can move a character. This is still not a finished game.", "能移动角色。这还不是完整的游戏。")),
+            ("50–100%", t("The rest", "剩下的一半"), t("Story, picture, frame rate and whether it stays running.", "剧情、画面、帧数，以及能不能一直跑下去。")),
+        ]
+        lis = "".join(f'<li><b>{a}</b><div><strong>{b}</strong><span>{c}</span></div></li>' for a, b, c in steps)
+        return f'''<div class="method">
+  <div>
+    <p class="eyebrow">{t("Scoring", "评分")}</p>
+    <h2>{t("How we score progress", "进度评分规则")}</h2>
+    <p>{t("The first 50% covers getting in: groundwork (0–10%), executable runs (10%), first frames (20%), menus (30%), world loads (40%), and basic character control (50%). The remaining 50% scores story completion, rendering accuracy, frame rate, and stability.",
+           "前 50% 看“进不进得去”：底层准备（0–10%）、主程序运行（10%）、出帧（20%）、菜单（30%）、加载世界（40%）、能操控角色（50%）；后 50% 才算“能不能好好玩”：剧情推进、画面还原、帧数与稳定性。")}</p>
+    <ol class="method-steps">{lis}</ol>
+  </div>
+  <div class="panel">
+    <h3>{t("What 100% would mean", "100% 是什么")}</h3>
+    <p>{t("The whole game, finished: story through the credits, a picture close to the console, about 30 fps, and sessions that keep running. A prologue at single-digit frame rates stops at 50. Nobody is close to 100.",
+           "完整的游戏：剧情走到片尾、画面接近主机、大约 30 帧，并且能一直跑下去。个位数帧的序章停在 50。现在没有人接近 100。")}</p>
+    <p>{t("Cross-checked means a newsroom reported it. Self-reported means we only have the project’s own note. We never link the projects.",
+           "“多方核实”表示有新闻编辑部报道过。“项目自述”表示我们只有项目自己的记录。本站不链接这些项目。")}</p>
+  </div>
+</div>'''
+
+    def timer_card(self):
+        t = self.t
+        launch = datetime.fromisoformat(STATUS["console_launch"].replace("Z", "+00:00"))
+        now = datetime.fromisoformat(STATUS["updated"].replace("Z", "+00:00"))
+        sec = max(0, int((now - launch).total_seconds()))
+        days, rem = divmod(sec, 86400)
+        hours, rem = divmod(rem, 3600)
+        mins, secs = divmod(rem, 60)
+        cells = [("d", str(days), t("Days", "天")), ("h", f"{hours:02d}", t("Hours", "时")),
+                 ("m", f"{mins:02d}", t("Min", "分")), ("s", f"{secs:02d}", t("Sec", "秒"))]
+        digits = "".join(f'<div><b data-u="{k}">{v}</b><span>{label}</span></div>' for k, v, label in cells)
+        return f'''<div class="clock" data-since="{escape(STATUS["console_launch"])}">
+  <p class="eyebrow"><i class="live" aria-hidden="true"></i>{t("Since console launch (19 Nov)", "距主机版发售（11 月 19 日）")}</p>
+  <div class="digits">{digits}</div>
+  <p class="clock-note"><a href="{self.url("release")}">{t("Reported PC target: Q1 2027 (unconfirmed)", "媒体传闻 PC 窗口：2027 年 Q1（未经官方证实）")}</a></p>
+</div>'''
+
+    def changes_feed(self):
+        t = self.t
+        items = sorted(STATUS.get("changes") or [], key=lambda c: c["date"], reverse=True)[:6]
+        lis = "".join(
+            f'<li><i class="dot {escape(c.get("kind") or "new")}" aria-hidden="true"></i><time datetime="{escape(c["date"])}">{self.date(c["date"])}</time><p>{escape(c[self.lang])}</p></li>'
+            for c in items)
+        return f'<div class="changes"><h3>{t("What changed", "最近变化")}</h3><ul class="chg">{lis}</ul></div>'
+
+    def sparkline(self, hist):
+        pts = sorted(hist or [], key=lambda h: h["date"])
+        if len(pts) < 2:
+            return ""
+        coords = []
+        n = len(pts)
+        for i, h in enumerate(pts):
+            x = i / (n - 1) * 100
+            y = 34 - (max(0, min(100, float(h["score"]))) / 100) * 28
+            coords.append((x, y))
+        line = " ".join(f"{x:.2f},{y:.2f}" for x, y in coords)
+        area = f"{coords[0][0]:.2f},36 " + line + f" {coords[-1][0]:.2f},36"
+        label = self.t("Furthest cross-checked milestone by day. Not a measured daily score.", "按日标注能交叉核实的最高里程碑，不是逐日测出来的分数。")
+        return f'''<svg class="spark" viewBox="0 0 100 40" preserveAspectRatio="none" role="img" aria-label="{escape(label)}">
+  <defs><linearGradient id="spark-stroke" x1="0" x2="1"><stop offset="0" stop-color="#8b6cff"/><stop offset=".5" stop-color="#ff3d8b"/><stop offset="1" stop-color="#ffb347"/></linearGradient></defs>
+  <polygon points="{area}" fill="rgba(255,61,139,.18)"></polygon>
+  <polyline points="{line}" fill="none" stroke="url(#spark-stroke)" stroke-width="1.6" vector-effect="non-scaling-stroke"></polyline>
+</svg>'''
+
+    def overall_card(self):
+        t, lang = self.t, self.lang
+        active = [p for p in PROJECTS if not p.get("halted")]
+        best = max(active, key=lambda p: float(p.get("score", 0)))
+        score = float(best["score"])
+        score_txt = str(int(score)) if score == int(score) else f"{score:.1f}"
+        leaders = [p for _, p in self.ordered_race() if p.get("score", 0) >= 40 and not p.get("halted")][:6]
+        placed, lanes = pin_lanes(leaders)
+        pins = "".join(
+            f'<span class="pin" style="--left:{float(p["score"])}%;--lane:{lane}" title="{escape(p["name"])} {int(p["score"])}%"><b>{escape(monogram(p["name"]))}</b><span class="pn">{escape(p["name"])} {int(p["score"])}%</span></span>'
+            for p, lane in placed)
+        marks = "".join(f'<li style="--p:{pct}%"><b>{num}</b> {t(en, zh)}</li>' for pct, num, en, zh in MILESTONES)
+        tiles = [
+            ("hot", "0", t("playable games", "能玩的游戏")),
+            ("", str(len(PROJECTS)), t("projects followed", "在跟的项目")),
+            ("cy", f'{max(p["stage"] for p in PROJECTS)}/7', t("furthest stage", "最高阶段")),
+            ("", STATUS["port_stats"]["prologue_fps"][lang], t("prologue, reported", "序章（报道）")),
+        ]
+        tile_html = "".join(f'<div class="stat {c}"><b>{v}</b><span>{s}</span></div>' for c, v, s in tiles)
+        return f'''<section class="overall-wrap" id="progress">
+  <div class="wrap">
+    <div class="overall">
+      <div class="ov-head">
+        <div>
+          <p class="eyebrow">{t("Unofficial port progress", "民间移植总进度")}</p>
+          <h2>{t("Furthest publicly reported build", "当前公开报道的最高水平")}</h2>
+          <p class="ov-sub">{t("Tracked from a cold start to a finished PC game. Self-reported notes are marked apart from cross-checked reporting.", "从“完全跑不起来”到“完整的 PC 游戏”统一打分。项目自述和新闻编辑部交叉核实的结果分开标注。")}</p>
+        </div>
+        <p class="ov-score"><b>{score_txt}%</b><span>{escape(best["name"])} · {t("character control", "能操控角色")}</span></p>
+      </div>
+      <p class="ov-lead">{escape(best["note"][lang])}</p>
+      <div class="stats">{tile_html}</div>
+      <div class="mega">
+        <div class="pins" style="--lanes:{lanes}">{pins}</div>
+        <div class="gbar mega-bar" role="img" aria-label="{score_txt}%"><i style="--w:{score:.2f}%"></i></div>
+        <ol class="ms">{marks}</ol>
+        <p class="band">{t("From 50% to 100%: story, picture, speed, stability. 100% is the finished game.", "50% 到 100%：剧情、画面、帧数、稳定性。100% 才是完整的游戏。")}</p>
+      </div>
+      {self.sparkline(STATUS.get("history"))}
+      <p class="cap">{t("Each point is the furthest milestone we could cross-check that day, not a measured score.", "每个点是当天我们能交叉核实的最高里程碑，不是测出来的分数。")}</p>
+      {self.changes_feed()}
+    </div>
+  </div>
+</section>'''
+
+    def news_anchor(self, n, i):
+        return f'n-{n["date"]}-{i}-{n["tag"]}'
+
+    def source_bits(self, n):
+        bits = []
+        for s in n.get("sources") or []:
+            url = s.get("url") or ""
+            if not url.startswith("https://"):
+                continue
+            bits.append((s, url))
+        return bits
+
+    def sources_html(self, n):
+        parts = []
+        for s, url in self.source_bits(n):
+            parts.append(f'<a href="{escape(url)}" title="{escape(s.get("title") or s["outlet"])}" rel="noopener noreferrer">{escape(s["outlet"])}</a>')
+        if not parts:
+            return ""
+        return f'<p class="srcs"><span>{self.t("Sources", "来源")}</span>{" · ".join(parts)}</p>'
+
+    def news_card(self, n, i, kind):
+        t = self.t
+        cls, en, zh = TAGS[n["tag"]]
+        title, dek = n[self.lang]
+        anchor = self.news_anchor(n, i)
+        cover = f'<div class="ncover {escape(n["tag"])}" aria-hidden="true"><span class="tag {cls}">{t(en, zh)}</span></div>'
+        body = (f'<div class="nbody"><time datetime="{n["date"]}">{self.date(n["date"])}</time>'
+                f'<h3 id="{anchor}">{escape(title)}</h3><p>{escape(dek)}</p>{self.sources_html(n)}</div>')
+        if kind == "home-feature":
+            href = self.url("news") + "#" + anchor
+            body = (f'<div class="nbody"><time datetime="{n["date"]}">{self.date(n["date"])}</time>'
+                    f'<h3><a href="{href}">{escape(title)}</a></h3><p>{escape(dek)}</p>{self.sources_html(n)}</div>')
+        elif kind == "home-mini":
+            href = self.url("news") + "#" + anchor
+            body = (f'<div class="nbody"><time datetime="{n["date"]}">{self.date(n["date"])}</time>'
+                    f'<h3><a href="{href}">{escape(title)}</a></h3><p>{escape(dek)}</p>{self.sources_html(n)}</div>')
+        klass = "ncard feature" if "feature" in kind else ("nmini" if kind == "home-mini" else "ncard row")
+        return f'<article class="{klass}" data-tag="{escape(n["tag"])}">{cover}{body}</article>'
+
+    def headline_list(self):
+        t = self.t
+        seen, lis = set(), []
+        for n in NEWS:
+            for s, url in self.source_bits(n):
+                if url in seen:
+                    continue
+                seen.add(url)
+                lis.append(f'<li><a href="{escape(url)}" rel="noopener noreferrer">{escape(s.get("title") or s["outlet"])}</a><span>{escape(s["outlet"])} · {self.date(n["date"])}</span></li>')
+        if not lis:
+            return ""
+        return f'<h2>{t("Sources behind these notes", "这些短讯的出处")}</h2><ul class="hl">{"".join(lis)}</ul>'
+
     # ======================= PAGES =======================
     def page_home(self):
         t = self.t
-        ps = STATUS["port_stats"]
         play_rows = [("y", t("PS Remote Play (Windows app)", "PS Remote Play（Windows 客户端）"), t("Your PS5 + the game", "你自己的 PS5 + 游戏")),
                      ("y", t("Xbox app remote play", "Xbox 应用远程游玩"), t("Your Xbox Series X|S + the game", "你自己的 Xbox Series X|S + 游戏")),
                      ("y", t("Capture card", "采集卡"), t("Console + capture card, lowest lag", "主机 + 采集卡，延迟最低")),
                      ("n", t("Xbox Cloud Gaming", "Xbox 云游戏"), t("Xbox consoles only, not PC", "只推流到 Xbox 主机，PC 不行")),
                      ("n", t("GeForce Now / Game Pass", "GeForce Now / Game Pass"), t("Not available", "没有"))]
-        faqs = [(t("Is GTA 6 on PC yet?", "GTA 6 出 PC 版了吗？"), t("No. It launched on 19 November 2026 for PS5 and Xbox Series X|S only.", "没有。2026 年 11 月 19 日只发售了 PS5 和 Xbox Series X|S 版。")),
+        faqs = [(t("Is GTA 6 on PC yet?", "GTA 6 出 PC 版了吗？"), t("No. It launched on 19 November 2026 for PS5 and Xbox Series X|S only. A reported unofficial prologue run is not a PC version.", "没有。2026 年 11 月 19 日只发售了 PS5 和 Xbox Series X|S 版。报道中的民间序章试跑不是 PC 版。")),
                 (t("Can I pre-order it on Steam?", "Steam 能预购吗？"), t("No. There is no PC store listing anywhere yet.", "不能。目前任何 PC 商店都没有上架。")),
                 (t("Is the Cyberleek EXE a PC version?", "大葱哥放的 EXE 是 PC 版吗？"), t("No. It is the Xbox program file and needs an unofficial port to run.", "不是。那是 Xbox 版的主程序，要靠民间移植项目才能跑。")),
                 (t("Is GTA 6 on Game Pass?", "GTA 6 进 Game Pass 了吗？"), t("No, on any platform.", "没有，哪个平台都没有。")),
                 (t("Should I upgrade my PC now?", "现在要不要升级电脑？"), t("Wait for official requirements, usually 1–2 months before a PC launch.", "先等官方配置，一般在 PC 版发售前 1–2 个月公布。"))]
-        lead = [p for p in PROJECTS if not p["halted"]][:6] + [p for p in PROJECTS if p["halted"]]
+        preview = "".join(self.race_card(p, rank) for rank, p in self.ordered_race()[:4])
+        indexed = list(enumerate(NEWS))
+        home_news = ""
+        if indexed:
+            feature = self.news_card(indexed[0][1], indexed[0][0], "home-feature")
+            stack = "".join(self.news_card(n, i, "home-mini") for i, n in indexed[1:5])
+            home_news = f'<div class="home-news">{feature}<div class="stack">{stack}</div></div>'
         body = f'''{self.header("home")}
 <main>
   <section class="hero photo">
     {self.img("hero-vice-city-night.jpg", t("Vice City skyline at dusk, GTA 6 screenshot", "GTA 6 游戏截图：黄昏的罪恶都市"), "bg", lazy=False)}
     <div class="wrap">
-      <div>
+      <div class="hero-copy">
         <p class="eyebrow">{t("Updated", "更新于")} {STATUS["updated_label"][self.lang]}</p>
-        <h1>{t("Is GTA 6 on PC?", "GTA 6 有 PC 版了吗？")}<span class="no">{t("Not yet.", "还没有。")}</span></h1>
-        <p class="lede">{t("No official PC version. Reports say the leaked Xbox build can boot on PC, but <strong>nobody can play it</strong>.", "官方没有 PC 版。有报道称泄露的 Xbox 版能在 PC 上启动，但<strong>还没人能玩</strong>。")}</p>
+        <h1><span class="q">{t("Is GTA 6 on PC?", "GTA 6 有 PC 版了吗？")}</span><span class="no">{t("Not yet.", "还没有。")}</span></h1>
+        <p class="lede">{t("No official PC release exists. PC Games Hardware reports that one unofficial build can steer the prologue at single-digit frame rates. <strong>That is not a playable PC game.</strong>", "官方尚未公布 PC 版。PC Games Hardware 报道，有一个民间版本能以个位数帧率操控序章。<strong>这还不是能玩的 PC 游戏。</strong>")}</p>
         <div class="ctas"><a class="btn primary" href="{self.url("release")}">{t("PC release date", "PC 版什么时候出")}</a><a class="btn" href="{self.url("tracker")}">{t("Port tracker", "移植进度")}</a></div>
+        <p class="credit">{t("Screenshot: Rockstar Games", "截图：Rockstar Games")}</p>
       </div>
-      {self.board()}
+      <div class="hero-side">{self.timer_card()}{self.board()}</div>
     </div>
-    <span class="credit">{t("Screenshot: Rockstar Games", "截图：Rockstar Games")}</span>
   </section>
+  {self.overall_card()}
 
   <section class="sec" id="port">
     <div class="wrap">
-      <div class="sec-head"><div><p class="eyebrow">{t("Unofficial port race", "民间移植进度")}</p><h2>{t("Can the leaked build run on PC?", "泄露版能在 PC 上跑吗？")}</h2></div><a class="more" href="{self.url("tracker")}">{t("Full tracker →", "完整进度表 →")}</a></div>
-      <div class="stats">
-        <div class="stat hot"><b>{ps["playable"]}</b><span>{t("playable ports", "能玩的移植")}</span></div>
-        <div class="stat"><b>{ps["tracked"]}</b><span>{t("projects tracked", "追踪中的项目")}</span></div>
-        <div class="stat cy"><b>{ps["best_stage"]}/7</b><span>{t("furthest stage", "最高进度")}</span></div>
-        <div class="stat"><b>&lt;2</b><span>{t("fps in the world", "开放世界帧数")}</span></div>
-      </div>
+      <div class="sec-head"><div><p class="eyebrow">{t("Unofficial port race", "民间移植进度")}</p><h2>{t("Can the leaked build run on PC?", "泄露版能在 PC 上跑吗？")}</h2><p>{t("The furthest cross-checked report is prologue control at single-digit frame rates. The illustrations below are diagrams, not captures from the leaked build.", "目前交叉核实到的最远结果，是个位数帧的序章操控。下面的图是示意图，不是泄露版本的实机截图。")}</p></div><a class="more" href="{self.url("tracker")}">{t("Full tracker →", "完整进度表 →")}</a></div>
       {self.screens()}
-      <div class="grid2" style="margin-top:22px">{self.stage_chart(lead)}{self.fps_chart()}</div>
+      <div class="race-preview">{preview}</div>
+      <div class="grid2" style="margin-top:22px"><div>{self.fps_chart()}</div><div class="panel"><p class="eyebrow">{t("Still not a download", "仍然没有可下载的版本")}</p><h3>{t("No real PC copy exists", "不存在真正的 PC 版")}</h3><p>{t("Every one of these names needs leaked console files. Public “GTA 6 PC installers” are malware. This page lists names and status notes only.", "上面每一个名字都依赖泄露的主机文件。网上的“GTA 6 PC 安装包”是木马。本页只列名字和进度说明。")}</p><a class="btn" style="margin-top:14px" href="{self.url("tracker")}">{t("See every project", "看全部项目")}</a></div></div>
     </div>
   </section>
 
@@ -383,8 +693,8 @@ class Site:
 
   <section class="sec" id="news">
     <div class="wrap">
-      <div class="sec-head"><div><p class="eyebrow">{t("This week", "本周")}</p><h2>{t("GTA 6 PC news", "GTA 6 PC 新闻")}</h2></div><a class="more" href="{self.url("news")}">{t("All news →", "全部新闻 →")}</a></div>
-      {self.news_list(NEWS[:5], detail=False)}
+      <div class="sec-head"><div><p class="eyebrow">{t("Latest developments", "最新动态")}</p><h2>{t("GTA 6 PC news", "GTA 6 PC 新闻")}</h2><p>{t("Plain summaries of official updates, DMCA takedowns, malware warnings and reported port milestones, with links to the original reporting. No leaked files or port repositories are linked.", "简明梳理官方动态、DMCA 下架、假包木马预警和移植节点，并附上原始报道。本站不链接泄露文件或移植仓库。")}</p></div><a class="more" href="{self.url("news")}">{t("All news →", "全部新闻 →")}</a></div>
+      {home_news}
     </div>
   </section>
 
@@ -414,7 +724,8 @@ class Site:
       <div class="alert" id="safety">
         <div>
           <p class="eyebrow" style="color:var(--bad)">{t("Download warning", "下载警告")}</p>
-          <h2 style="margin-top:8px">{t("There is no real GTA 6 PC download", "没有真的 GTA 6 PC 下载")}</h2>
+          <h2 style="margin-top:8px">{t("No real PC download exists", "不存在可玩的 PC 下载")}</h2>
+          <p style="margin-top:8px">{t("Every real port attempt needs leaked console files, and public “GTA 6 PC installers” remain malware. We never link executables, keys, or unofficial port repositories.", "所有真实的移植尝试都依赖泄露的主机文件，网上的“GTA 6 PC 安装包”都是木马。本站绝不链接主程序、密钥或民间移植仓库。")}</p>
           <a class="btn" style="margin-top:18px" href="{self.url("safe")}">{t("How to spot a fake", "怎么识别假下载")}</a>
         </div>
         <ul>
@@ -436,68 +747,53 @@ class Site:
 </main>
 {self.footer()}'''
         return self.doc("home", t("GTA 6 PC: Is It Out? Release Date, Port Tracker & Specs", "GTA 6 PC 版：出了吗？发售日、移植进度与配置"),
-                        t("Is GTA 6 on PC? Not officially. Live status of the PC release date, the unofficial port race after the Cyberleek EXE leak, PC specs and fake downloads.",
-                          "GTA 6 有 PC 版了吗？官方还没有。实时整理 PC 版发售日、大葱哥 EXE 泄露后的民间移植进度、配置预估和假下载识别。"),
+                        t("Is GTA 6 on PC? Not yet. No official release. One reported unofficial prologue run is still single-digit and not playable. Release date, port progress, specs and fake-download warnings.",
+                          "GTA 6 有 PC 版了吗？还没有。官方未公布。有报道的民间序章试跑仍是个位数帧，不能玩。这里整理发售日、移植进度、配置和假下载警告。"),
                         body, faqs=faqs, crumbs=[("home", t("Home", "首页"))])
 
     def page_tracker(self):
         t = self.t
         ps = STATUS["port_stats"]
-        off = f' <span class="tag bad">{t("Offline", "已下线")}</span>'
-        rows = "".join(
-            f'<tr data-stage="{p["stage"]}"><td><b>{p["name"]}</b>{off if p["halted"] else ""}</td>'
-            f'<td>{p["approach"][self.lang]}</td><td class="num">{p["stage"]}/7</td><td>{p["note"][self.lang]}</td></tr>' for p in PROJECTS)
-        label = json.dumps(t("Showing {n} of {t}", "显示 {n} / {t} 个"), ensure_ascii=False)
+        offline = sum(1 for p in PROJECTS if p.get("halted"))
+        worldish = sum(1 for p in PROJECTS if float(p.get("score", 0)) >= 40 and not p.get("halted"))
+        cards = "".join(self.race_card(p, rank, bool(rank) and rank <= 3) for rank, p in self.ordered_race())
         body = f'''<div class="stats">
-  <div class="stat hot"><b>{ps["playable"]}</b><span>{t("playable", "能玩")}</span></div>
-  <div class="stat cy"><b>{ps["at_stage5"]}</b><span>{t("at stage 5", "到达阶段 5")}</span></div>
-  <div class="stat"><b>{ps["offline"]}</b><span>{t("taken offline", "已下线")}</span></div>
-  <div class="stat"><b>{ps["hours_since_exe"]}</b><span>{t("since the EXE", "距 EXE 放出")}</span></div>
+  <div class="stat hot"><b>0</b><span>{t("playable games", "能玩的游戏")}</span></div>
+  <div class="stat cy"><b>{worldish}</b><span>{t("at the world, or further", "到了世界或更远")}</span></div>
+  <div class="stat"><b>{offline}</b><span>{t("taken offline", "已下线")}</span></div>
+  <div class="stat"><b>{ps["since_exe"][self.lang]}</b><span>{t("since the console program surfaced", "距主机主程序流出")}</span></div>
 </div>
-{self.stage_chart(PROJECTS)}
 <h2>{t("What each stage looks like", "每个阶段长什么样")}</h2>
 {self.screens()}
 <h2>{t("Race timeline", "进度时间线")}</h2>
 {self.stepper()}
 {self.fps_chart()}
-<h2>{t("All projects", "全部项目")}</h2>
-<div class="filter">
-  <input id="q" type="search" placeholder="{t("Filter by name or approach", "按名称或技术路线筛选")}" aria-label="{t("Filter", "筛选")}">
-  <select id="stage" aria-label="{t("Minimum stage", "最低阶段")}"><option value="0">{t("All stages", "全部阶段")}</option><option value="5">{t("Stage 5+", "阶段 5 以上")}</option><option value="4">{t("Stage 4+", "阶段 4 以上")}</option></select>
-</div>
-<div class="tbl"><table id="projects"><thead><tr><th>{t("Project", "项目")}</th><th>{t("Approach", "技术路线")}</th><th>{t("Stage", "阶段")}</th><th>{t("Latest", "最新状态")}</th></tr></thead><tbody>{rows}</tbody></table></div>
-<p id="count" class="eyebrow num"></p>
+<h2 id="race">{t("The race", "移植赛况")}</h2>
+<p>{t("Ranked by the furthest milestone a newsroom has reported, then by projects we can only describe from their own notes. Offline projects stay on the board without a rank.", "先按新闻编辑部报道过的最远里程碑排序，其次才是我们只能根据项目自己的记录来写的条目。已下线的项目留在榜上，但不占名次。")}</p>
+{self.race_tools()}
+<div data-race>{cards}</div>
+{self.watchlist_block()}
+{self.methodology_card()}
 <h2>{t("Can I try it?", "我能试试吗？")}</h2>
 <p>{t("No. Every project needs the leaked game files, which you can’t get legally, and fake copies carry malware. We don’t link any of them.", "不能。所有项目都需要泄露的游戏文件，没有合法来源，网上流传的副本还常带木马。本站不提供任何相关链接。")} <a href="{self.url("safe")}">{t("Is that download safe? →", "下载安全吗？→")}</a></p>
 <h2>{t("Will they be shut down?", "会被下架吗？")}</h2>
-<p>{t("Probably. Take-Two removed GTA 5 ports from GitHub on 18 Nov, and Leonida’s founder says Rockstar took down its Discord.", "大概率会。Take-Two 11 月 18 日刚让 GitHub 下架了一批 GTA 5 移植；Leonida 创始人称其 Discord 是被 Rockstar 申请删除的。")}</p>
-<script>
-(function () {{
-  var q = document.getElementById('q'), s = document.getElementById('stage'), rows = document.querySelectorAll('#projects tbody tr'), c = document.getElementById('count');
-  function run() {{
-    var x = q.value.trim().toLowerCase(), min = +s.value, n = 0;
-    rows.forEach(function (r) {{ var ok = (+r.dataset.stage >= min) && (!x || r.textContent.toLowerCase().indexOf(x) > -1); r.hidden = !ok; if (ok) n++; }});
-    c.textContent = {label}.replace('{{n}}', n).replace('{{t}}', rows.length);
-  }}
-  q.addEventListener('input', run); s.addEventListener('change', run); run();
-}})();
-</script>'''
-        faqs = [(t("Has anyone played GTA 6 on PC?", "有人在 PC 上玩到 GTA 6 了吗？"), t("Not in any verified way. The furthest confirmed result is a world that loads but renders black.", "没有可证实的。目前能确认的最远进度是世界能加载但全黑。")),
+<p>{t("Take-Two already did it once. A DMCA notice dated 24 Nov removed Leonida and 3,007 repositories in that network. The other names on this page are still only names: we do not link them.", "Take-Two 已经做过一次。日期为 11 月 24 日的 DMCA 通知移除了 Leonida 及其网络中的 3007 个仓库。本页其他名字只是名字：我们不链接它们。")}</p>'''
+        faqs = [(t("Has anyone played GTA 6 on PC?", "有人在 PC 上玩到 GTA 6 了吗？"), t("Not as a game. PC Games Hardware reports that one build can steer the prologue at single-digit frame rates. PC Gamer still answers the question with no.", "还不能当游戏玩。PC Games Hardware 报道有一个版本能以个位数帧率操控序章。PC Gamer 对“PC 上能玩吗”的回答仍然是不能。")),
                 (t("Does the port need an Xbox?", "移植需要 Xbox 吗？"), t("No console, but every project needs the leaked Xbox build files.", "不需要主机，但所有项目都需要泄露的 Xbox 版游戏文件。")),
                 (t("Will an unofficial port beat the official PC version?", "民间版会比官方 PC 版好吗？"), t("No. An official port brings proper PC settings, mouse and keyboard, and GTA Online.", "不会。官方版会有完整的画面设置、键鼠支持和 GTA Online。"))]
         return self.content_page("tracker", t("GTA 6 PC Port Tracker: Is the Unofficial Port Playable?", "GTA 6 PC 移植进度：民间版能玩了吗？"),
-                                 t("Is the unofficial GTA 6 PC port playable? Stage-by-stage status of 14 projects running the leaked Xbox build, updated daily.", "GTA 6 民间 PC 移植能玩了吗？14 个项目的分阶段进度，每日更新。"),
+                                 t("Is the unofficial GTA 6 PC port playable? No. Prologue control is reported at single-digit frame rates. Every project on this page is a name and a status note, with no downloads.", "GTA 6 民间 PC 移植能玩了吗？不能。有报道称序章可以操控，但是个位数帧。本页每个项目只有名字和进度说明，没有下载。"),
                                  t("GTA 6 PC Port Tracker", "GTA 6 PC 移植进度"),
-                                 f'<strong>{t("No port is playable yet.", "还没有能玩的移植。")}</strong> {t("Leaders run the menus at 30 fps; the world loads dark at under 2 fps.", "领先项目的菜单能跑 30 帧，世界能加载但全黑，不到 2 帧。")}',
-                                 body, faqs=faqs, image="tail-lights.jpg", tags=[("bad", t("Playable: no", "能玩：否")), ("cy", t("Best: stage 5 of 7", "最高：5/7"))],
-                                 nexts=[("leak", t("What Cyberleek leaked", "大葱哥泄露了什么"), t("Build, EXE, timeline", "游戏包、EXE、时间线")), ("release", t("Official release date", "官方发售日"), t("Q1 2027 vs history", "2027 Q1 还是更晚")), ("play", t("Play on PC today", "现在怎么玩"), t("Remote Play", "Remote Play 串流"))],
-                                 note=t("Stage data: GTA VI PC Race and Six on PC trackers; reporting from PC Games Hardware, heise, TweakTown, TorrentFreak.", "进度数据：GTA VI PC Race、Six on PC 两个追踪站；报道来源：PC Games Hardware、heise、TweakTown、TorrentFreak。"))
+                                 f'<strong>{t("No port is a playable PC game.", "还没有能玩的 PC 移植。")}</strong> {t("PC Games Hardware reports prologue control at single-digit frame rates. That is the furthest cross-checked result.", "PC Games Hardware 报道有人能以个位数帧率操控序章。这是目前交叉核实到的最远结果。")}',
+                                 body, faqs=faqs, image="tail-lights.jpg", tags=[("bad", t("Playable: no", "能玩：否")), ("cy", t("Furthest: 50% · control", "最远：50% · 可操控"))],
+                                 nexts=[("leak", t("What Cyberleek leaked", "大葱哥泄露了什么"), t("Build, program file, timeline", "游戏包、主程序、时间线")), ("release", t("Official release date", "官方发售日"), t("Q1 2027 vs history", "2027 Q1 还是更晚")), ("play", t("Play on PC today", "现在怎么玩"), t("Remote Play", "Remote Play 串流"))],
+                                 note=t("Cross-checked reporting: PC Games Hardware, PC Gamer, heise, The Verge, ComputerBase, and GitHub’s public DMCA notice dated 24 Nov 2026. Notes no outlet has re-checked are marked self-reported.", "交叉核实：PC Games Hardware、PC Gamer、heise、The Verge、ComputerBase，以及 GitHub 公开的 2026 年 11 月 24 日 DMCA 通知。没有媒体复核过的记录标为项目自述。"))
 
     def page_leak(self):
         t = self.t
         verdicts = [("warn", t("Reported", "报道"), t("Outlets report an Xbox build and EXE; some ports are said to reach menus. The file has not been authenticated", "多家媒体报道有 Xbox 版和 EXE，有移植称能到菜单。文件本身未经核验")),
                     ("ok", t("Real", "真"), t("Rockstar has announced no PC version and said nothing about the leak", "Rockstar 没公布 PC 版，也没对泄露表态")),
-                    ("warn", t("Unconfirmed", "待证"), t("“Rockstar took down Leonida”: only the founder says so", "“Leonida 是被 Rockstar 弄下线的”：只有创始人自己这么说")),
+                    ("ok", t("Real", "真"), t("Take-Two’s DMCA notice dated 24 Nov removed Leonida and 3,007 repositories in that network", "Take-Two 日期为 11 月 24 日的 DMCA 通知，移除了 Leonida 及其网络中的 3007 个仓库")),
                     ("warn", t("Unconfirmed", "待证"), t("“PC version in Q1 2027”: one report, anonymous sources", "“PC 版 2027 Q1”：单一报道，匿名信源")),
                     ("warn", t("Unconfirmed", "待证"), t("A 3 fps clip of a lit scene on PC", "一段 3 帧的 PC 亮场景片段")),
                     ("bad", t("Fake", "假"), t("Any “GTA 6 PC” download, repack or ISO", "任何“GTA 6 PC 下载 / 整合版 / ISO”")),
@@ -733,10 +1029,25 @@ class Site:
     def page_news(self):
         t = self.t
         latest = NEWS[0][self.lang][0]
+        order = ["port", "leak", "official", "legal", "security", "report"]
+        present = [k for k in order if any(n["tag"] == k for n in NEWS)]
+        chips = [("all", t("All", "全部"))] + [(k, t(TAGS[k][1], TAGS[k][2])) for k in present]
+        buttons = "".join(
+            f'<button type="button" data-news-filter="{escape(val)}" aria-pressed="{"true" if i == 0 else "false"}">{escape(label)}</button>'
+            for i, (val, label) in enumerate(chips))
+        indexed = list(enumerate(NEWS))
+        feature = self.news_card(indexed[0][1], indexed[0][0], "feature")
+        rest = "".join(self.news_card(n, i, "row") for i, n in indexed[1:])
+        intro = t("Plain summaries of official updates, DMCA takedowns, malware warnings and reported port milestones, with links to the original reporting. No leaked files or port repositories are linked.",
+                  "简明梳理官方动态、DMCA 下架、假包木马预警和移植节点，并附上原始报道。本站不链接泄露文件或移植仓库。")
+        body = f'''<p>{intro}</p>
+<div class="chips" role="group" aria-label="{t("Filter news", "筛选新闻")}">{buttons}</div>
+<div class="news-archive" data-news>{feature}<div class="news-rest">{rest}</div></div>
+{self.headline_list()}'''
         return self.content_page("news", t("GTA 6 PC News: Leaks, Ports & Release Updates", "GTA 6 PC 新闻：泄露、移植与发售动态"),
-                                 t("Dated GTA 6 PC news: release reports, the Cyberleek leak, unofficial port progress, takedowns and malware warnings.", "按日期整理的 GTA 6 PC 新闻：发售爆料、大葱哥泄露、民间移植进度、下架与木马预警。"),
+                                 t("Dated GTA 6 PC news with sources: the reported prologue run, Take-Two’s Leonida notice, the console launch and fake-download warnings.", "按日期整理、并附出处的 GTA 6 PC 新闻：序章试跑报道、Take-Two 对 Leonida 的通知、主机发售和假下载警告。"),
                                  t("GTA 6 PC News", "GTA 6 PC 新闻"),
-                                 f'<strong>{t("Latest", "最新")}:</strong> {latest}', self.news_list(NEWS, detail=True), image="key-art.jpg",
+                                 f'<strong>{t("Latest", "最新")}:</strong> {escape(latest)}', body, image="key-art.jpg",
                                  nexts=[("tracker", t("Port tracker", "移植进度"), t("Live project status", "项目实时进度")), ("leak", t("EXE leak explained", "EXE 泄露解读"), t("What’s real", "哪些是真的")), ("release", t("PC release date", "PC 版发售日"), t("Both estimates", "两种预测"))])
 
     def page_legal(self, key):
@@ -807,6 +1118,7 @@ def build(mode):
         write(out / "robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
     else:
         shutil.copy(ROOT / "static" / "site.css", out / "site.css")
+        shutil.copy(ROOT / "static" / "tracker.js", out / "tracker.js")
         shutil.copytree(ROOT / "static" / "img", out / "img")
     print(f"built {mode} -> {out.relative_to(ROOT)} ({sum(1 for _ in out.rglob('*.html'))} html files)")
 

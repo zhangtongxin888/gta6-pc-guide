@@ -1,10 +1,35 @@
 {
-  "updated": "2026-11-24T11:30:00Z",
-  "updated_label": {"en": "24 Nov 2026, 11:30 UTC", "zh": "2026 年 11 月 24 日 11:30 UTC"},
-  "console_launch": "2026-11-19",
+  "updated": "2026-11-25T19:30:00Z",
+  "updated_label": {"en": "25 Nov 2026, 19:30 UTC", "zh": "2026 年 11 月 25 日 19:30 UTC"},
+  "console_launch": "2026-11-19T00:00:00Z",
   "official_pc": {"lamp": "wait", "en": ["Not announced", "Reported target: Q1 2027"], "zh": ["未公布", "媒体报道目标：2027 年 Q1"]},
-  "port": {"lamp": "off", "en": ["Not playable · 5 of 7", "World loads dark, under 2 fps"], "zh": ["不能玩 · 5/7", "世界能加载但全黑，不到 2 帧"]},
+  "port": {"lamp": "off", "en": ["Not playable", "Prologue only, single-digit fps"], "zh": ["不能玩", "仅序章，个位数帧"]},
   "play_now": {"lamp": "go", "en": ["Remote Play only", "Needs your own PS5 or Xbox"], "zh": ["只能 Remote Play 串流", "需要你自己的 PS5 或 Xbox"]},
-  "port_stats": {"playable": 0, "tracked": 14, "best_stage": 5, "world_fps_max": 1.8, "at_stage5": 11, "offline": 1, "hours_since_exe": "~30h"},
-  "sources": "GTA VI PC Race (vuyp.github.io/gta6-pc-race), Six on PC (sixonpc.com), PC Games Hardware, heise, TweakTown"
+  "port_stats": {
+    "playable": 0,
+    "since_exe": {"en": "~2 days", "zh": "约 2 天"},
+    "prologue_fps": {"en": "1–9 fps", "zh": "1–9 帧"},
+    "prologue_bar": 9
+  },
+  "leader": {
+    "name": "ZETTROX",
+    "score": 50,
+    "en": "Prologue control on an RTX 3050, single-digit fps. Not a playable game.",
+    "zh": "RTX 3050 上能操控序章，个位数帧。还不是能玩的游戏。"
+  },
+  "history": [
+    {"date": "2026-11-19", "score": 0},
+    {"date": "2026-11-23", "score": 30},
+    {"date": "2026-11-24", "score": 40},
+    {"date": "2026-11-25", "score": 50}
+  ],
+  "changes": [
+    {"date": "2026-11-25", "kind": "up", "en": "PC Games Hardware reports that ZETTROX can steer Lucia through the prologue on a GeForce RTX 3050, at single-digit frame rates.", "zh": "PC Games Hardware 报道：ZETTROX 能在 GeForce RTX 3050 上以个位数帧率操控露西亚走过序章。"},
+    {"date": "2026-11-25", "kind": "flag", "en": "Take-Two’s DMCA notice, dated 24 Nov, took down Leonida and 3,007 repositories in that network, heise, The Verge and ComputerBase report.", "zh": "heise、The Verge、ComputerBase 报道：Take-Two 日期为 11 月 24 日的 DMCA 通知，下架了 Leonida 及其网络中的 3007 个仓库。"},
+    {"date": "2026-11-25", "kind": "claim", "en": "PC Gamer says GTA 6 still does not run on PC. In-game clips are hard to verify, and reported AMD shader work is still single-digit.", "zh": "PC Gamer 称 GTA 6 在 PC 上仍然不能玩。实机片段很难核实，报道中的 AMD 着色器进展仍是个位数帧。"},
+    {"date": "2026-11-24", "kind": "up", "en": "PC Games Hardware reports that VIctory and XCL already load the game world. A separate lit-scene clip at about 3 fps is still unconfirmed.", "zh": "PC Games Hardware 报道 VIctory 和 XCL 已经能加载游戏世界。另有一段约 3 帧的亮场景片段仍未证实。"},
+    {"date": "2026-11-23", "kind": "new", "en": "Outlets report that the missing Xbox executable is out. It is the console program, not a PC version.", "zh": "多家媒体报道，缺失的 Xbox 主程序已经放出。那是主机程序，不是 PC 版。"},
+    {"date": "2026-11-19", "kind": "new", "en": "GTA 6 launches on PS5 and Xbox Series X|S. Rockstar has announced no PC version.", "zh": "GTA 6 登陆 PS5 和 Xbox Series X|S。Rockstar 没有公布 PC 版。"}
+  ],
+  "sources": "PC Games Hardware, PC Gamer, heise, The Verge, ComputerBase, GitHub’s public DMCA notice dated 24 Nov 2026"
 }
