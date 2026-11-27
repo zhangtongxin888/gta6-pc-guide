@@ -5,3 +5,5 @@ __pycache__/
 node_modules
 dist
 .vercel
+gta6pc-handoff.zip
+i18n/_missing_*.json

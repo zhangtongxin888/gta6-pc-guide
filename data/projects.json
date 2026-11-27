@@ -1,17 +1,1070 @@
 [
- {"name":"ZETTROX","stage":6,"score":50,"halted":false,"tier":"tracked","gpu":["NVIDIA"],"verification":"cross-checked","updated":"2026-11-25","approach":{"en":"Windows build of the Xbox version","zh":"在 Windows 上跑 Xbox 版"},"note":{"en":"PC Games Hardware: steers the prologue on an RTX 3050 at single-digit fps. Not a playable game.","zh":"PC Games Hardware：在 RTX 3050 上以个位数帧率操控序章。还不是能玩的游戏。"},"highlights":{"en":["PC Games Hardware reports character control through the prologue","The reported test PC used a GeForce RTX 3050"],"zh":["PC Games Hardware 报道可以操控角色走过序章","报道中的测试机是 GeForce RTX 3050"]},"blockers":{"en":["Frame rate is only described as single-digit","Picture quality and session length were not independently measured","Still needs leaked console files, which this site does not link"],"zh":["帧率只被描述为个位数","画面质量和能跑多久，没有独立测量","仍然依赖泄露的主机文件，本站不提供链接"]}},
- {"name":"VIctory","stage":5,"score":40,"halted":false,"tier":"tracked","gpu":[],"verification":"cross-checked","updated":"2026-11-24","approach":{"en":"Native Xbox code on Windows","zh":"直接在 Windows 跑 Xbox 代码"},"note":{"en":"PC Games Hardware: the world loads. Earlier notes: menus near 30 fps, dark world, crashes within about a minute.","zh":"PC Games Hardware：世界能加载。更早的公开记录：菜单约 30 帧，世界画面昏暗，大约 1 分钟内崩溃。"},"highlights":{"en":["Named by PC Games Hardware on 24 Nov as loading the game world","Earlier public notes put the menus near 30 fps"],"zh":["11 月 24 日被 PC Games Hardware 点名为能加载游戏世界","更早的公开记录称菜单约 30 帧"]},"blockers":{"en":["No outlet has confirmed player control on this build","Earlier notes describe a dark world and a crash within about a minute"],"zh":["还没有媒体证实这个版本能操控角色","更早的记录是世界画面昏暗，大约 1 分钟内崩溃"]},"claims":[{"en":"A separate clip of a lit scene at about 3 fps has not been confirmed.","zh":"另有一段约 3 帧的亮场景片段，尚未证实。"}]},
- {"name":"XCL","stage":5,"score":40,"halted":false,"tier":"tracked","gpu":[],"verification":"cross-checked","updated":"2026-11-24","approach":{"en":"Compatibility layer","zh":"兼容层"},"note":{"en":"PC Games Hardware: the world loads. Earlier notes: menus near a steady 30 fps, gameplay not reached.","zh":"PC Games Hardware：世界能加载。更早的记录：菜单大约稳定 30 帧，还没进入可玩状态。"},"highlights":{"en":["Named by PC Games Hardware on 24 Nov as loading the game world","Earlier notes: menus held near 30 fps"],"zh":["11 月 24 日被 PC Games Hardware 点名为能加载游戏世界","更早的记录：菜单大约 30 帧"]},"blockers":{"en":["No reputable report of character control","Earlier notes stopped short of gameplay"],"zh":["还没有权威报道称可以操控角色","更早的记录停在可玩状态之前"]}},
- {"name":"AnyXboxX","stage":5,"score":40,"halted":false,"tier":"tracked","gpu":[],"verification":"self-reported","updated":"2026-11-24","approach":{"en":"VIctory plus community patches","zh":"VIctory 加社区补丁"},"note":{"en":"Project notes: stays in the world about 5 minutes, screen black, 0.3–0.5 fps. Not re-checked by an outlet since 24 Nov.","zh":"项目记录：能在世界里停留约 5 分钟，黑屏，0.3–0.5 帧。11 月 24 日之后没有媒体复核。"},"highlights":{"en":["Project notes say the world stays loaded for about 5 minutes"],"zh":["项目记录称世界能保持加载约 5 分钟"]},"blockers":{"en":["The same notes say the screen is black at 0.3–0.5 fps","Not confirmed by a news outlet"],"zh":["同一份记录称画面全黑，0.3–0.5 帧","没有新闻媒体证实"]}},
- {"name":"Palmwave","stage":5,"score":40,"halted":false,"tier":"tracked","gpu":[],"verification":"self-reported","updated":"2026-11-24","approach":{"en":"XCL fork","zh":"XCL 分支"},"note":{"en":"Project notes: world frames are a flat colour and take 18 seconds to 2 minutes each. Not re-checked by an outlet.","zh":"项目记录：世界画面是一片纯色，每帧要 18 秒到 2 分钟。没有媒体复核。"},"highlights":{"en":["Project notes say world frames are being produced"],"zh":["项目记录称已经能输出世界画面"]},"blockers":{"en":["Frames are described as a flat colour","Each frame is reported at 18 seconds to 2 minutes"],"zh":["画面被描述成一片纯色","每帧据称要 18 秒到 2 分钟"]}},
- {"name":"five-star-recomp","stage":5,"score":30,"halted":false,"tier":"tracked","gpu":[],"verification":"self-reported","updated":"2026-11-24","approach":{"en":"Static recompilation","zh":"静态重编译"},"note":{"en":"Project notes: first-run screens appear; loading the story hits memory corruption.","zh":"项目记录：首次启动界面能出现；读取剧情时内存损坏。"},"highlights":{"en":["Project notes say the first-run screens appear"],"zh":["项目记录称首次启动界面能出现"]},"blockers":{"en":["Story load is reported to hit memory corruption","No outlet has confirmed this build"],"zh":["读取剧情据称会内存损坏","没有媒体证实这个版本"]}},
- {"name":"OpenScarlett CE","stage":5,"score":30,"halted":false,"tier":"tracked","gpu":[],"verification":"self-reported","updated":"2026-11-24","approach":{"en":"Compatibility layer","zh":"兼容层"},"note":{"en":"Project notes: intro video with sound at about 30 fps. Gameplay not reported.","zh":"项目记录：开场视频带声音，约 30 帧。没有可玩的报道。"},"highlights":{"en":["Project notes say the intro video plays with sound near 30 fps"],"zh":["项目记录称开场视频带声音，约 30 帧"]},"blockers":{"en":["No reported character control","Not re-checked by an outlet"],"zh":["没有操控角色的报道","没有媒体复核"]}},
- {"name":"PercyScarlett","stage":5,"score":30,"halted":false,"tier":"tracked","gpu":[],"verification":"self-reported","updated":"2026-11-24","approach":{"en":"Compatibility layer","zh":"兼容层"},"note":{"en":"Project notes: setup screens. Screenshots were withdrawn.","zh":"项目记录：到设置界面。截图已撤下。"},"highlights":{"en":["Project notes say setup screens appear"],"zh":["项目记录称能到设置界面"]},"blockers":{"en":["Screenshots were withdrawn","No world or character control reported"],"zh":["截图已撤下","没有世界或操控角色的报道"]}},
- {"name":"Xbox2Windows","stage":5,"score":30,"halted":false,"tier":"tracked","gpu":["NVIDIA"],"verification":"self-reported","updated":"2026-11-24","approach":{"en":"Translation toolchain","zh":"转译工具链"},"note":{"en":"Project notes: intro and setup on an RTX 4060 laptop. Not re-checked by an outlet.","zh":"项目记录：RTX 4060 笔记本上到开场和设置。没有媒体复核。"},"highlights":{"en":["Project notes say intro and setup run on an RTX 4060 laptop"],"zh":["项目记录称 RTX 4060 笔记本上能到开场和设置"]},"blockers":{"en":["No reported gameplay","A single laptop note, not an outlet test"],"zh":["没有可玩的报道","只是一份笔记本记录，不是媒体测试"]}},
- {"name":"OpenScarlett","stage":5,"score":30,"halted":false,"tier":"tracked","gpu":["NVIDIA"],"verification":"self-reported","updated":"2026-11-24","approach":{"en":"Compatibility layer","zh":"兼容层"},"note":{"en":"Project notes: UI and a 4K intro on a GTX 1650 Ti.","zh":"项目记录：GTX 1650 Ti 上跑出界面和 4K 开场。"},"highlights":{"en":["Project notes say the UI and a 4K intro appear on a GTX 1650 Ti"],"zh":["项目记录称 GTX 1650 Ti 上能出界面和 4K 开场"]},"blockers":{"en":["No world or character control in the notes","Not re-checked by an outlet"],"zh":["记录里没有世界或操控角色","没有媒体复核"]}},
- {"name":"TuxBox","stage":5,"score":30,"halted":false,"tier":"tracked","gpu":["Linux"],"verification":"self-reported","updated":"2026-11-24","approach":{"en":"Linux / Proton","zh":"Linux / Proton"},"note":{"en":"Project notes: a player-select prompt on Linux. Gameplay not reported.","zh":"项目记录：Linux 上出现选择玩家的提示。没有可玩的报道。"},"highlights":{"en":["Project notes say a player-select prompt appears on Linux"],"zh":["项目记录称 Linux 上能出现选择玩家的提示"]},"blockers":{"en":["No gameplay reported","Not re-checked by an outlet"],"zh":["没有可玩的报道","没有媒体复核"]}},
- {"name":"GTA6-BootTest","stage":5,"score":30,"halted":false,"tier":"tracked","gpu":[],"verification":"self-reported","updated":"2026-11-24","approach":{"en":"Boot harness","zh":"启动测试框架"},"note":{"en":"Project notes: a start-screen prompt. Nothing past that is described.","zh":"项目记录：开始界面的提示条。没有更远的描述。"},"highlights":{"en":["Project notes say a start-screen prompt appears"],"zh":["项目记录称能显示开始界面的提示"]},"blockers":{"en":["No world or gameplay described","Not re-checked by an outlet"],"zh":["没有世界或可玩的描述","没有媒体复核"]}},
- {"name":"Leonida","stage":4,"score":20,"halted":true,"tier":"tracked","gpu":[],"verification":"cross-checked","updated":"2026-11-24","approach":{"en":"Static recompilation","zh":"静态重编译"},"note":{"en":"Offline. A Take-Two DMCA notice dated 24 Nov removed the project and 3,007 repositories in its network.","zh":"已下线。Take-Two 日期为 11 月 24 日的 DMCA 通知，移除了该项目及其网络中的 3007 个仓库。"},"highlights":{"en":["heise, The Verge and ComputerBase report the DMCA notice and the 3,007-repository removal"],"zh":["heise、The Verge、ComputerBase 报道了这份 DMCA 通知和 3007 个仓库的移除"]},"blockers":{"en":["The project is offline","The founder had already stepped away","Earlier technical notes never got past first frames"],"zh":["项目已下线","创始人此前已经退出","更早的技术记录没有超过出帧"]}},
- {"name":"Holy-Interoperability","stage":4,"score":20,"halted":false,"tier":"watchlist","gpu":[],"verification":"self-reported","updated":"2026-11-24","approach":{"en":"Compatibility layer","zh":"兼容层"},"note":{"en":"Project notes: first frames, nothing visible yet.","zh":"项目记录：能出帧，但还看不到内容。"},"highlights":{"en":["Project notes say frames are produced"],"zh":["项目记录称已经能出帧"]},"blockers":{"en":["Nothing visible is described","Early, and not re-checked by an outlet"],"zh":["记录里还看不到内容","仍处于早期，没有媒体复核"]}},
- {"name":"xbox-emulator","stage":3,"score":10,"halted":false,"tier":"watchlist","gpu":[],"verification":"self-reported","updated":"2026-11-23","approach":{"en":"Compatibility layer","zh":"兼容层"},"note":{"en":"Project notes: a game window only, with no further updates noted after 23 Nov.","zh":"项目记录：只到游戏窗口，23 日之后没有再看到更新。"},"highlights":{"en":["Project notes say a game window opens"],"zh":["项目记录称能打开游戏窗口"]},"blockers":{"en":["Nothing is drawn, according to the notes","Quiet since 23 Nov"],"zh":["记录称窗口里没有画面","11 月 23 日之后没有动静"]}}
+ {
+  "id": "belobug",
+  "name": "Belobug",
+  "public": true,
+  "offline": false,
+  "gpu": [
+   "AMD"
+  ],
+  "approach": {
+   "en": "Compatibility layer",
+   "zh": "兼容层"
+  },
+  "stage": 7,
+  "fps": 22,
+  "story": {
+   "v": 0.8,
+   "en": "~80% (owner's claim)",
+   "zh": "约 80%（作者自称）"
+  },
+  "picture": {
+   "v": 0.85,
+   "en": "Near console, glitches",
+   "zh": "接近主机，有瑕疵"
+  },
+  "stability": {
+   "v": 1,
+   "en": "Stable",
+   "zh": "稳定"
+  },
+  "evidence": "verified",
+  "hw": "RX 9070 XT 16 GB · Ryzen 7 9800X3D · 64 GB",
+  "summary": {
+   "en": "A VIctory fork tuned for AMD. A tracker that watched it reports about 22 fps on average with no crashes, in a lit open world that plays through missions.",
+   "zh": "专为 AMD 调优的 VIctory 分支。看过实机的追踪站称其平均约 22 帧、没有崩溃，开放世界有光照，能推进任务。"
+  },
+  "works": {
+   "en": [
+    "~22 fps average, no crashes (tracker)",
+    "Textures, people, cars, water and sky render",
+    "Uses ~30 GB RAM and ~12 GB VRAM"
+   ],
+   "zh": [
+    "平均约 22 帧、无崩溃（追踪站）",
+    "贴图、行人、车辆、水面和天空都能渲染",
+    "占用约 30 GB 内存、12 GB 显存"
+   ]
+  },
+  "blocks": {
+   "en": [
+    "Its own README still says 5–7 fps and 'not playable yet'",
+    "Tested on one AMD PC only"
+   ],
+   "zh": [
+    "项目自己的说明仍写着 5–7 帧、“还不能玩”",
+    "只在一台 AMD 电脑上测过"
+   ]
+  },
+  "sources": [
+   {
+    "kind": "tracker",
+    "en": "PortWatch VI card: ~22 fps average, no crashes",
+    "zh": "PortWatch VI 项目卡：平均约 22 帧、无崩溃",
+    "url": "https://portwatch-vi.xyz/#effort-belobug"
+   },
+   {
+    "kind": "video",
+    "en": "Reddit video “Belo Top Dawg” (the tracker’s evidence)",
+    "zh": "Reddit 视频“Belo Top Dawg”（追踪站的依据）",
+    "url": "https://www.reddit.com/r/FitGirlRepack/comments/1y67xnd/belo_top_dawg/"
+   },
+   {
+    "kind": "tracker",
+    "en": "PortWatch VI report, 25 Nov: README then said 3–5 fps",
+    "zh": "PortWatch VI 11/25 报道：当时说明写 3–5 帧",
+    "url": "https://portwatch-vi.xyz/news/2026-11-25-belobug-way-ahead.html"
+   },
+   {
+    "kind": "readme",
+    "en": "Project README: 5–7 fps, “not playable yet”",
+    "zh": "项目说明：5–7 帧、“还不能玩”",
+    "url": null
+   }
+  ]
+ },
+ {
+  "id": "avatarmanz",
+  "name": "AvatarManz",
+  "public": true,
+  "offline": false,
+  "gpu": [
+   "AMD"
+  ],
+  "approach": {
+   "en": "Compatibility layer",
+   "zh": "兼容层"
+  },
+  "stage": 6,
+  "fps": 16,
+  "story": {
+   "v": 0.5,
+   "en": "First act",
+   "zh": "第一幕"
+  },
+  "picture": {
+   "v": 0.7,
+   "en": "Lit, effects missing",
+   "zh": "有光照，缺特效"
+  },
+  "stability": {
+   "v": 1,
+   "en": "Stable",
+   "zh": "稳定"
+  },
+  "evidence": "verified",
+  "hw": "RX 7900 XTX · Core i9-12900K · 64 GB",
+  "summary": {
+   "en": "Combines several VIctory forks with its own speed-ups. Around 16 fps on average in game with sound; its README logs a 41-minute session without a crash.",
+   "zh": "整合了几个 VIctory 分支并加了自己的提速。游戏内平均约 16 帧、有声音；说明里记录了一次 41 分钟无崩溃。"
+  },
+  "works": {
+   "en": [
+    "13–22 fps indoors and on the first boat mission",
+    "41 minutes without a crash (its README)"
+   ],
+   "zh": [
+    "室内和第一个开船任务 13–22 帧",
+    "41 分钟无崩溃（项目自述）"
+   ]
+  },
+  "blocks": {
+   "en": [
+    "Street chases drop to 6–10 fps",
+    "Needs 40–46 GB of memory"
+   ],
+   "zh": [
+    "街头追逐掉到 6–10 帧",
+    "需要 40–46 GB 内存"
+   ]
+  },
+  "sources": [
+   {
+    "kind": "tracker",
+    "en": "PortWatch VI card: ~16 fps average in game",
+    "zh": "PortWatch VI 项目卡：游戏内平均约 16 帧",
+    "url": "https://portwatch-vi.xyz/#effort-avatarmanz"
+   },
+   {
+    "kind": "video",
+    "en": "Reddit video “actually playable”",
+    "zh": "Reddit 视频“actually playable”",
+    "url": "https://www.reddit.com/r/FitGirlRepack/comments/1y5k8xu/actually_playable/"
+   },
+   {
+    "kind": "readme",
+    "en": "Project README: 13–22 fps, 41 minutes without a crash",
+    "zh": "项目说明：13–22 帧、41 分钟无崩溃",
+    "url": null
+   }
+  ]
+ },
+ {
+  "id": "dexnom",
+  "name": "DexNom",
+  "public": true,
+  "offline": false,
+  "gpu": [
+   "AMD"
+  ],
+  "approach": {
+   "en": "Compatibility layer",
+   "zh": "兼容层"
+  },
+  "stage": 6,
+  "fps": 3,
+  "story": {
+   "v": 0.5,
+   "en": "First act",
+   "zh": "第一幕"
+  },
+  "picture": {
+   "v": 0.85,
+   "en": "Near console, glitches",
+   "zh": "接近主机，有瑕疵"
+  },
+  "stability": {
+   "v": 0.8,
+   "en": "Rarely crashes",
+   "zh": "很少崩溃"
+  },
+  "evidence": "verified",
+  "hw": "RX 7900 XTX",
+  "summary": {
+   "en": "The best-looking build so far, and the first AMD build with ray-traced lighting working. Very slow: 3–4 fps, about 1 fps with ray tracing on.",
+   "zh": "目前画面最好的版本，也是第一个在 AMD 上跑通光追的版本。但非常慢：3–4 帧，开光追约 1 帧。"
+  },
+  "works": {
+   "en": [
+    "Ray-traced lighting works",
+    "Translates 25,742 of 25,758 shaders"
+   ],
+   "zh": [
+    "光追光照可用",
+    "25,758 个着色器转译了 25,742 个"
+   ]
+  },
+  "blocks": {
+   "en": [
+    "3–4 fps indoors",
+    "Interior lighting still wrong"
+   ],
+   "zh": [
+    "室内 3–4 帧",
+    "室内光照仍有问题"
+   ]
+  },
+  "sources": [
+   {
+    "kind": "tracker",
+    "en": "PortWatch VI card: 3–4 fps, ray-traced lighting seen",
+    "zh": "PortWatch VI 项目卡：3–4 帧，看到光追可用",
+    "url": "https://portwatch-vi.xyz/#effort-dexnom"
+   },
+   {
+    "kind": "readme",
+    "en": "Project test report: ~1 fps with ray tracing, 25,742 of 25,758 shaders",
+    "zh": "项目测试报告：开光追约 1 帧，25,758 个着色器转了 25,742 个",
+    "url": null
+   }
+  ]
+ },
+ {
+  "id": "kelvaroq",
+  "name": "Kelvaroq",
+  "public": true,
+  "offline": false,
+  "gpu": [
+   "NVIDIA"
+  ],
+  "approach": {
+   "en": "Compatibility layer",
+   "zh": "兼容层"
+  },
+  "stage": 6,
+  "fps": 10,
+  "story": {
+   "v": 0.25,
+   "en": "First missions",
+   "zh": "前几个任务"
+  },
+  "picture": {
+   "v": 0.25,
+   "en": "Mostly unlit",
+   "zh": "大多没光照"
+  },
+  "stability": {
+   "v": 0.8,
+   "en": "Rarely crashes",
+   "zh": "很少崩溃"
+  },
+  "evidence": "self",
+  "hw": "RTX 4090 (external playtest)",
+  "summary": {
+   "en": "A Rust runtime built on VIctory. Plays the prologue at about 10 fps; an outside tester ran 36 minutes to the first mission without a crash.",
+   "zh": "基于 VIctory 的 Rust 运行时。序章约 10 帧；一位外部测试者跑了 36 分钟到第一个任务没有崩溃。"
+  },
+  "works": {
+   "en": [
+    "36-minute external playtest"
+   ],
+   "zh": [
+    "36 分钟外部试玩"
+   ]
+  },
+  "blocks": {
+   "en": [
+    "Mostly unlit picture, 7% of draws dropped"
+   ],
+   "zh": [
+    "画面大多没光照，7% 的绘制被丢弃"
+   ]
+  },
+  "sources": [
+   {
+    "kind": "tracker",
+    "en": "PortWatch VI card: prologue at ~10 fps",
+    "zh": "PortWatch VI 项目卡：序章约 10 帧",
+    "url": "https://portwatch-vi.xyz/#effort-kelvaroq"
+   },
+   {
+    "kind": "readme",
+    "en": "Project README: 36-minute external playtest on an RTX 4090",
+    "zh": "项目说明：RTX 4090 上 36 分钟外部试玩",
+    "url": null
+   }
+  ]
+ },
+ {
+  "id": "vitoriabr",
+  "name": "Uilian (VItoriaBr)",
+  "public": true,
+  "offline": false,
+  "gpu": [
+   "NVIDIA"
+  ],
+  "approach": {
+   "en": "Compatibility layer",
+   "zh": "兼容层"
+  },
+  "stage": 6,
+  "fps": 4,
+  "story": {
+   "v": 0.15,
+   "en": "Jason's first mission",
+   "zh": "杰森第一个任务"
+  },
+  "picture": {
+   "v": 0.1,
+   "en": "Black or broken",
+   "zh": "黑屏或错乱"
+  },
+  "stability": {
+   "v": 0.4,
+   "en": "Crashes sometimes",
+   "zh": "偶尔崩溃"
+  },
+  "evidence": "stream",
+  "hw": "NVIDIA (streamed on YouTube)",
+  "summary": {
+   "en": "An NVIDIA fork streamed live on YouTube. Reaches Jason's first mission, 'Gone Fishing', at up to 4 fps with poor rendering.",
+   "zh": "在 YouTube 直播的 NVIDIA 分支。能到杰森的第一个任务“Gone Fishing”，最高 4 帧，画面很差。"
+  },
+  "works": {
+   "en": [
+    "Reaches Jason's first mission"
+   ],
+   "zh": [
+    "能到杰森第一个任务"
+   ]
+  },
+  "blocks": {
+   "en": [
+    "Black or broken picture"
+   ],
+   "zh": [
+    "画面黑屏或错乱"
+   ]
+  },
+  "sources": [
+   {
+    "kind": "tracker",
+    "en": "PortWatch VI card: up to 4 fps on the author’s YouTube stream",
+    "zh": "PortWatch VI 项目卡：作者 YouTube 直播中最高 4 帧",
+    "url": "https://portwatch-vi.xyz/#effort-vitoriabr"
+   }
+  ]
+ },
+ {
+  "id": "victory-fork",
+  "name": "hyphennn (victory-fork)",
+  "public": true,
+  "offline": false,
+  "gpu": [
+   "NVIDIA"
+  ],
+  "approach": {
+   "en": "Compatibility layer",
+   "zh": "兼容层"
+  },
+  "stage": 6,
+  "fps": 3,
+  "story": {
+   "v": 0.1,
+   "en": "Prologue",
+   "zh": "序章"
+  },
+  "picture": {
+   "v": 0.7,
+   "en": "Lit, effects missing",
+   "zh": "有光照，缺特效"
+  },
+  "stability": {
+   "v": 0,
+   "en": "Unknown",
+   "zh": "未知"
+  },
+  "evidence": "self",
+  "hw": "NVIDIA",
+  "summary": {
+   "en": "The NVIDIA fork most private builds start from. Plays the prologue with ray-traced lighting at about 3 fps on stream.",
+   "zh": "大多数私有版本的起点。直播中能玩序章、带光追，约 3 帧。"
+  },
+  "works": {
+   "en": [
+    "Ray-traced lighting and detailed textures on stream"
+   ],
+   "zh": [
+    "直播中有光追和精细贴图"
+   ]
+  },
+  "blocks": {
+   "en": [
+    "README still lists shadows as black"
+   ],
+   "zh": [
+    "说明里仍写着阴影是黑的"
+   ]
+  },
+  "sources": [
+   {
+    "kind": "tracker",
+    "en": "PortWatch VI card: prologue at ~3 fps on the author’s Rumble streams",
+    "zh": "PortWatch VI 项目卡：作者 Rumble 直播中序章约 3 帧",
+    "url": "https://portwatch-vi.xyz/#effort-victory-gta6"
+   },
+   {
+    "kind": "tracker",
+    "en": "PortWatch VI report, 25 Nov: builds clear the prologue",
+    "zh": "PortWatch VI 11/25 报道：多个版本通关序章",
+    "url": "https://portwatch-vi.xyz/news/2026-11-25-prologue-gone-fishing.html"
+   }
+  ]
+ },
+ {
+  "id": "victory",
+  "name": "VIctory",
+  "public": true,
+  "offline": false,
+  "gpu": [
+   "AMD"
+  ],
+  "approach": {
+   "en": "Compatibility layer",
+   "zh": "兼容层"
+  },
+  "stage": 6,
+  "fps": 1,
+  "story": {
+   "v": 0.05,
+   "en": "Opening only",
+   "zh": "只到开场"
+  },
+  "picture": {
+   "v": 0.1,
+   "en": "Black or broken",
+   "zh": "黑屏或错乱"
+  },
+  "stability": {
+   "v": 0,
+   "en": "Unknown",
+   "zh": "未知"
+  },
+  "evidence": "self",
+  "hw": "AMD",
+  "summary": {
+   "en": "The original Rust layer that started the race. Its author reports controlled gameplay, but the README still says about 1 fps and not playable.",
+   "zh": "最早起跑的 Rust 兼容层。作者称已能操控角色，但说明里仍写着约 1 帧、不能玩。"
+  },
+  "works": {
+   "en": [
+    "Base of almost every leading build"
+   ],
+   "zh": [
+    "几乎所有领先版本的基础"
+   ]
+  },
+  "blocks": {
+   "en": [
+    "About 1 fps in the world"
+   ],
+   "zh": [
+    "世界里约 1 帧"
+   ]
+  },
+  "sources": [
+   {
+    "kind": "tracker",
+    "en": "PortWatch VI card: ~1 fps in the world",
+    "zh": "PortWatch VI 项目卡：世界里约 1 帧",
+    "url": "https://portwatch-vi.xyz/#effort-marvis"
+   },
+   {
+    "kind": "tracker",
+    "en": "PortWatch VI report, 23 Nov: menus at ~15 fps on the author’s livestream",
+    "zh": "PortWatch VI 11/23 报道：作者直播中菜单约 15 帧",
+    "url": "https://portwatch-vi.xyz/news/2026-11-23-marvis-menus-stream.html"
+   },
+   {
+    "kind": "readme",
+    "en": "Project README: “not playable”, about 1 fps",
+    "zh": "项目说明：“不能玩”、约 1 帧",
+    "url": null
+   }
+  ]
+ },
+ {
+  "id": "zettrox",
+  "name": "ZETTROX",
+  "public": true,
+  "offline": true,
+  "gpu": [
+   "NVIDIA"
+  ],
+  "approach": {
+   "en": "Compatibility layer",
+   "zh": "兼容层"
+  },
+  "stage": 6,
+  "fps": 2,
+  "story": {
+   "v": 0.15,
+   "en": "Jason's first mission",
+   "zh": "杰森第一个任务"
+  },
+  "picture": {
+   "v": 0.25,
+   "en": "Mostly unlit",
+   "zh": "大多没光照"
+  },
+  "stability": {
+   "v": 0.8,
+   "en": "Rarely crashes",
+   "zh": "很少崩溃"
+  },
+  "evidence": "self",
+  "hw": "RTX 3050",
+  "summary": {
+   "en": "Was ranked first on 25 Nov for stability: over 90 minutes without a crash from the prologue into Jason's first mission. Its repository has since gone.",
+   "zh": "11 月 25 日曾因稳定性排第一：从序章到杰森第一个任务 90 多分钟没崩溃。仓库后来消失了。"
+  },
+  "works": {
+   "en": [
+    "90+ minutes without a crash (its README)"
+   ],
+   "zh": [
+    "90 多分钟无崩溃（项目自述）"
+   ]
+  },
+  "blocks": {
+   "en": [
+    "1–3 fps",
+    "Repository no longer online"
+   ],
+   "zh": [
+    "1–3 帧",
+    "仓库已不在线"
+   ]
+  },
+  "sources": [
+   {
+    "kind": "press",
+    "en": "Notebookcheck, 25 Nov: “about 2 FPS”, top-ranked that day",
+    "zh": "Notebookcheck 11/25：“约 2 帧”，当天排名第一",
+    "url": "https://www.notebookcheck.net/GTA-6-PC-ports-reach-gameplay-despite-Take-Two-s-GitHub-DMCA.1459752.0.html"
+   },
+   {
+    "kind": "video",
+    "en": "Reddit video “first kill”",
+    "zh": "Reddit 视频“first kill”",
+    "url": "https://www.reddit.com/r/FitGirlRepack/comments/1y4u9v2/first_kill/"
+   },
+   {
+    "kind": "tracker",
+    "en": "PortWatch VI report, 25 Nov: 1–3 fps, no crashes",
+    "zh": "PortWatch VI 11/25 报道：1–3 帧、无崩溃",
+    "url": "https://portwatch-vi.xyz/news/2026-11-25-zettrox-no-crashes.html"
+   },
+   {
+    "kind": "readme",
+    "en": "Project README: 90+ minutes without a crash (repository now gone)",
+    "zh": "项目说明：90 多分钟无崩溃（仓库已消失）",
+    "url": null
+   }
+  ]
+ },
+ {
+  "id": "xcl",
+  "name": "XCL",
+  "public": true,
+  "offline": false,
+  "gpu": [
+   "AMD",
+   "NVIDIA"
+  ],
+  "approach": {
+   "en": "Compatibility layer",
+   "zh": "兼容层"
+  },
+  "stage": 4,
+  "fps": 0,
+  "story": {
+   "v": 0,
+   "en": "—",
+   "zh": "—"
+  },
+  "picture": {
+   "v": 0,
+   "en": "—",
+   "zh": "—"
+  },
+  "stability": {
+   "v": 0,
+   "en": "Unknown",
+   "zh": "未知"
+  },
+  "evidence": "self",
+  "hw": "Any Xbox Series game",
+  "summary": {
+   "en": "A general Xbox Series compatibility layer that already plays smaller retail games. GTA VI gets into the world but stays on a loading spinner.",
+   "zh": "通用的 Xbox Series 兼容层，已能玩一些小体量的零售游戏。GTA VI 能进世界，但一直停在加载圈。"
+  },
+  "works": {
+   "en": [
+    "Runs other Xbox Series games"
+   ],
+   "zh": [
+    "能跑其他 Xbox Series 游戏"
+   ]
+  },
+  "blocks": {
+   "en": [
+    "GPU watchdog ends the run"
+   ],
+   "zh": [
+    "显卡看门狗中止运行"
+   ]
+  },
+  "sources": [
+   {
+    "kind": "tracker",
+    "en": "PortWatch VI card: world loads behind a spinner",
+    "zh": "PortWatch VI 项目卡：进世界后停在加载圈",
+    "url": "https://portwatch-vi.xyz/#effort-xcl"
+   },
+   {
+    "kind": "tracker",
+    "en": "PortWatch VI report, 24 Nov: XCL’s 30 fps claim",
+    "zh": "PortWatch VI 11/24 报道：XCL 自称 30 帧",
+    "url": "https://portwatch-vi.xyz/news/2026-11-24-xcl-30fps-in-game.html"
+   }
+  ]
+ },
+ {
+  "id": "five-star",
+  "name": "Five Star Recomp",
+  "public": true,
+  "offline": false,
+  "gpu": [],
+  "approach": {
+   "en": "Static recompilation",
+   "zh": "静态重编译"
+  },
+  "stage": 4,
+  "fps": 0,
+  "story": {
+   "v": 0,
+   "en": "—",
+   "zh": "—"
+  },
+  "picture": {
+   "v": 0,
+   "en": "—",
+   "zh": "—"
+  },
+  "stability": {
+   "v": 0,
+   "en": "Unknown",
+   "zh": "未知"
+  },
+  "evidence": "self",
+  "hw": "—",
+  "summary": {
+   "en": "A recompilation toolchain. Shows every first-run screen; loading story mode stops on corrupted memory.",
+   "zh": "重编译工具链。首次启动界面全部能显示；读取剧情时内存损坏。"
+  },
+  "works": {
+   "en": [],
+   "zh": []
+  },
+  "blocks": {
+   "en": [],
+   "zh": []
+  },
+  "sources": [
+   {
+    "kind": "tracker",
+    "en": "PortWatch VI card",
+    "zh": "PortWatch VI 项目卡",
+    "url": "https://portwatch-vi.xyz/#effort-five-star-recomp"
+   },
+   {
+    "kind": "readme",
+    "en": "Project status page: first-run screens, memory corruption on load",
+    "zh": "项目状态页：首次启动界面全过，读档内存损坏",
+    "url": null
+   }
+  ]
+ },
+ {
+  "id": "leonida",
+  "name": "Leonida",
+  "public": true,
+  "offline": true,
+  "gpu": [],
+  "approach": {
+   "en": "Static recompilation",
+   "zh": "静态重编译"
+  },
+  "stage": 2,
+  "fps": 0,
+  "story": {
+   "v": 0,
+   "en": "—",
+   "zh": "—"
+  },
+  "picture": {
+   "v": 0,
+   "en": "—",
+   "zh": "—"
+  },
+  "stability": {
+   "v": 0,
+   "en": "Unknown",
+   "zh": "未知"
+  },
+  "evidence": "self",
+  "hw": "—",
+  "summary": {
+   "en": "Was the most-starred project. Taken down on 24 Nov by Take-Two's DMCA notice, together with 3,007 repositories in its fork network.",
+   "zh": "曾是星标最多的项目。11 月 24 日被 Take-Two 的 DMCA 通知下架，连同分支网络里的 3,007 个仓库。"
+  },
+  "works": {
+   "en": [],
+   "zh": []
+  },
+  "blocks": {
+   "en": [],
+   "zh": []
+  },
+  "sources": [
+   {
+    "kind": "notice",
+    "en": "GitHub DMCA log: Take-Two notice, 24 Nov",
+    "zh": "GitHub DMCA 记录：Take-Two 通知，11/24",
+    "url": "https://github.com/github/dmca/blob/master/2026/11/2026-11-24-take-two.md"
+   },
+   {
+    "kind": "press",
+    "en": "heise: 3,007 repositories disabled",
+    "zh": "heise：3,007 个仓库被下架",
+    "url": "https://www.heise.de/en/news/GTA-6-Take-Two-gets-unofficial-PC-port-removed-from-GitHub-11537104.html"
+   }
+  ]
+ },
+ {
+  "id": "cgbj",
+  "name": "CGBJ",
+  "public": false,
+  "offline": false,
+  "gpu": [],
+  "approach": {
+   "en": "Compatibility layer",
+   "zh": "兼容层"
+  },
+  "stage": 7,
+  "fps": 25,
+  "story": {
+   "v": 0.8,
+   "en": "~80% (owner's claim)",
+   "zh": "约 80%（作者自称）"
+  },
+  "picture": {
+   "v": 0.7,
+   "en": "Lit, effects missing",
+   "zh": "有光照，缺特效"
+  },
+  "stability": {
+   "v": 0.8,
+   "en": "Rarely crashes",
+   "zh": "很少崩溃"
+  },
+  "evidence": "verified",
+  "hw": "16 GB VRAM (reported)",
+  "summary": {
+   "en": "A private build on VIctory and XCL. Clips show about 25 fps in early missions and around 30 in cutscenes. Its code was public briefly, then went offline.",
+   "zh": "基于 VIctory 和 XCL 的私有版本。视频显示前期任务约 25 帧、过场约 30 帧。代码曾短暂公开，随后下线。"
+  },
+  "works": {
+   "en": [
+    "~25 fps in gameplay, ~30 in cutscenes (reported)"
+   ],
+   "zh": [
+    "游戏中约 25 帧、过场约 30 帧（报道）"
+   ]
+  },
+  "blocks": {
+   "en": [
+    "Code not public",
+    "System RAM disputed: 8–10 GB in reports"
+   ],
+   "zh": [
+    "代码未公开",
+    "内存占用说法不一：报道称 8–10 GB"
+   ]
+  },
+  "sources": [
+   {
+    "kind": "press",
+    "en": "TechRadar: “stable 25 FPS” in the boat mission clip, watched by the author",
+    "zh": "TechRadar：开船任务视频“稳定 25 帧”，作者看过视频",
+    "url": "https://www.techradar.com/gaming/pc-gamers-could-see-an-unofficial-gta-6-port-sooner-rather-than-later-stable-30fps-gameplay-at-4k-has-reportedly-been-achieved"
+   },
+   {
+    "kind": "press",
+    "en": "Game Rant: “up to 24 FPS”, 16 GB VRAM",
+    "zh": "Game Rant：“最高 24 帧”，16 GB 显存",
+    "url": "https://gamerant.com/gta-6-pc-port-progress-tracker-24-fps/"
+   },
+   {
+    "kind": "press",
+    "en": "Notebookcheck: 25 fps in gameplay, 30 in cutscenes (tracker’s numbers)",
+    "zh": "Notebookcheck：游戏中 25 帧、过场 30 帧（引用追踪站数据）",
+    "url": "https://www.notebookcheck.net/GTA-6-recomp-hits-90-progress-and-here-s-what-that-means.1460623.0.html"
+   },
+   {
+    "kind": "video",
+    "en": "The clip (v.redd.it)",
+    "zh": "视频原片（v.redd.it）",
+    "url": "https://v.redd.it/137k5pow5w3i1"
+   },
+   {
+    "kind": "video",
+    "en": "X video, 24 Nov: first walk in game, unlit",
+    "zh": "X 视频 11/24：第一次在游戏里走动，无光照",
+    "url": "https://x.com/raul_bs3/status/2125172278975729688/video/1"
+   },
+   {
+    "kind": "tracker",
+    "en": "PortWatch VI card",
+    "zh": "PortWatch VI 项目卡",
+    "url": "https://portwatch-vi.xyz/#effort-cgbj"
+   }
+  ]
+ },
+ {
+  "id": "notnozy",
+  "name": "NotNozy",
+  "public": false,
+  "offline": false,
+  "gpu": [
+   "AMD"
+  ],
+  "approach": {
+   "en": "Compatibility layer",
+   "zh": "兼容层"
+  },
+  "stage": 6,
+  "fps": 16,
+  "story": {
+   "v": 0.8,
+   "en": "~80% (owner's claim)",
+   "zh": "约 80%（作者自称）"
+  },
+  "picture": {
+   "v": 0.7,
+   "en": "Lit, effects missing",
+   "zh": "有光照，缺特效"
+  },
+  "stability": {
+   "v": 1,
+   "en": "Stable",
+   "zh": "稳定"
+  },
+  "evidence": "stream",
+  "hw": "AMD",
+  "summary": {
+   "en": "A private AMD build shown on a Rumble stream, similar to AvatarManz's at about 16 fps.",
+   "zh": "在 Rumble 直播展示的私有 AMD 版本，和 AvatarManz 的差不多，约 16 帧。"
+  },
+  "works": {
+   "en": [],
+   "zh": []
+  },
+  "blocks": {
+   "en": [],
+   "zh": []
+  },
+  "sources": [
+   {
+    "kind": "video",
+    "en": "Rumble stream “GTA6 Modding Stream”",
+    "zh": "Rumble 直播“GTA6 Modding Stream”",
+    "url": "https://rumble.com/v7iv98i-gta6-modding-stream.html"
+   },
+   {
+    "kind": "tracker",
+    "en": "PortWatch VI card: ~16 fps",
+    "zh": "PortWatch VI 项目卡：约 16 帧",
+    "url": "https://portwatch-vi.xyz/#effort-notnozy"
+   }
+  ]
+ },
+ {
+  "id": "darkworldhm",
+  "name": "darkworldhm",
+  "public": false,
+  "offline": false,
+  "gpu": [
+   "NVIDIA"
+  ],
+  "approach": {
+   "en": "Compatibility layer",
+   "zh": "兼容层"
+  },
+  "stage": 6,
+  "fps": 15,
+  "story": {
+   "v": 0.8,
+   "en": "~80% (owner's claim)",
+   "zh": "约 80%（作者自称）"
+  },
+  "picture": {
+   "v": 0.7,
+   "en": "Lit, effects missing",
+   "zh": "有光照，缺特效"
+  },
+  "stability": {
+   "v": 0.8,
+   "en": "Rarely crashes",
+   "zh": "很少崩溃"
+  },
+  "evidence": "stream",
+  "hw": "RTX 50 series (reported)",
+  "summary": {
+   "en": "A private NVIDIA build on a VIctory fork, streamed on Rumble in free roam at about 12–15 fps.",
+   "zh": "基于某个 VIctory 分支的私有 NVIDIA 版本，Rumble 直播自由漫游约 12–15 帧。"
+  },
+  "works": {
+   "en": [],
+   "zh": []
+  },
+  "blocks": {
+   "en": [],
+   "zh": []
+  },
+  "sources": [
+   {
+    "kind": "video",
+    "en": "Rumble stream, 25 Nov",
+    "zh": "Rumble 直播，11/25",
+    "url": "https://rumble.com/v7iwggw-gta-6-mooding-pc.html"
+   },
+   {
+    "kind": "tracker",
+    "en": "PortWatch VI card: 12–15 fps in free roam",
+    "zh": "PortWatch VI 项目卡：自由漫游 12–15 帧",
+    "url": "https://portwatch-vi.xyz/#effort-darkworldhm"
+   }
+  ]
+ },
+ {
+  "id": "doomsday",
+  "name": "Doomsday",
+  "public": false,
+  "offline": false,
+  "gpu": [
+   "AMD",
+   "NVIDIA"
+  ],
+  "approach": {
+   "en": "Compatibility layer",
+   "zh": "兼容层"
+  },
+  "stage": 6,
+  "fps": 4,
+  "story": {
+   "v": 0.8,
+   "en": "~80% (owner's claim)",
+   "zh": "约 80%（作者自称）"
+  },
+  "picture": {
+   "v": 0.7,
+   "en": "Lit, effects missing",
+   "zh": "有光照，缺特效"
+  },
+  "stability": {
+   "v": 0.8,
+   "en": "Rarely crashes",
+   "zh": "很少崩溃"
+  },
+  "evidence": "verified",
+  "hw": "AMD, also NVIDIA",
+  "summary": {
+   "en": "A private group's build with ray-traced lighting at about 3–5 fps.",
+   "zh": "一个私有小组的版本，带光追，约 3–5 帧。"
+  },
+  "works": {
+   "en": [],
+   "zh": []
+  },
+  "blocks": {
+   "en": [],
+   "zh": []
+  },
+  "sources": [
+   {
+    "kind": "video",
+    "en": "The group on X",
+    "zh": "该小组的 X 账号",
+    "url": "https://x.com/Stu9ao"
+   },
+   {
+    "kind": "tracker",
+    "en": "PortWatch VI card: 3–5 fps with ray tracing",
+    "zh": "PortWatch VI 项目卡：开光追 3–5 帧",
+    "url": "https://portwatch-vi.xyz/#effort-doomsday"
+   }
+  ]
+ },
+ {
+  "id": "suri",
+  "name": "suri",
+  "public": false,
+  "offline": false,
+  "gpu": [],
+  "approach": {
+   "en": "Compatibility layer",
+   "zh": "兼容层"
+  },
+  "stage": 6,
+  "fps": 3,
+  "story": {
+   "v": 0.8,
+   "en": "~80% (owner's claim)",
+   "zh": "约 80%（作者自称）"
+  },
+  "picture": {
+   "v": 0.7,
+   "en": "Lit, effects missing",
+   "zh": "有光照，缺特效"
+  },
+  "stability": {
+   "v": 0,
+   "en": "Unknown",
+   "zh": "未知"
+  },
+  "evidence": "verified",
+  "hw": "—",
+  "summary": {
+   "en": "A private build on hyphennn's fork, seen moving around Lucia's prologue at about 3 fps.",
+   "zh": "基于 hyphennn 分支的私有版本，有人看到在露西亚序章里移动，约 3 帧。"
+  },
+  "works": {
+   "en": [],
+   "zh": []
+  },
+  "blocks": {
+   "en": [],
+   "zh": []
+  },
+  "sources": [
+   {
+    "kind": "tracker",
+    "en": "PortWatch VI card: ~3 fps in Lucia’s prologue",
+    "zh": "PortWatch VI 项目卡：露西亚序章约 3 帧",
+    "url": "https://portwatch-vi.xyz/#effort-suri"
+   }
+  ]
+ }
 ]
