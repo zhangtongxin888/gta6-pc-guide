@@ -1,17 +1,696 @@
 [
- {"date":"2026-11-25","tag":"port","en":["A reported prologue run is still not a PC game","PC Games Hardware says a project named ZETTROX can steer Lucia through the prologue on a GeForce RTX 3050, at single-digit frame rates. PC Gamer’s same-day update says shader work on AMD hardware is also single-digit, and that GTA 6 does not run on PC."],"zh":["有报道的序章试跑，仍不是 PC 游戏","PC Games Hardware 称，名为 ZETTROX 的项目能在 GeForce RTX 3050 上以个位数帧率操控露西亚走过序章。PC Gamer 同日更新写道：AMD 显卡上的着色器进展同样是个位数帧，GTA 6 在 PC 上还不能玩。"],"sources":[{"outlet":"PC Games Hardware","title":"GTA 6: PC-Ports erreichen den Prolog, Take-Two greift durch","url":"https://www.pcgameshardware.de/GTA-6-Spiel-55239/"},{"outlet":"PC Gamer","title":"The race to port GTA 6 to PC, explained","url":"https://www.pcgamer.com/games/grand-theft-auto/gta-6-recomp-explained/"}]},
- {"date":"2026-11-25","tag":"legal","en":["Take-Two’s DMCA notice removes the Leonida network","GitHub published a notice dated 24 Nov from Take-Two. heise, The Verge and ComputerBase report that the block covers Leonida and 3,007 repositories in that network. The notice is about that network, not a PC version of the game."],"zh":["Take-Two 的 DMCA 通知移除了 Leonida 网络","GitHub 公开了 Take-Two 日期为 11 月 24 日的通知。heise、The Verge 和 ComputerBase 报道，封锁覆盖 Leonida 及其网络中的 3007 个仓库。这份通知针对的是那个网络，不是官方 PC 版。"],"sources":[{"outlet":"heise","title":"Take-Two gets unofficial PC port removed from GitHub","url":"https://www.heise.de/en/news/GTA-6-Take-Two-gets-unofficial-PC-port-removed-from-GitHub-11537104.html"},{"outlet":"The Verge","title":"GTA VI PC recompilation project shut down by Take-Two","url":"https://www.theverge.com/news/1041690/grand-theft-auto-6-pc-recompilation-project-leonida-takedown-take-two"},{"outlet":"ComputerBase","title":"DMCA-Beschwerde: GitHub erklärt Takedown der GTA-VI-Rekompilierung Leonida","url":"https://www.computerbase.de/news/gaming/dmca-beschwerde-github-erklaert-takedown-der-gta-vi-rekompilierung-leonida.100520/"},{"outlet":"GitHub DMCA log","title":"Take-Two notice, 24 Nov 2026","url":"https://github.com/github/dmca/blob/master/2026/11/2026-11-24-take-two.md"}]},
- {"date":"2026-11-24","tag":"port","en":["VIctory and XCL load the game world","PC Games Hardware reported that both already load the world. A separate clip of a lit scene at about 3 fps is still unconfirmed."],"zh":["VIctory 和 XCL 能加载游戏世界","PC Games Hardware 报道这两个项目已经能加载世界。另有一段约 3 帧的亮场景片段，仍未证实。"],"sources":[{"outlet":"PC Games Hardware","title":"GTA 6 auf dem PC: Leonida ist offline, VIctory und XCL laden schon die Spielwelt","url":"https://www.pcgameshardware.de/GTA-6-Spiel-55239/"}]},
- {"date":"2026-11-23","tag":"port","en":["Leonida disappears, a day before the DMCA notice","Repository and Discord vanished on 23 Nov. The founder said Rockstar had the Discord removed. Take-Two’s DMCA notice was published the next day."],"zh":["Leonida 在 DMCA 通知公开的前一天消失","仓库和 Discord 在 11 月 23 日消失。创始人称 Discord 是 Rockstar 申请删的。Take-Two 的 DMCA 通知次日公开。"]},
- {"date":"2026-11-23","tag":"leak","en":["Cyberleek releases the missing EXE","Outlets describe a ZIP of about 57 MB. It is the Xbox program file, not a PC version. heise reported that menus appeared within hours, and that the game was not playable."],"zh":["大葱哥（Cyberleek）放出缺失的 EXE","媒体描述为一个约 57 MB 的 ZIP。那是 Xbox 版的主程序，不是 PC 版。heise 报道数小时内出现了菜单，但游戏不能玩。"],"sources":[{"outlet":"heise","title":"After executable leak, modders work on unofficial GTA 6 PC port","url":"https://www.heise.de/en/news/After-executable-leak-modders-work-on-unofficial-GTA-6-PC-port-11535595.html"}]},
- {"date":"2026-11-23","tag":"official","en":["First console patch, 1.002.002","Reported by heise. The leaked build (1.0.2.1) is now out of date."],"zh":["主机版首个补丁 1.002.002","heise 报道。泄露版本（1.0.2.1）已经过时。"]},
- {"date":"2026-11-21","tag":"leak","en":["Cyberleek cuts its meme-coin target","The EXE was promised at a $15M market cap, cut to $6M. Neither was reached."],"zh":["大葱哥下调迷因币目标","原定币市值到 1500 万美元就放 EXE，后降到 600 万，都没达到。"]},
- {"date":"2026-11-19","tag":"official","en":["GTA 6 launches on PS5 and Xbox Series X|S","No PC version. Rockstar says the game plays best on PS5."],"zh":["GTA 6 登陆 PS5 和 Xbox Series X|S","没有 PC 版。Rockstar 称 PS5 体验最好。"]},
- {"date":"2026-11-19","tag":"leak","en":["209 GB Xbox build leaks on launch day","Version 1.0.2.1, shipped without its executable, so it could not start."],"zh":["发售当天 209 GB Xbox 版泄露","版本 1.0.2.1，缺主程序，无法启动。"]},
- {"date":"2026-11-18","tag":"legal","en":["Take-Two DMCA hits GTA 5 ports on GitHub","TorrentFreak reported that mobile and web ports of GTA 5 were named in takedown notices the day before GTA 6 launched."],"zh":["Take-Two 对 GitHub 上的 GTA 5 移植发起 DMCA","TorrentFreak 报道，GTA 6 发售前一天，一批 GTA 5 手机版和网页版移植出现在下架通知里。"],"sources":[{"outlet":"TorrentFreak","title":"Take-Two targets hundreds of GTA V mobile ports on GitHub ahead of GTA VI launch","url":"https://torrentfreak.com/take-two-targets-hundreds-of-gta-v-mobile-ports-on-github-ahead-of-gta-vi-launch/"}]},
- {"date":"2026-11-18","tag":"report","en":["Digital Foundry: PS5 Pro is the best way to play","Near-locked 30 fps and a near-4K image. 60 fps is held back by the CPU."],"zh":["Digital Foundry：PS5 Pro 体验最好","几乎稳定 30 帧，画面接近 4K。60 帧卡在 CPU 上。"]},
- {"date":"2026-11-14","tag":"security","en":["Fake “GTA 6 EXE” spreads the WARDEN stealer","A Google Colab link leads to a ZIP that steals passwords, Steam logins and crypto wallets."],"zh":["假“GTA 6 EXE”传播 WARDEN 盗号木马","Google Colab 链接指向一个 ZIP，会盗取密码、Steam 账号和加密钱包。"]},
- {"date":"2026-10-13","tag":"report","en":["GamesBeat: PC version targeted for Q1 2027","Four unnamed sources. Rockstar did not comment."],"zh":["GamesBeat：PC 版目标 2027 年 Q1","4 个匿名信源，Rockstar 未回应。"]},
- {"date":"2026-08-18","tag":"leak","en":["Development footage leaks","Cyberleek posts clips it says date from 2023. Take-Two responds with DMCA takedowns."],"zh":["开发版视频泄露","大葱哥放出据称 2023 年的开发片段，Take-Two 随即发 DMCA。"]},
- {"date":"2026-06-25","tag":"official","en":["Pre-orders open, consoles only","No PC listing on any store."],"zh":["开启预购，仅限主机","任何 PC 商店都没有上架。"]}
+ {
+  "date": "2026-11-26",
+  "tag": "port",
+  "en": [
+   "A private build shows multiplayer: players, cars and voice chat",
+   "A tracker says it saw the video, running at 25–30 fps."
+  ],
+  "zh": [
+   "私有版本展示联机：玩家、车辆和语音聊天",
+   "一家追踪站称看过视频，帧数 25–30。"
+  ],
+  "source": {
+   "name": "PortWatch VI",
+   "url": "https://portwatch-vi.xyz/news/2026-11-26-multiplayer-running.html"
+  },
+  "slug": "gta-6-pc-multiplayer-private-build",
+  "page": [
+   "tracker",
+   "Port tracker",
+   "移植进度"
+  ],
+  "body": {
+   "en": [
+    "A private group working from the CGBJ build has shown GTA 6 with several players in one world, driving cars and talking over proximity voice chat. The PortWatch VI tracker says it saw the video and that the session ran at 25 to 30 fps.",
+    "GTA 6 launched on consoles as a single-player game, and Rockstar hasn’t released an online mode for it yet. What this group has is its own networking on top of the leaked Xbox build, not Rockstar’s GTA Online.",
+    "The build is private, so nobody outside the group can try it."
+   ],
+   "zh": [
+    "一个基于 CGBJ 版本的私有小组展示了 GTA 6 多人同屏：几名玩家在同一个世界里开车，还能用近距离语音聊天。PortWatch VI 追踪站称看过视频，帧数在 25 到 30 之间。",
+    "GTA 6 在主机上是以单人游戏发售的，Rockstar 还没有推出线上模式。这个小组做的是在泄露 Xbox 版上自己加的联网功能，不是 Rockstar 的 GTA Online。",
+    "这是私有版本，小组以外的人玩不到。"
+   ]
+  },
+  "more": [
+   [
+    "X: TeKGameR950",
+    "https://x.com/TeKGameR950/status/2126015173274312796"
+   ]
+  ]
+ },
+ {
+  "date": "2026-11-26",
+  "tag": "port",
+  "en": [
+   "Private CGBJ build runs early missions at about 25 fps",
+   "Clips show the first boat mission at 24–25 fps, with cutscenes near 30."
+  ],
+  "zh": [
+   "私有版本 CGBJ 前期任务约 25 帧",
+   "视频显示第一个开船任务 24–25 帧，过场接近 30 帧。"
+  ],
+  "source": {
+   "name": "TechRadar",
+   "url": "https://www.techradar.com/gaming/pc-gamers-could-see-an-unofficial-gta-6-port-sooner-rather-than-later-stable-30fps-gameplay-at-4k-has-reportedly-been-achieved"
+  },
+  "slug": "gta-6-pc-port-25-fps-cgbj",
+  "page": [
+   "tracker",
+   "Port tracker",
+   "移植进度"
+  ],
+  "body": {
+   "en": [
+    "Clips of the private CGBJ build show the first boat mission running at 24 to 25 fps, with cutscenes near 30. TechRadar watched one clip and called it largely stable; Game Rant and Notebookcheck put gameplay at 24–25 fps on average.",
+    "That is close to the 30 fps the PS5 runs at, but only in the opening hours and on PCs with a 16 GB graphics card. Busier scenes in other builds drop much lower.",
+    "CGBJ builds on two public projects, VIctory and XCL. Its own code was public briefly and is offline again."
+   ],
+   "zh": [
+    "私有版本 CGBJ 的视频显示，第一个开船任务能跑 24 到 25 帧，过场接近 30 帧。TechRadar 看过其中一段视频，称画面大体稳定；Game Rant 和 Notebookcheck 给出的游戏内平均帧数是 24–25。",
+    "这已经接近 PS5 的 30 帧，但只限于游戏开头几个小时，而且用的是 16 GB 显存的显卡。其他版本在热闹的场景里会掉得多。",
+    "CGBJ 基于两个公开项目 VIctory 和 XCL。它自己的代码曾短暂公开，现在又下线了。"
+   ]
+  },
+  "more": [
+   [
+    "Game Rant",
+    "https://gamerant.com/gta-6-pc-port-progress-tracker-24-fps/"
+   ],
+   [
+    "Notebookcheck",
+    "https://www.notebookcheck.net/GTA-6-recomp-hits-90-progress-and-here-s-what-that-means.1460623.0.html"
+   ]
+  ]
+ },
+ {
+  "date": "2026-11-26",
+  "tag": "port",
+  "en": [
+   "Unofficial mod menu and launcher appear for the PC ports",
+   "Another sign the scene is moving from 'does it boot' to tooling."
+  ],
+  "zh": [
+   "民间 PC 移植出现了修改菜单和启动器",
+   "说明圈子已经从“能不能启动”走向做配套工具。"
+  ],
+  "source": {
+   "name": "TweakTown",
+   "url": "https://www.tweaktown.com/news/114902/gta-6-gets-its-first-unofficial-pc-mod-menu-and-launcher/index.html"
+  }
+ },
+ {
+  "date": "2026-11-26",
+  "tag": "report",
+  "en": [
+   "Jailbroken PS5 patch lifts the 30 fps cap",
+   "A modder’s patch runs base PS5 at about 40 fps and PS5 Pro above 45."
+  ],
+  "zh": [
+   "破解版 PS5 补丁解除 30 帧上限",
+   "一位改装者的补丁让普通 PS5 跑到约 40 帧，PS5 Pro 超过 45 帧。"
+  ],
+  "source": {
+   "name": "Notebookcheck",
+   "url": "https://www.notebookcheck.net/While-gamers-wait-for-GTA-6-s-PC-port-modders-have-already-bypassed-its-30-FPS-limit-on-jailbroken-PS5-consoles.1460841.0.html"
+  },
+  "slug": "gta-6-ps5-30-fps-cap-unlocked",
+  "page": [
+   "specs",
+   "PC specs",
+   "配置"
+  ],
+  "body": {
+   "en": [
+    "A modder’s patch for jailbroken PS5 and PS5 Pro consoles removes GTA 6’s 30 fps cap. The cap follows the display’s refresh rate, so on a 120 Hz screen the game can go up to 60.",
+    "Notebookcheck reports about 40 fps on a base PS5, dropping into the 20s in busy scenes, and above 45 on a PS5 Pro without frame generation.",
+    "It needs a jailbroken console. For everyone else, GTA 6 stays at 30 fps until Rockstar adds a performance mode or releases the PC version."
+   ],
+   "zh": [
+    "一位改装者为破解版 PS5 和 PS5 Pro 做的补丁解除了 GTA 6 的 30 帧上限。这个上限跟显示器刷新率挂钩，所以在 120 Hz 的屏幕上最高能到 60 帧。",
+    "据 Notebookcheck 报道，普通 PS5 约 40 帧，热闹场景会掉到 20 多帧；PS5 Pro 不开插帧也能超过 45 帧。",
+    "前提是主机已经破解。其他玩家只能继续玩 30 帧，等 Rockstar 加性能模式或推出 PC 版。"
+   ]
+  }
+ },
+ {
+  "date": "2026-11-26",
+  "tag": "legal",
+  "en": [
+   "GitHub deletes a post celebrating a PS5-to-PC tool",
+   "The post praised AnyPS5 two days after GitHub disabled 3,007 GTA 6 port repositories."
+  ],
+  "zh": [
+   "GitHub 删除了一条为 PS5 移植工具叫好的帖子",
+   "帖子夸了 AnyPS5，而两天前 GitHub 刚下架了 3,007 个 GTA 6 移植仓库。"
+  ],
+  "source": {
+   "name": "Notebookcheck",
+   "url": "https://www.notebookcheck.net/After-removing-GTA-6-PC-ports-GitHub-celebrates-app-popular-in-PS5-piracy-groups.1460983.0.html"
+  },
+  "slug": "github-deletes-anyps5-post",
+  "page": [
+   "tracker",
+   "Port tracker",
+   "移植进度"
+  ],
+  "body": {
+   "en": [
+    "GitHub’s social account posted praise for AnyPS5, a project that brings unofficial ports of PS5 games to PC and has about 58,000 stars on GitHub, then deleted the post.",
+    "The timing drew criticism: two days earlier GitHub had disabled 3,007 GTA 6 port repositories after Take-Two’s DMCA notice. AnyPS5 is popular in PS5 piracy circles, though no PS5 build of GTA 6 is public."
+   ],
+   "zh": [
+    "GitHub 的官方社交账号发帖夸了 AnyPS5，随后又删掉了。AnyPS5 是一个把 PS5 游戏非官方移植到 PC 的项目，在 GitHub 上约有 5.8 万星标。",
+    "时间点引来批评：两天前 GitHub 刚因 Take-Two 的 DMCA 通知下架了 3,007 个 GTA 6 移植仓库。AnyPS5 在 PS5 破解圈很受欢迎，不过 GTA 6 的 PS5 版本目前没有流出。"
+   ]
+  }
+ },
+ {
+  "date": "2026-11-26",
+  "tag": "port",
+  "en": [
+   "Belobug’s public AMD build runs at about 22 fps",
+   "A tracker that watched it reports no crashes; the project’s own README still says 5–7 fps."
+  ],
+  "zh": [
+   "Belobug 的公开 AMD 版本约 22 帧",
+   "看过实机的追踪站称无崩溃；项目自己的说明仍写 5–7 帧。"
+  ],
+  "source": {
+   "name": "PortWatch VI",
+   "url": "https://portwatch-vi.xyz/#effort-belobug"
+  },
+  "slug": "gta-6-pc-port-belobug-22-fps",
+  "page": [
+   "tracker",
+   "Port tracker",
+   "移植进度"
+  ],
+  "body": {
+   "en": [
+    "Belobug’s fork of VIctory is the fastest build with public code. A tracker that watched it running reports about 22 fps on average with no crashes, in a lit open world with people, traffic, water and sky.",
+    "It was tested on a Radeon RX 9070 XT with a Ryzen 7 9800X3D and 64 GB of RAM, using about 30 GB of system memory and 12 GB of video memory. Its own README still lists 5–7 fps.",
+    "Nobody has tried it on NVIDIA or Intel graphics yet."
+   ],
+   "zh": [
+    "Belobug 的 VIctory 分支是目前最快的公开代码版本。看过实机的追踪站称，它平均约 22 帧、没有崩溃，开放世界有光照，行人、车流、水面和天空都有。",
+    "测试平台是 Radeon RX 9070 XT、Ryzen 7 9800X3D 和 64 GB 内存，占用约 30 GB 内存和 12 GB 显存。项目自己的说明里写的还是 5–7 帧。",
+    "目前还没有人在 NVIDIA 或 Intel 显卡上试过。"
+   ]
+  },
+  "more": [
+   [
+    "Reddit video",
+    "https://www.reddit.com/r/FitGirlRepack/comments/1y67xnd/belo_top_dawg/"
+   ]
+  ]
+ },
+ {
+  "date": "2026-11-25",
+  "tag": "port",
+  "en": [
+   "Builds clear Lucia’s prologue and reach Jason’s first mission",
+   "The furthest builds play into 'Gone Fishing', mostly at 1–5 fps, with ray tracing working in one."
+  ],
+  "zh": [
+   "多个版本通关露西亚序章，进入杰森第一个任务",
+   "最远的版本能玩到“Gone Fishing”，多数只有 1–5 帧，其中一个光追可用。"
+  ],
+  "source": {
+   "name": "Notebookcheck",
+   "url": "https://www.notebookcheck.net/GTA-6-PC-ports-reach-gameplay-despite-Take-Two-s-GitHub-DMCA.1459752.0.html"
+  },
+  "slug": "gta-6-pc-ports-clear-prologue",
+  "page": [
+   "tracker",
+   "Port tracker",
+   "移植进度"
+  ],
+  "body": {
+   "en": [
+    "The furthest builds now play through Lucia’s prison prologue and into “Gone Fishing”, Jason’s first mission. Most run at 1 to 5 fps and render badly, and boats often can’t be steered.",
+    "One build has ray-traced lighting working. A clip on an RTX 5070 Ti with a Ryzen 7 7800X3D and 32 GB of RAM ran the prologue at 1 to 3 fps.",
+    "This came a day after Take-Two’s DMCA notice, and most of the leading builds have since gone private."
+   ],
+   "zh": [
+    "最远的几个版本已经能玩完露西亚的监狱序章，进入杰森的第一个任务“Gone Fishing”。多数只有 1 到 5 帧，画面很差，船经常没法操控。",
+    "其中一个版本的光追已经能用。一段在 RTX 5070 Ti、Ryzen 7 7800X3D、32 GB 内存上录的视频，序章只有 1 到 3 帧。",
+    "这发生在 Take-Two 发出 DMCA 通知的第二天，之后大多数领先版本都转成了私有。"
+   ]
+  }
+ },
+ {
+  "date": "2026-11-24",
+  "tag": "legal",
+  "en": [
+   "Take-Two’s DMCA disables Leonida and 3,007 repositories",
+   "GitHub applied the notice to the whole fork network. Take-Two calls the port a derivative work that breaks Rockstar’s reverse-engineering ban."
+  ],
+  "zh": [
+   "Take-Two 的 DMCA 下架 Leonida 和 3,007 个仓库",
+   "GitHub 对整个分支网络执行了通知。Take-Two 称该移植是衍生作品，违反 Rockstar 禁止逆向工程的条款。"
+  ],
+  "source": {
+   "name": "heise",
+   "url": "https://www.heise.de/en/news/GTA-6-Take-Two-gets-unofficial-PC-port-removed-from-GitHub-11537104.html"
+  },
+  "slug": "take-two-dmca-leonida-3007-repos",
+  "page": [
+   "tracker",
+   "Port tracker",
+   "移植进度"
+  ],
+  "body": {
+   "en": [
+    "Take-Two sent GitHub a DMCA notice naming Leonida, the most-starred GTA 6 port. GitHub applied it to the whole fork network and disabled 3,007 repositories on 24 November.",
+    "The notice calls the port a derivative work of GTA 6 and says it breaks the reverse-engineering ban in section 2.3 of Rockstar’s terms. Take-Two also calls the project’s “bring your own files” line misleading, since the only files that work are the leaked ones.",
+    "Projects outside Leonida’s network, such as VIctory and XCL, stayed online, but most leading builds moved to private groups."
+   ],
+   "zh": [
+    "Take-Two 向 GitHub 发出 DMCA 通知，点名星标最多的 GTA 6 移植 Leonida。GitHub 把通知执行到了整个分支网络，11 月 24 日共下架 3,007 个仓库。",
+    "通知称该移植是 GTA 6 的衍生作品，违反了 Rockstar 条款第 2.3 节禁止逆向工程的规定。Take-Two 还认为项目“自备游戏文件”的说法有误导性，因为能用的只有泄露文件。",
+    "不在 Leonida 分支网络里的项目，比如 VIctory 和 XCL，仍然在线，但大多数领先版本已转到私有小组。"
+   ]
+  },
+  "more": [
+   [
+    "GitHub DMCA notice",
+    "https://github.com/github/dmca/blob/master/2026/11/2026-11-24-take-two.md"
+   ],
+   [
+    "Tom’s Hardware",
+    "https://www.tomshardware.com/video-games/pc-gaming/take-two-wipes-out-3-007-gta-6-pc-port-repos-from-github-in-massive-dmca-crackdown-as-ai-tools-fuel-wave-of-unofficial-builds"
+   ]
+  ]
+ },
+ {
+  "date": "2026-11-24",
+  "tag": "port",
+  "en": [
+   "First build gets a controllable character in game",
+   "A private build walks, talks to NPCs and opens the menu, in a dark, very slow world."
+  ],
+  "zh": [
+   "第一个版本能在游戏里操控角色",
+   "一个私有版本能走路、和 NPC 对话、打开菜单，但画面很暗、非常慢。"
+  ],
+  "source": {
+   "name": "PortWatch VI",
+   "url": "https://portwatch-vi.xyz/news/2026-11-24-cgbj-in-game.html"
+  },
+  "slug": "gta-6-pc-first-in-game-control",
+  "page": [
+   "tracker",
+   "Port tracker",
+   "移植进度"
+  ],
+  "body": {
+   "en": [
+    "A private build based on VIctory and XCL put a player in control inside GTA 6 for the first time: walking, talking to NPCs and opening the menu with a controller.",
+    "The world was unlit and the build ran very slowly. Two days later, builds in the same family were reaching 24–25 fps."
+   ],
+   "zh": [
+    "一个基于 VIctory 和 XCL 的私有版本，第一次在 GTA 6 里实现了操控角色：用手柄走路、和 NPC 对话、打开菜单。",
+    "当时世界没有光照，运行非常慢。两天后，同一系的版本已经跑到 24–25 帧。"
+   ]
+  },
+  "more": [
+   [
+    "X video",
+    "https://x.com/raul_bs3/status/2125172278975729688/video/1"
+   ]
+  ]
+ },
+ {
+  "date": "2026-11-23",
+  "tag": "port",
+  "en": [
+   "Leonida, the biggest port project, goes offline",
+   "Repository, mirror and Discord vanished within an hour; the founder stepped away."
+  ],
+  "zh": [
+   "最大的移植项目 Leonida 下线",
+   "仓库、镜像和 Discord 一小时内全部消失，创始人退出。"
+  ],
+  "source": {
+   "name": "PC Games Hardware",
+   "url": "https://www.pcgameshardware.de/GTA-6-Spiel-55239/News/PC-Port-Leonida-KI-Exe-Leak-Xbox-1560883/"
+  },
+  "slug": "leonida-gta-6-pc-port-offline",
+  "page": [
+   "tracker",
+   "Port tracker",
+   "移植进度"
+  ],
+  "body": {
+   "en": [
+    "Leonida, the most-starred GTA 6 port with about 32,000 stars, vanished on 23 November. Its repository, mirror and Discord went offline within about an hour, and its founder stepped away.",
+    "Leonida was a static recompilation project that had the game’s code running but nothing on screen. The next day, Take-Two’s DMCA notice took down the remaining copies and 3,007 forks."
+   ],
+   "zh": [
+    "星标最多的 GTA 6 移植 Leonida（约 3.2 万星标）在 11 月 23 日消失了。仓库、镜像和 Discord 在一小时内全部下线，创始人退出。",
+    "Leonida 走的是静态重编译路线，已经能让游戏代码跑起来，但还没有画面。第二天，Take-Two 的 DMCA 通知把剩下的副本和 3,007 个分支一起下架了。"
+   ]
+  }
+ },
+ {
+  "date": "2026-11-23",
+  "tag": "leak",
+  "en": [
+   "Cyberleek releases the missing EXE",
+   "A ~57 MB password-protected ZIP. Within three hours a port booted it to the settings screen."
+  ],
+  "zh": [
+   "大葱哥（Cyberleek）放出缺失的 EXE",
+   "约 57 MB 的加密 ZIP。3 小时内就有移植项目启动到了设置界面。"
+  ],
+  "source": {
+   "name": "heise",
+   "url": "https://www.heise.de/en/news/After-executable-leak-modders-work-on-unofficial-GTA-6-PC-port-11535595.html"
+  },
+  "slug": "cyberleek-releases-gta-6-exe",
+  "page": [
+   "leak",
+   "EXE leak explained",
+   "EXE 泄露解读"
+  ],
+  "body": {
+   "en": [
+    "Cyberleek posted the missing main executable for the leaked Xbox build of GTA 6 on 23 November, as a ~57 MB password-protected ZIP, about three hours before the leaker’s own countdown ended.",
+    "Within three hours, ports had booted it to the first-run settings screen on Windows. The EXE is an Xbox program, not a PC version, and only runs inside the unofficial ports.",
+    "Cyberleek had tied the release to a meme-coin market cap of $15 million, later cut to $6 million. Neither was reached."
+   ],
+   "zh": [
+    "11 月 23 日，大葱哥（Cyberleek）放出了泄露 Xbox 版缺失的主程序，是一个约 57 MB 的加密 ZIP，比他自己的倒计时早了约 3 小时。",
+    "3 小时内，移植项目就在 Windows 上把它启动到了首次设置界面。这个 EXE 是 Xbox 程序，不是 PC 版，只能在民间移植里运行。",
+    "大葱哥曾把放出时间和一个迷因币 1500 万美元的市值目标挂钩，后来降到 600 万，都没有达到。"
+   ]
+  },
+  "more": [
+   [
+    "PC Games Hardware",
+    "https://www.pcgameshardware.de/GTA-6-Spiel-55239/News/PC-Port-Leonida-KI-Exe-Leak-Xbox-1560883/"
+   ]
+  ]
+ },
+ {
+  "date": "2026-11-23",
+  "tag": "official",
+  "en": [
+   "First console patch, 1.002.002",
+   "The leaked build (1.0.2.1) is now out of date."
+  ],
+  "zh": [
+   "主机版首个补丁 1.002.002",
+   "泄露版本（1.0.2.1）已经过时。"
+  ],
+  "source": {
+   "name": "heise",
+   "url": "https://www.heise.de/en/news/After-executable-leak-modders-work-on-unofficial-GTA-6-PC-port-11535595.html"
+  }
+ },
+ {
+  "date": "2026-11-21",
+  "tag": "leak",
+  "en": [
+   "Cyberleek cuts its meme-coin target",
+   "The EXE was promised at a $15M market cap, cut to $6M. Neither was reached."
+  ],
+  "zh": [
+   "大葱哥下调迷因币目标",
+   "原定币市值到 1500 万美元就放 EXE，后降到 600 万，都没达到。"
+  ],
+  "source": {
+   "name": "Notebookcheck",
+   "url": "https://www.notebookcheck.com/GTA-6-bald-auf-PC-spielbar-Exe-Datei-fuer-Xbox-Version-veroeffentlicht.1457998.0.html"
+  }
+ },
+ {
+  "date": "2026-11-19",
+  "tag": "official",
+  "en": [
+   "GTA 6 launches on PS5 and Xbox Series X|S",
+   "No PC version. Rockstar says the game plays best on PS5."
+  ],
+  "zh": [
+   "GTA 6 登陆 PS5 和 Xbox Series X|S",
+   "没有 PC 版。Rockstar 称 PS5 体验最好。"
+  ],
+  "source": {
+   "name": "TechRadar",
+   "url": "https://www.techradar.com/gaming/consoles-pc/gta-6-is-coming-to-ps5-and-xbox-series-xors-but-theres-no-word-on-a-pc-release"
+  },
+  "slug": "gta-6-launches-no-pc-version",
+  "page": [
+   "release",
+   "PC release date",
+   "PC 版发售日"
+  ],
+  "body": {
+   "en": [
+    "Grand Theft Auto VI launched on 19 November 2026 for PS5 and Xbox Series X|S. There is no PC version, and Rockstar hasn’t announced one.",
+    "The Standard Edition costs $79.99 and the Ultimate Edition $100. The game is single-player at launch, and needs 212 GB on PS5.",
+    "Digital Foundry found both PS5 models render at about 1440p and hold 30 fps, with the PS5 Pro the most stable."
+   ],
+   "zh": [
+    "《GTA 6》于 2026 年 11 月 19 日登陆 PS5 和 Xbox Series X|S。没有 PC 版，Rockstar 也还没公布。",
+    "标准版 79.99 美元，终极版 100 美元。首发只有单人模式，PS5 版需要 212 GB 空间。",
+    "Digital Foundry 测得两款 PS5 都是约 1440p 渲染、30 帧，PS5 Pro 最稳。"
+   ]
+  },
+  "more": [
+   [
+    "Xbox Wire",
+    "https://news.xbox.com/en-us/2026/11/23/grand-theft-auto-vi-xbox-cloud-and-remote-play/"
+   ],
+   [
+    "Kotaku",
+    "https://kotaku.com/so-is-the-100-gta-6-ultimate-edition-actually-worth-it-2000758998"
+   ],
+   [
+    "Push Square",
+    "https://www.pushsquare.com/news/2026/11/gta-6-ps5-file-size-confirmed-to-be-212gb-physical-map-available-but-not-in-boxed-copies"
+   ]
+  ]
+ },
+ {
+  "date": "2026-11-19",
+  "tag": "leak",
+  "en": [
+   "209 GB Xbox build leaks on launch day",
+   "Version 1.0.2.1, shipped without its executable, so it could not start."
+  ],
+  "zh": [
+   "发售当天 209 GB Xbox 版泄露",
+   "版本 1.0.2.1，缺主程序，无法启动。"
+  ],
+  "source": {
+   "name": "Space4Games",
+   "url": "https://space4games.com/en/games-en/gta-6-pc-version-cyberleek-exe-leak/"
+  },
+  "slug": "gta-6-xbox-build-leak-209gb",
+  "page": [
+   "leak",
+   "EXE leak explained",
+   "EXE 泄露解读"
+  ],
+  "body": {
+   "en": [
+    "On launch day, Cyberleek put out a 209 GB copy of the Xbox Series build of GTA 6, version 1.0.2.1. It shipped without its main executable, so it couldn’t start.",
+    "Port projects started work anyway, building loaders and translating the game’s roughly 26,500 shaders. The missing EXE followed on 23 November."
+   ],
+   "zh": [
+    "发售当天，大葱哥放出了 GTA 6 Xbox Series 版的 209 GB 游戏包，版本 1.0.2.1。因为缺主程序，没法启动。",
+    "移植项目照样开工，先写加载器、转译游戏约 2.65 万个着色器。缺失的 EXE 在 11 月 23 日放出。"
+   ]
+  }
+ },
+ {
+  "date": "2026-11-18",
+  "tag": "legal",
+  "en": [
+   "Take-Two DMCA hits GTA 5 ports on GitHub",
+   "Mobile and web ports of GTA 5 were taken down the day before launch."
+  ],
+  "zh": [
+   "Take-Two 对 GitHub 上的 GTA 5 移植发起 DMCA",
+   "发售前一天，一批 GTA 5 手机版和网页版移植被下架。"
+  ],
+  "source": {
+   "name": "TorrentFreak",
+   "url": "https://torrentfreak.com/take-two-targets-hundreds-of-gta-v-mobile-ports-on-github-ahead-of-gta-vi-launch/"
+  }
+ },
+ {
+  "date": "2026-11-18",
+  "tag": "report",
+  "en": [
+   "Digital Foundry: PS5 Pro is the best way to play",
+   "Near-locked 30 fps and a near-4K image. 60 fps is held back by the CPU."
+  ],
+  "zh": [
+   "Digital Foundry：PS5 Pro 体验最好",
+   "几乎稳定 30 帧，画面接近 4K。60 帧卡在 CPU 上。"
+  ],
+  "source": {
+   "name": "PC Gamer",
+   "url": "https://www.pcgamer.com/games/grand-theft-auto/gta-6-looks-gorgeous-and-seeing-it-run-at-a-stable-30-fps-on-ageing-ps5-pro-hardware-makes-me-hopeful-for-pc-performance/"
+  },
+  "slug": "digital-foundry-gta-6-ps5-pro-30fps",
+  "page": [
+   "specs",
+   "PC specs",
+   "配置"
+  ],
+  "body": {
+   "en": [
+    "Digital Foundry found both PS5 and PS5 Pro render GTA 6 at about 1440p and target 30 fps. The Pro’s PSSR upscaling gives an image that passes for 4K and holds 30 fps almost perfectly; the base PS5 dips in heavy action.",
+    "Digital Foundry blames the CPU for the 30 fps cap and calls 60 fps on current consoles extremely unlikely. For PC players, that makes a modern CPU as important as the graphics card."
+   ],
+   "zh": [
+    "Digital Foundry 测得 PS5 和 PS5 Pro 都以约 1440p 渲染 GTA 6，目标 30 帧。Pro 的 PSSR 升频画面接近 4K，30 帧几乎不掉；普通 PS5 在激烈场面会掉帧。",
+    "Digital Foundry 认为 30 帧上限卡在 CPU，现世代主机跑 60 帧可能性极低。对 PC 玩家来说，这意味着 CPU 和显卡一样重要。"
+   ]
+  }
+ },
+ {
+  "date": "2026-11-14",
+  "tag": "security",
+  "en": [
+   "Fake “GTA 6 EXE” spreads the WARDEN stealer",
+   "A Google Colab link leads to a ZIP that steals passwords, Steam logins and crypto wallets."
+  ],
+  "zh": [
+   "假“GTA 6 EXE”传播 WARDEN 盗号木马",
+   "Google Colab 链接指向一个 ZIP，会盗取密码、Steam 账号和加密钱包。"
+  ],
+  "source": {
+   "name": "gHacks",
+   "url": "https://www.ghacks.net/de/2026/11/14/gta-6-fake-pc-download-malware-warden-stealer/"
+  },
+  "slug": "fake-gta-6-exe-warden-stealer",
+  "page": [
+   "safe",
+   "Is that download safe?",
+   "下载安全吗？"
+  ],
+  "body": {
+   "en": [
+    "A link passed around as the “GTA 6 EXE” leads through a Google Colab notebook to a ZIP carrying the WARDEN stealer. It takes saved passwords, browser cookies, Steam and Roblox logins, and crypto wallet data.",
+    "It is one of several fake GTA 6 downloads this autumn. If you ran one, disconnect, scan your PC, and change your passwords from another device."
+   ],
+   "zh": [
+    "一个号称“GTA 6 EXE”的链接，经由 Google Colab 笔记本指向一个 ZIP，里面是 WARDEN 窃密木马，会盗取保存的密码、浏览器 Cookie、Steam 和 Roblox 账号，以及加密钱包数据。",
+    "这是今年秋天多起假 GTA 6 下载之一。如果已经运行过，先断网、扫毒，再用另一台设备改密码。"
+   ]
+  },
+  "more": [
+   [
+    "Help Net Security",
+    "https://www.helpnetsecurity.com/2026/11/13/fake-gta-6-download-scam/"
+   ]
+  ]
+ },
+ {
+  "date": "2026-10-13",
+  "tag": "report",
+  "en": [
+   "GamesBeat: PC version targeted for Q1 2027",
+   "Four unnamed sources. Rockstar did not comment."
+  ],
+  "zh": [
+   "GamesBeat：PC 版目标 2027 年 Q1",
+   "4 个匿名信源，Rockstar 未回应。"
+  ],
+  "source": {
+   "name": "GamesBeat",
+   "url": "https://gamesbeat.com/grand-theft-auto-vis-pc-release-is-slated-for-q1-2027/"
+  },
+  "slug": "gta-6-pc-q1-2027-gamesbeat",
+  "page": [
+   "release",
+   "PC release date",
+   "PC 版发售日"
+  ],
+  "body": {
+   "en": [
+    "GamesBeat reported on 13 October, citing four unnamed industry sources, that Rockstar plans to release GTA 6 on PC in the first quarter of 2027.",
+    "That would put PC two to four months behind consoles, far sooner than GTA 5’s 19 months, and inside Take-Two’s fiscal year ending 31 March. The report says the PC version has to meet the console quality bar before it ships. Rockstar didn’t comment."
+   ],
+   "zh": [
+    "GamesBeat 10 月 13 日援引四位匿名业内人士报道，Rockstar 计划在 2027 年第一季度推出 GTA 6 PC 版。",
+    "这意味着 PC 版只比主机晚两到四个月，远快于 GTA 5 的 19 个月，而且正好落在 Take-Two 截至 3 月 31 日的财年内。报道还说，PC 版要先达到主机版的质量标准才会发售。Rockstar 没有回应。"
+   ]
+  }
+ },
+ {
+  "date": "2026-08-18",
+  "tag": "leak",
+  "en": [
+   "Development footage leaks",
+   "Cyberleek posts clips it says date from 2023. Take-Two responds with DMCA takedowns."
+  ],
+  "zh": [
+   "开发版视频泄露",
+   "大葱哥放出据称 2023 年的开发片段，Take-Two 随即发 DMCA。"
+  ],
+  "source": {
+   "name": "GTASIX.org",
+   "url": "https://gtasix.org/en/news/gta6-leak-august-2026-verified/"
+  }
+ },
+ {
+  "date": "2026-06-25",
+  "tag": "official",
+  "en": [
+   "Pre-orders open, consoles only",
+   "No PC listing on any store."
+  ],
+  "zh": [
+   "开启预购，仅限主机",
+   "任何 PC 商店都没有上架。"
+  ],
+  "source": {
+   "name": "Digital Trends",
+   "url": "https://www.digitaltrends.com/gaming/gta-6-pre-orders-open-june-25-as-rockstar-ramps-up-its-launch-campaign"
+  }
+ },
+ {
+  "date": "2026-11-25",
+  "tag": "report",
+  "slug": "gta-6-pc-march-2027-rumor",
+  "page": [
+   "release",
+   "PC release date",
+   "PC 版发售日"
+  ],
+  "en": [
+   "Rumor: GTA 6 on PC and GTA Online in March 2027",
+   "An anonymous post reading Take-Two’s forecasts claims a joint March launch. Rockstar hasn’t said anything."
+  ],
+  "zh": [
+   "传闻：GTA 6 PC 版和 GTA Online 2027 年 3 月上线",
+   "一篇解读 Take-Two 财报预测的匿名帖子称两者 3 月同步推出，Rockstar 没有表态。"
+  ],
+  "body": {
+   "en": [
+    "A GameGPU story on 25 November says GTA 6 Online will launch in March 2027 on PS5, Xbox Series X|S and PC together. The claim comes from an anonymous post on X that reads it into Take-Two’s bookings forecast for the fiscal year.",
+    "No retailer listing, platform database entry or Rockstar source backs it, and Shattered treats it as a rumor. March would still fit the Q1 2027 window GamesBeat reported in October."
+   ],
+   "zh": [
+    "GameGPU 11 月 25 日报道称，GTA 6 Online 将于 2027 年 3 月在 PS5、Xbox Series X|S 和 PC 上同步推出。这个说法来自 X 上的一个匿名帖子，依据是对 Take-Two 本财年营收预测的解读。",
+    "没有零售商页面、平台数据库或 Rockstar 方面的信息支持，Shattered 也把它当作传闻。不过 3 月仍落在 GamesBeat 10 月报道的 2027 年 Q1 窗口内。"
+   ]
+  },
+  "source": {
+   "name": "GameGPU",
+   "url": "https://en.gamegpu.com/news/igry/gta-6-vyjdet-na-pk-v-marte-2027-goda-vmeste-s-zapuskom-gta-6-online"
+  },
+  "more": [
+   [
+    "Shattered",
+    "https://shattered.io/gta-6-pc-march-2027-gamegpu-leak-zero-rockstar-confirmations-nov-25/"
+   ]
+  ]
+ }
 ]

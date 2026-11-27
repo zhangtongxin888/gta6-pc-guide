@@ -4,28 +4,32 @@
 
 ## 这是什么
 
-gta6pc.org 的整站改版。旧站是 Vite + React 单页应用，只有 3 个页面，HTML 里只有 `<div id="root">`。新站是 Python 生成的纯静态 HTML，中英双语，每种语言 11 个页面，部署在原来的 Vercel 项目上。
+gta6pc.org 的 2026-11-27 改版。生产仓库 `main` 在这次改版之前已经是 Python 生成的静态站（`python3 build.py` → `out/`，Vercel），不是 Vite。这次在那份站点上接上四种语言（英文、中文、西班牙语、巴西葡萄牙语）、FAQ / FPS / Online、新闻文章页和西语葡语翻译。不要删现有源码，也不要把压缩包里自带的 git 历史推到 `main`。
 
 - 预览（只有站长能看）：https://claude.ai/artifact/Xe8BkryXNDjMXuD66BZZkT
-- 内容快照时间：2026-11-24 11:30 UTC
+- 内容快照时间：2026-11-27 03:00 UTC（新闻截至 11 月 26 日）
 
 ## 目录
 
 | 路径 | 用途 |
 |---|---|
+| `i18n/es.json`、`i18n/pt.json` | 西语、葡语翻译表：英文原句 → 译文。英文和中文文案直接写在 `build.py` 和 `data/` 里，其他语言都从英文原句查这张表 |
 | `build.py` | 生成器。`python3 build.py` 输出到 `out/`（上线用）；`python3 build.py preview` 输出到 `preview/`（平铺文件、相对链接，只用于预览） |
 | `data/status.json` | 首页状态台三盏灯、移植统计数字、更新时间 |
-| `data/projects.json` | 移植追踪表的 14 个项目 |
-| `data/news.json` | 新闻流（首页取最新 5 条，/news 显示全部，泄露页取泄露和移植相关条目） |
-| `data/ads.json` | Adsterra 广告配置（从旧站原样搬过来的 Popunder + Social Bar 地址） |
-| `static/` | `site.css` 和 8 张 Rockstar 官方截图，部署到 `/static/` |
-| `legacy/` | 旧站保留的文件，构建时原样复制进 `out/`：`play/`（Neon Bay 小游戏）、`og-image.png`、`adsterra/runtime.js` |
-| `tools/check.py` | 上线前检查：内部链接、重复的 title/description/H1、占位文字、sitemap |
-| `vercel.json` | 构建命令、输出目录、`cleanUrls`、静态资源缓存头 |
+| `data/projects.json` | 移植追踪的项目卡片（公开 + 私有），字段说明见下文“日常更新” |
+| `data/trend.json` | “游戏内最高帧数，逐日变化”折线图的数据（公开代码 / 私有两条线） |
+| `data/news.json` | 新闻。首页“最新动态”取最新 5 条，/news 显示全部，泄露页取泄露和移植相关条目。带 `slug` 和 `body` 的条目会生成独立文章页 `/news/<slug>`，并写进 RSS（`/news/feed.xml`、`/zh/news/feed.xml`）和 sitemap |
+| `data/ads.json` | 生产广告配置：Popunder + Social Bar，`enabled: true`，`slots` 为空。保留了说明用的 `note` 字段。脚本地址不要改 |
+| `static/` | `site.css`、`tracker.js`（旧页的筛选脚本，新页面改用内联脚本，文件仍留在 `static/`）和 11 张 Rockstar 官方图，部署到 `/static/` |
+| `legacy/` | 构建时原样复制进 `out/`：`play/`（Neon Bay）、`og-image.png`、`adsterra/runtime.js`。仓库里没有单独的 favicon 文件 |
+| `tools/check.py` | 上线前检查：内部链接、每种语言内 title/description/H1 不重复、占位文字、sitemap、广告注入、禁链 |
+| `vercel.json` | 沿用生产配置：`python3 build.py` → `out`、`cleanUrls`、www 301、`/news/xbox-executable` 301 到 `/cyberleek-leak`、`/play` 重写、安全响应头。没有把未知地址改写成 `index.html` 的兜底 |
 | `docs/plan.html` | 改版方案（用户意图、真伪核查、页面矩阵） |
 | `research/` | Google 联想词原始数据、意图表 |
 
 ## URL 表
+
+西班牙语和葡萄牙语版本的网址与中文一样，只是前缀换成 `/es` 和 `/pt-br`（例如 `/es/gta-6-fps`、`/pt-br/faq`）。
 
 `vercel.json` 开了 `cleanUrls`，所以 `release-date.html` 对外是 `/release-date`。**旧站的 `/`、`/release-date`、`/pc-specs`、`/play/` 地址都保持不变。**
 
@@ -39,34 +43,34 @@ gta6pc.org 的整站改版。旧站是 Vite + React 单页应用，只有 3 个�
 | `/how-to-play-gta-6-on-pc` | `/zh/how-to-play-gta-6-on-pc` | Remote Play 教程（新） |
 | `/is-gta-6-pc-download-safe` | `/zh/is-gta-6-pc-download-safe` | 假下载识别（新） |
 | `/steam` | `/zh/steam` | Steam / Game Pass / Deck（新） |
-| `/news` | `/zh/news` | 新闻（新） |
+| `/faq` | `/zh/faq` | 常见问题汇总，30 问（新） |
+| `/gta-6-fps` | `/zh/gta-6-fps` | GTA 6 帧数（新） |
+| `/gta-6-online-pc` | `/zh/gta-6-online-pc` | GTA 6 Online 与 PC 联机（新） |
+| `/news` | `/zh/news` | 新闻汇总（新） |
+| `/news/<slug>` | `/zh/news/<slug>` | 新闻文章页，目前 16 篇（新） |
 | `/privacy`、`/terms` | `/zh/privacy`、`/zh/terms` | 法律页（不放广告） |
 | `/play/` | — | Neon Bay 小游戏（旧文件，原样保留） |
 
-每个页面都有 canonical、hreflang（en / zh-CN / x-default）、OG 标签和 JSON-LD（WebPage、BreadcrumbList，有问答的页面加 FAQPage）。`sitemap.xml` 有 22 个 URL，每个都带 hreflang 互指。
-
-旧文 `/news/xbox-executable`（带或不带结尾斜杠）在 `vercel.json` 里 301 到 `/cyberleek-leak`。`www.gta6pc.org` 仍 301 到 apex。没有 SPA 兜底 rewrite。
-
-## 广告（Popunder + Social Bar）
-
-`data/ads.json` 的 `enabled` 为 `true`。两条脚本就是改版前 gta6pc.org 的 Popunder（`abscloud.org`）和 Social Bar（`bauval.org`），没有新广告位，`slots` 仍是空数组。生成器把配置和 `/adsterra/runtime.js` 写进除 `privacy`、`terms` 以外的内容页（中英都有）。404 带 `noindex`，也不会注入。`/play/` 是旧文件，页面里没有这段配置；runtime 还会跳过路径段 `play`、`privacy`、`terms` 以及标题像 404 的页面。runtime 文件本身不改：Popunder 仍是每位访客本地日最多 3 次，Social Bar 仍是最多 3 次，并在加载后 4 秒插入。
+每个页面都有 canonical、hreflang（en / zh-CN / es / pt-BR / x-default）、OG 标签和 JSON-LD（WebPage、BreadcrumbList，有问答的页面加 FAQPage，新闻文章加 NewsArticle）。`sitemap.xml` 有 120 个 URL（4 种语言 × 14 个栏目页和 16 篇新闻），每个都带四种语言的 hreflang。`/play/` 和 404 不进 sitemap。
 
 ## 上线步骤
 
 ### 1. 放进仓库
 
-找到 Vercel 上 gta6pc.org 项目连接的那个 GitHub 仓库。
+生产源就是这个仓库。从当前 `main` 开分支，把改版文件合进来，提交后开 Pull Request。不要 force-push，不要把压缩包里的 `.git` 提交进来。
 
-- 新开一个分支，比如 `redesign-static`。
-- 删除旧的 Vite 源码（`src/`、`index.html`、`vite.config.*`、`package.json` 等）。删之前把旧仓库 `public/` 里的 `play/`、`og-image.png`、`adsterra/runtime.js`、favicon 复制到本包的 `legacy/`，覆盖本包里的快照，因为旧仓库里的文件可能比快照新。
-- 把本包所有文件放到仓库根目录，提交并推送。
+已经核对过、并保留生产版本的文件：
 
-本包自带一个 git 仓库（`main` 分支，一个提交）。如果想保留这段历史，可以 `git remote add origin <仓库地址>` 后推送到新分支。
+- `data/ads.json`：`enabled` 仍是 true，Popunder `https://abscloud.org/1/b640baabccdb568dd796990946539530`，Social Bar `https://bauval.org/14/0eba5089f9eb509606a14e9eebb4e230`，`slots` 仍是空数组，`runtime` 仍是 `/adsterra/runtime.js`，`no_ads_pages` 仍是 privacy 和 terms。说明字段 `note` 也保留。
+- `vercel.json`：www 跳转、`/news/xbox-executable` 跳转、`/play` 重写、安全响应头。没有 SPA 兜底。
+- `legacy/play/`、`legacy/og-image.png`、`legacy/adsterra/runtime.js`：和改版包是同一份文件。仓库里没有 favicon，改版包里也没有。
+- `privacy` / `terms`：`build.py` 里的 `page_legal` 和当前生产是同一段通用文案，没有更具体的旧政策可替换。
+- `static/tracker.js`：生产上的筛选脚本。新页面自己带内联脚本，这个文件留在 `static/` 里，不再注入到每个页面。
 
 ### 2. Vercel 设置
 
-- Framework Preset 改为 **Other**。构建命令和输出目录由 `vercel.json` 指定（`python3 build.py` → `out`）。
-- 删掉旧的 SPA 兜底 rewrite（例如 `"rewrites": [{"source": "/(.*)", "destination": "/index.html"}]`），不管它在旧的 `vercel.json` 里还是在项目设置里。旧站任何不存在的地址都返回 200，新站必须对不存在的地址返回真正的 404。
+- 构建命令和输出目录已经写在 `vercel.json` 里（`python3 build.py` → `out`）。
+- 不要加 `"rewrites": [{"source": "/(.*)", "destination": "/index.html"}]`。不存在的地址必须是真正的 404，根目录的 `404.html` 负责这件事。
 - 如果 Vercel 构建环境报找不到 `python3`：把构建命令留空，在本地跑 `python3 build.py`，然后把 `out/` 提交上去（同时从 `.gitignore` 里去掉 `out/`）。
 
 ### 3. 用 Preview 部署验证
@@ -80,7 +84,7 @@ for u in / /release-date /pc-specs /pc-port-tracker /cyberleek-leak /how-to-play
 
 预期：最后一个 `/does-not-exist` 返回 404，其余都是 200。
 
-再用浏览器打开 `/` 和 `/privacy`：首页应该请求 `abscloud.org` 和 `bauval.org`，`/privacy` 不应该请求。
+再用浏览器打开 `/` 和 `/privacy`：首页应该请求 `abscloud.org` 和 `bauval.org`（广告），`/privacy` 不应该请求。
 
 ### 4. 上生产
 
@@ -92,39 +96,46 @@ for u in / /release-date /pc-specs /pc-port-tracker /cyberleek-leak /how-to-play
 移植进度一天内会变好几次。至少每天更新一次：
 
 1. 改 `data/` 下的 JSON：
-   - `status.json`：`updated`、`updated_label`（中英两个都改）、三盏灯的文字、`port_stats` 里的数字
-   - `projects.json`：每个项目的 `stage`（1–7）、`halted`、`note`（中英各一句）
-   - `news.json`：在数组里加一条，`tag` 取 `port` / `leak` / `official` / `report` / `legal` / `security`，中英各写一个标题和一句话
+   - `status.json`：`updated`、`updated_label`（中英两个都改）、三盏灯的文字、`race` 里的数字（最高帧数及说明、最好公开版本帧数、被下架仓库数）
+   - `projects.json`：每个项目一条。`stage` 是 1–7（7 = 平均 20 帧以上且不常崩溃，比别家追踪站严）；`fps`；`story` / `picture` / `stability` 各有 `v`（0–1，画进度条）和中英文字；`evidence` 取 `verified`（追踪站核验）/ `press`（媒体报道）/ `self`（自报）/ `stream`（仅直播）；`public` 为 false 的是私有版本，不参与排名；`offline` 为 true 显示“已下线”；`sources` 是“数字出处”列表，每条有 `kind`（`tracker` / `video` / `press` / `readme` / `notice`）、中英文说明和 `url`（`readme` 类不填链接）
+   - `trend.json`：每天加一行 `{"date", "public", "private"}`，填当天首次报道的最高游戏内帧数
+   - `news.json`：在数组里加一条（重要新闻再加 `slug`、`body`、`page`，就会生成文章页，见下文），`tag` 取 `port` / `leak` / `official` / `report` / `legal` / `security`，中英各写一个标题和一句话，`source` 填原始报道的名称和链接（必填，页面上会显示“来源”）
+   - 新闻文章页：`slug` 用英文小写加连字符；`body` 是中英文段落列表（每种语言 2–3 段）；`page` 是文末按钮指向的站内页面，格式 `[页面 key, 英文按钮文字, 中文按钮文字]`；`more` 是补充来源 `[[名称, 链接], ...]`。
+   - “我的电脑能跑吗”检测工具的显卡和 CPU 列表在 `build.py` 的 `GPUS` / `CPUS` 里；新显卡上市时加一行，数字是相对性能（RTX 3060 12 GB = 100，Ryzen 5 3600 = 100）。分档门槛在 `checker()` 的 `need` 数组里。
 2. 运行：
 
 ```bash
 python3 build.py && python3 tools/check.py
 ```
 
-3. 提交并推送，Vercel 会自动部署。
+3. 看构建输出的最后一行。如果出现 `untranslated strings: {'es': N, 'pt': N}`，说明有新增或改动的英文文案还没有西语 / 葡语译文，这些句子在西语和葡语页面上会暂时显示英文。缺译清单在 `i18n/_missing_es.json` 和 `i18n/_missing_pt.json`，把每句的译文以 `"英文原句": "译文"` 的形式加进 `i18n/es.json` 和 `i18n/pt.json`，再构建一次，直到不再提示。注意保留原句里的 HTML 标签和 `{n}` 这类占位符。
+4. 提交并推送，Vercel 会自动部署。
 
-进度数据来源：GTA VI PC Race（vuyp.github.io/gta6-pc-race）、Six on PC（sixonpc.com）。每条事实都要交叉核对，只有单一来源的写成“报道称 / 自述”。
+进度数据来源：PortWatch VI（portwatch-vi.xyz，每 3 小时更新）、Six on PC（sixonpc.com）、GTA VI PC Race（vuyp.github.io/gta6-pc-race），以及 TechRadar、Game Rant、Notebookcheck、heise 的报道。注意：截至 11 月 27 日，媒体报道的帧数几乎都转述自 PortWatch 和 Reddit / X 上的视频，没有媒体自己跑过这些版本，所以每个数字都要标核验程度（`evidence` 字段）。PortWatch 的仓库没有开源许可证，只能引用它的核验结论并注明来源，不能整段复制它的文字或数据文件。
 
-需要改状态台三盏灯的时机：Rockstar 正式公布 PC 版；或任何民间项目经证实达到第 6 阶段（能操控角色）。到时候同时改首页 H1 下面那句话（在 `build.py` 的 `page_home` 里）。
+需要改状态台三盏灯和首页 H1 的时机：Rockstar 正式公布 PC 版；或有媒体 / 独立第三方亲自跑通某个民间版本（目前所有帧数都只是“报道”）。H1 和导语在 `build.py` 的 `page_home` 里。
 
 改页面文案就直接改 `build.py`，每段文案都是 `t("English", "中文")` 两个版本挨着写。
 
 ## 红线
 
-- **不链接**任何泄露文件、EXE、种子、网盘，也不链接需要泄露文件才能用的移植仓库（GitHub、Discord 都不行）。页面上只写项目名。
+- **不链接**任何泄露文件、EXE、种子、网盘，也不链接需要泄露文件才能用的移植仓库（GitHub、GitLab、Discord 邀请都不行）。项目卡片写名字和进度，出处只链新闻、追踪站页面和这份 DMCA 通知：https://github.com/github/dmca/blob/master/2026/11/2026-11-24-take-two.md
 - 不在标题、锚文本里用“download / crack / 下载 / 破解”去吸引流量。
 - 不发布泄露版本的实机截图。移植进度页的“每个阶段长什么样”用的是 CSS 示意图，保持这样。
-- 图片只用 Rockstar 官方素材（`static/img/` 里的 8 张都来自 rockstargames.com/VI），并保留“截图：Rockstar Games”的署名。
+- 图片只用 Rockstar 官方素材（`static/img/` 里的 11 张都来自 rockstargames.com/VI），并保留“截图：Rockstar Games”的署名。项目卡片可以链新闻、追踪站结论和 GitHub 上的 DMCA 通知原文，不要链移植仓库、Discord 邀请、种子或可执行文件。
 
 ## 已知限制 / 待办
 
-- `privacy` 页的文字是通用写法（提到 Vercel 日志和可能的统计、广告 Cookie）。如果旧站的隐私政策写得更具体，请用旧站的版本替换 `build.py` 里 `page_legal` 的内容。
+- `privacy` 页的文字是通用写法（提到 Vercel 日志和可能的统计、广告 Cookie）。已和当前生产的 `page_legal` 对过，两边是同一段，仓库里没有更具体的版本。
 - 中文 404 页（`out/zh/404.html`）已经生成，但 Vercel 默认对所有不存在的地址都返回根目录的 `404.html`（英文版），这个可以接受。
 - 新站没有接入统计代码（旧站也没有）。如果要加，写在 `build.py` 的 `head()` 里。
 - 构建已在 Python 3.11 和 3.13 下验证通过，只用标准库，不需要 pip install。
 
 ## 交接时已验证的项目
 
-- `python3 tools/check.py`：25 个 HTML 页面，内部链接 0 个坏链；title、description、H1 无重复；sitemap 22 个 URL 全部对应到真实页面。
-- 本地用 `serve`（同样开了 clean URLs）请求了 22 个地址，全部返回预期状态码，不存在的地址返回 404。
-- 浏览器加载英文首页、中文首页、移植进度、中文下载安全页、隐私页：没有 JS 报错；广告只在内容页加载，隐私页没有；桌面 1366 和手机 390 宽度下都没有横向滚动。
+- `python3 build.py && python3 tools/check.py`：125 个 HTML 页面，120 个 sitemap URL，检查通过。内容页 112 个都带 `adsterra-config` 和 `/adsterra/runtime.js`；privacy、terms、四种语言的 404、以及 `/play/` 都没有。`out/adsterra/runtime.js` 有复制出来。
+- 本地按 cleanUrls 打开过 `/`、`/zh`、`/es`、`/pt-br`、发售日、配置、移植进度、FAQ、FPS、Online、新闻和一篇文章、隐私、条款、`/play/`、`/og-image.png`、`/adsterra/runtime.js`、sitemap、robots，都是 200。`/does-not-exist` 是 404，正文是 “Page not found”，没有广告脚本。
+- `/news/xbox-executable` 不是静态文件。生产 `vercel.json` 把它 301 到 `/cyberleek-leak`。
+- 西语和葡语这次构建没有缺译（`untranslated strings` 没有出现）。
+- 首页官方结论仍是 “Not officially.” / “官方还没有。” / “No oficialmente.” / “Não oficialmente.” 民间移植的帧数是带来源的报道，不是 Rockstar 公布了 PC 版。
+- 移植页的 AMD / NVIDIA 筛选会给卡片设 `hidden`。`.pcard` 用了 `display: grid`，会盖掉浏览器默认的 `[hidden]`，所以 `site.css` 里有 `.pcard[hidden] { display: none; }`。浏览器里点 NVIDIA 后 Belobug 会从页面上消失，再点 All 会回来。

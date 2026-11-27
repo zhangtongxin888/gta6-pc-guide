@@ -1,0 +1,109 @@
+{
+ "note": "Best in-game frame rate reported for any build, by the day it was first seen. 0 = no build in game yet. Sources: PortWatch VI history and reports, Game Rant, TechRadar, Notebookcheck.",
+ "days": [
+  {
+   "date": "2026-11-19",
+   "public": 0,
+   "private": 0
+  },
+  {
+   "date": "2026-11-20",
+   "public": 0,
+   "private": 0
+  },
+  {
+   "date": "2026-11-21",
+   "public": 0,
+   "private": 0
+  },
+  {
+   "date": "2026-11-22",
+   "public": 0,
+   "private": 0
+  },
+  {
+   "date": "2026-11-23",
+   "public": 0,
+   "private": 0
+  },
+  {
+   "date": "2026-11-24",
+   "public": 3,
+   "private": 5
+  },
+  {
+   "date": "2026-11-25",
+   "public": 16,
+   "private": 15
+  },
+  {
+   "date": "2026-11-26",
+   "public": 22,
+   "private": 25
+  },
+  {
+   "date": "2026-11-27",
+   "public": 22,
+   "private": 25
+  }
+ ],
+ "events": [
+  {
+   "date": "2026-11-23",
+   "en": "EXE out",
+   "zh": "EXE 放出"
+  },
+  {
+   "date": "2026-11-24",
+   "en": "First in-game control",
+   "zh": "首次进游戏操控"
+  }
+ ],
+ "sources": [
+  {
+   "date": "2026-11-24",
+   "en": "Public 3 fps: hyphennn’s fork on stream · Private 5 fps: omonkey’s Rumble stream",
+   "zh": "公开 3 帧：hyphennn 分支直播 · 私有 5 帧：omonkey 的 Rumble 直播",
+   "links": [
+    [
+     "PortWatch VI",
+     "https://portwatch-vi.xyz/news/2026-11-24-omonkey-shaders-prison.html"
+    ]
+   ]
+  },
+  {
+   "date": "2026-11-25",
+   "en": "Public 16 fps: AvatarManz · Private 15 fps: darkworldhm’s stream",
+   "zh": "公开 16 帧：AvatarManz · 私有 15 帧：darkworldhm 直播",
+   "links": [
+    [
+     "PortWatch VI",
+     "https://portwatch-vi.xyz/#effort-avatarmanz"
+    ],
+    [
+     "Rumble",
+     "https://rumble.com/v7iwggw-gta-6-mooding-pc.html"
+    ]
+   ]
+  },
+  {
+   "date": "2026-11-26",
+   "en": "Public 22 fps: Belobug · Private 25 fps: CGBJ",
+   "zh": "公开 22 帧：Belobug · 私有 25 帧：CGBJ",
+   "links": [
+    [
+     "PortWatch VI",
+     "https://portwatch-vi.xyz/#effort-belobug"
+    ],
+    [
+     "TechRadar",
+     "https://www.techradar.com/gaming/pc-gamers-could-see-an-unofficial-gta-6-port-sooner-rather-than-later-stable-30fps-gameplay-at-4k-has-reportedly-been-achieved"
+    ],
+    [
+     "Game Rant",
+     "https://gamerant.com/gta-6-pc-port-progress-tracker-24-fps/"
+    ]
+   ]
+  }
+ ]
+}
